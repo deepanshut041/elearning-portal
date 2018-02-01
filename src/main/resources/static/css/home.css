@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+body{
+    font-family: 'varela round', sans-serif;
+}
+/* Header Styles */
+nav{
+    background: #fff;
+}
+nav .nav-item .nav-link{
+    color: #7b8b8e;
+    font-weight: 500;
+    transition: color 300ms 0s ease;
+}
+nav .navbar-brand {
+    color: #5fcf80;
+}
+nav .nav-link:hover{
+    color: #4b5658;
+}
+
+
+/* Main page styling */
+main{
+    margin-top: 56px;
+    background: #1e7e34;
+}
+
+main header{
+    background: url('../assets/main-header.svg') #5fcf80;
+    min-height: 50vh;
+    padding:60px 2px;
+}
+
+main header #headerLeft{
+    color: #fff;
+    padding: 15px
+}
+
+main header #headerLeft h1{
+    font-weight: 500;
+    font-size: 46px;
+}
+
+main header #headerRight{
+    padding: 10px;
+}
+
+main header #headerRight .head{
+    padding: 20px 10px;
+    background: #637a91;
+    border-radius: 5px 5px 0 0;
+}
+
+main header #headerRight .head h5{
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+main header #headerRight .row{
+    padding: 20px 10px;
+    background: #fff;
+}
+
+main header #headerRight .form-group{
+    padding: 10px;
+}
+
+main header #headerRight button{
+    background-color: #3ac162;
+    border-color: #3ac162;
+    padding: 10px;
+}
+
+main header #headerRight div.text-center.col-12{
+    margin: 10px 0px;
+    padding: 5px 10px;
+}
+
+main header #headerRight div.text-center.col-12 p{
+    padding-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
