@@ -135,18 +135,18 @@
     </section>
 
     <!-- Section 2 -->
-    <section class="container">
-        <div id="stuff">
+    <section class=" stuff">
+        <div id="stuff" class="container">
             <div class="text-center head">
                 <h2>Some of the Awesome Stuff You'll Learn</h2>
                 <p class="text-muted">The fast, easy, and affordable way to build your skills</p>
             </div>
             <div class="stuff-body">
-                <div class="row justify-content-center">
+                <div class="row no-gutters justify-content-center">
                     <div class="col-12 col-md-5 col-lg-4">
-                        <div>
-                            <div>
-                                <img src=""/>
+                        <div class="stuff-card">
+                            <div class="stuff-card-head">
+                                <img th:src="@{/assets/home-start.png}"/>
                             </div>
                             <div class="text-center">
                                 <h5>Start learning today</h5>
@@ -156,9 +156,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-5 col-lg-4">
-                        <div>
-                            <div>
-                                <img src=""/>
+                        <div class="stuff-card">
+                            <div class="stuff-card-head">
+                                <img th:src="@{/assets/home-pick.png}"/>
                             </div>
                             <div class="text-center">
                                 <h5>Pick your subject</h5>
@@ -168,9 +168,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-5 col-lg-4">
-                        <div>
-                            <div>
-                                <img src=""/>
+                        <div class="stuff-card">
+                            <div class="stuff-card-head">
+                                <img th:src="@{/assets/home-test.png}"/>
                             </div>
                             <div class="text-center">
                                 <h5>Test your knowledge</h5>
@@ -183,7 +183,49 @@
             </div>
         </div>
     </section>
+    <!-- About Us -->
+    <section id="about">
+        <article >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-3 col-xl-5 col-12">
+                    </div>
+                    <div class="col">
+                        <p class="about-heading display-4">About <span>Us</span></p>
+                        <p class="p-first">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                        <div class="hr-about"></div>
+
+                        <p class="p-second"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. </p>
+                        <button>LEARN MORE</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <!-- Semi footer style goes here -->
+    <section class="semi">
+        <div id="semi" class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div>
+                        <h5>A superior experience</h5>
+                        <p class="text-muted"><i class="fa "></i> Learn from 100+ high quality video courses</p>
+                        <p class="text-muted"><i class="fa "></i> Practice  with our Code Challenge Engine</p>
+                        <p class="text-muted"><i class="fa "></i> Get help in our members-only forums</p>
+                        <div class="text-center">
+                            <button class="btn btn-lg btn-info btn-block">Start now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+<footer>
+
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
