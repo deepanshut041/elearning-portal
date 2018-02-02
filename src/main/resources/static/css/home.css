@@ -232,7 +232,7 @@ section#about{
 }
 #about div.col p.p-first{
     font-size: 20px;
-    font-weight: 0;
+    font-weight: 400;
     color: #5f727f;
 }
 #about div.col div.hr-about{
@@ -266,3 +266,35 @@ section#about{
 }
 
 /* Semi footer styles goes here*/
+main .semi{
+    background: #5fcf80;
+    padding: 80px;
+}
+
+main .semi-container{
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+main .semi-container h5{
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+main .semi-container p{
+    font-size: 19px;
+}
+
+footer{
+    padding: 50px 10px 100px 10px;
+    background-color: #f9fafa !important;
+}
+
+footer h1{
+    color: #5fcf80;
+    margin-bottom: 2px;
+}
+
+
