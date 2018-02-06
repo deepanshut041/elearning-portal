@@ -1,20 +1,21 @@
 package com.example.sawdhyay.models;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Step {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String title;
-    private Module module;
+
     private String type;
     private String detail;
 
-    public Step() {
-    }
-
-    public Step(String title, Module module, String type, String detail) {
-        this.title = title;
-        this.module = module;
-        this.type = type;
-        this.detail = detail;
-    }
+    @ManyToOne
+    private Module module;
 
     public String getTitle() {
         return title;
@@ -22,14 +23,6 @@ public class Step {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Module getModule() {
-        return module;
-    }
-
-    public void setModule(Module module) {
-        this.module = module;
     }
 
     public String getType() {
@@ -46,5 +39,21 @@ public class Step {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 }

@@ -10,18 +10,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Course> courses;
 
-
-    public Category() {
-    }
-
-    public Category(String title, int id) {
-        this.title = title;
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -37,5 +30,21 @@ public class Category {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

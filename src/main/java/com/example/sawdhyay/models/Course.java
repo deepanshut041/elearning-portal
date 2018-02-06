@@ -1,7 +1,8 @@
 package com.example.sawdhyay.models;
 
 import javax.persistence.*;
-import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -13,34 +14,41 @@ public class Course {
     private String status;
     private boolean paid;
     private String language;
-//    private DateFormat start_date;
-//    private DateFormat enroll_date;
+    private Date start_date;
+    private Date enroll_date;
     private String skill_required;
     private String author_id;
     private String trailer_link;
     private int course_length;
 
+    @ManyToMany
+    @JoinTable(name="mentor_course", joinColumns = @JoinColumn(name="course_id"),
+            inverseJoinColumns = @JoinColumn(name = "mentor_id"))
+    private List<Mentor> mentors;
+
     @ManyToOne
     private Category category;
-    private String  programming_language;
 
-    public Course() {
+    @ManyToOne
+    private Language tech_language;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    private List<Module> modules;
+
+    public List<Mentor> getMentors() {
+        return mentors;
     }
 
-    public Course(int id, String title, String description, String status, boolean paid, String language, String skill_required, String author_id, String trailer_link, int course_length, Category category, String programming_language) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.paid = paid;
-        this.language = language;
-//        this.start_date = start_date;
-//        this.enroll_date = enroll_date;
-        this.skill_required = skill_required;
-        this.author_id = author_id;
-        this.trailer_link = trailer_link;
-        this.course_length = course_length;
-        this.category = category;
-        this.programming_language = programming_language;
+    public void setMentors(List<Mentor> mentors) {
+        this.mentors = mentors;
+    }
+
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
     }
 
     public int getId() {
@@ -91,21 +99,29 @@ public class Course {
         this.language = language;
     }
 
-//    public DateFormat getStart_date() {
-//        return start_date;
-//    }
-//
-//    public void setStart_date(DateFormat start_date) {
-//        this.start_date = start_date;
-//    }
-//
-//    public DateFormat getEnroll_date() {
-//        return enroll_date;
-//    }
-//
-//    public void setEnroll_date(DateFormat enroll_date) {
-//        this.enroll_date = enroll_date;
-//    }
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnroll_date() {
+        return enroll_date;
+    }
+
+    public Language getTech_language() {
+        return tech_language;
+    }
+
+    public void setTech_language(Language tech_language) {
+        this.tech_language = tech_language;
+    }
+
+    public void setEnroll_date(Date enroll_date) {
+        this.enroll_date = enroll_date;
+    }
 
     public String getSkill_required() {
         return skill_required;
@@ -145,13 +161,5 @@ public class Course {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public String getProgramming_language() {
-        return programming_language;
-    }
-
-    public void setProgramming_language(String programming_language) {
-        this.programming_language = programming_language;
     }
 }

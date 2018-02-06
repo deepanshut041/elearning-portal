@@ -1,18 +1,23 @@
 package com.example.sawdhyay.models;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Module {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String title;
+
+    @ManyToOne
     private Course course;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
+    private List<Step> steps;
+
     private String description;
-
-    public Module() {
-    }
-
-    public Module(String title, Course course, String description) {
-        this.title = title;
-        this.course = course;
-        this.description = description;
-    }
 
     public String getTitle() {
         return title;
@@ -26,6 +31,14 @@ public class Module {
         return course;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setCourse(Course course) {
         this.course = course;
     }
@@ -36,5 +49,13 @@ public class Module {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
 }
