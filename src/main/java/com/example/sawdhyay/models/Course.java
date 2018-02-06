@@ -1,21 +1,40 @@
 package com.example.sawdhyay.models;
 
+import javax.persistence.*;
 import java.text.DateFormat;
 
-public class courses {
+@Entity
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String title;
     private String description;
     private String status;
     private boolean paid;
+    private String language;
+//    private DateFormat start_date;
+//    private DateFormat enroll_date;
+    private String skill_required;
+    private String author_id;
+    private String trailer_link;
+    private int course_length;
 
-    public courses(String title, String description, String status, boolean paid, String language, DateFormat start_date, DateFormat enroll_date, String skill_required, String author_id, String trailer_link, int course_length, String category, String programming_language) {
+    @ManyToOne
+    private Category category;
+    private String  programming_language;
+
+    public Course() {
+    }
+
+    public Course(int id, String title, String description, String status, boolean paid, String language, String skill_required, String author_id, String trailer_link, int course_length, Category category, String programming_language) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.paid = paid;
         this.language = language;
-        this.start_date = start_date;
-        this.enroll_date = enroll_date;
+//        this.start_date = start_date;
+//        this.enroll_date = enroll_date;
         this.skill_required = skill_required;
         this.author_id = author_id;
         this.trailer_link = trailer_link;
@@ -24,17 +43,12 @@ public class courses {
         this.programming_language = programming_language;
     }
 
-    private String language;
-    private DateFormat start_date;
-    private DateFormat enroll_date;
-    private String skill_required;
-    private String author_id;
-    private String trailer_link;
-    private int course_length;
-    private String category;
-    private String  programming_language;
+    public int getId() {
+        return id;
+    }
 
-    public courses() {
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -77,21 +91,21 @@ public class courses {
         this.language = language;
     }
 
-    public DateFormat getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(DateFormat start_date) {
-        this.start_date = start_date;
-    }
-
-    public DateFormat getEnroll_date() {
-        return enroll_date;
-    }
-
-    public void setEnroll_date(DateFormat enroll_date) {
-        this.enroll_date = enroll_date;
-    }
+//    public DateFormat getStart_date() {
+//        return start_date;
+//    }
+//
+//    public void setStart_date(DateFormat start_date) {
+//        this.start_date = start_date;
+//    }
+//
+//    public DateFormat getEnroll_date() {
+//        return enroll_date;
+//    }
+//
+//    public void setEnroll_date(DateFormat enroll_date) {
+//        this.enroll_date = enroll_date;
+//    }
 
     public String getSkill_required() {
         return skill_required;
@@ -125,11 +139,11 @@ public class courses {
         this.course_length = course_length;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
