@@ -18,4 +18,5 @@ public class CourseController {
         model.addAttribute("courses", courseRepository.findAll());
         return "courses";
     }
+
 }

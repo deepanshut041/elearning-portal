@@ -5,7 +5,6 @@ import com.example.sawdhyay.models.Course;
 import java.util.List;
 
 public interface CourseService {
-    Course findById(int id);
 
     void saveCourse(Course course);
 
@@ -15,13 +14,12 @@ public interface CourseService {
 
     List<Course> findAllCourses();
 
-    Course findCourseById(int id);
+    Course getCourseById(int id);
 
-    List<Course> findCoursesByCategory(int category);
-
-    List<Course> findCoursesByTechLanguage(int tech_language_id);
-
-    List<Course> findCoursesByMentor(int mentor_id);
-
+//    List<Course> findCoursesByCategory(int category);
+//
+//    List<Course> findCoursesByTechLanguage(int tech_language_id);
+//
+//    List<Course> findCoursesByMentor(int mentor_id);
 
 }
