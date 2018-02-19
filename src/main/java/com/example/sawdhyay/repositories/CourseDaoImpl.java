@@ -1,5 +1,6 @@
-package com.example.sawdhyay.daos;
+package com.example.sawdhyay.repositories;
 
+import com.example.sawdhyay.daos.CourseDao;
 import com.example.sawdhyay.models.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,9 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -26,14 +24,14 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void save(Course course) {
+    public void saveCourse(Course course) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(course);
         logger.info("Course saved successfully, Course Details=" + course);
     }
 
     @Override
-    public Course get(int id) {
+    public Course getCourse(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Course course = (Course) session.load(Course.class, new Integer(id));
         logger.info("Course loaded successfully, Course details=" + course);
@@ -41,7 +39,7 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public List<Course> list() {
+    public List<Course> listCourses() {
         Session session = sessionFactory.getCurrentSession();
         List<Course> courseList = session.createQuery("from Course").list();
         for(Course course : courseList){
@@ -51,14 +49,14 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void update(int id, Course course) {
+    public void updateCourse(Course course) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(course);
         logger.info("Course updated successfully, Course Details="+course);
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteCourse(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Course course = (Course) session.load(Course.class, new Integer(id));
         if(null != course){

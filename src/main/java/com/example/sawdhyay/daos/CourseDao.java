@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface CourseDao {
 
-    void save(Course course);
-    Course get(int id);
-    List<Course> list();
-    void update(int id, Course course);
-    void delete(int id);
+    void saveCourse(Course course);
+    Course getCourse(int id);
+    List<Course> listCourses();
+    void updateCourse(Course course);
+    void deleteCourse(int id);
 
 }
