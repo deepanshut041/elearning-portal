@@ -1,6 +1,5 @@
-package com.example.sawdhyay.repositories;
+package com.example.sawdhyay.daos;
 
-import com.example.sawdhyay.daos.CourseDao;
 import com.example.sawdhyay.models.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository("courseDao")
 public class CourseDaoImpl implements CourseDao {
 
     private static final Logger logger = LoggerFactory.getLogger(CourseDaoImpl.class);
@@ -19,9 +18,7 @@ public class CourseDaoImpl implements CourseDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
-    }
+
 
     @Override
     public void saveCourse(Course course) {

@@ -14,13 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CourseController {
 
+    @Autowired
     private CourseService courseService;
-
-    @Autowired(required = true)
-    @Qualifier(value = "courseService")
-    public void setCourseService(CourseService courseService) {
-        this.courseService = courseService;
-    }
 
     @RequestMapping(value="/courses", method = RequestMethod.GET)
     public String getCourses(Model model){

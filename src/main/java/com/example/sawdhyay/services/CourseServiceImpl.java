@@ -2,17 +2,17 @@ package com.example.sawdhyay.services;
 
 import com.example.sawdhyay.daos.CourseDao;
 import com.example.sawdhyay.models.Course;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service("courseService")
 public class CourseServiceImpl implements CourseService{
 
+    @Autowired
     private CourseDao courseDao;
-
-    public void setCourseDao(CourseDao courseDao) {
-        this.courseDao = courseDao;
-    }
 
     @Override
     @Transactional
