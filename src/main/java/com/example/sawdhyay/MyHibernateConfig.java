@@ -19,7 +19,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan({"com.example.sawdhyay.models"})
 @EnableTransactionManagement
-@EnableWebMvc
 public class MyHibernateConfig {
 
     private final static String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE";
