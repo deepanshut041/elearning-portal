@@ -13,7 +13,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -21,9 +21,9 @@ public class User {
     @NotEmpty(message = "*Please provide an email")
     private String email;
 
+    @Transient
     @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
-    @Transient
     private String password;
 
     @Column(name = "first_name")

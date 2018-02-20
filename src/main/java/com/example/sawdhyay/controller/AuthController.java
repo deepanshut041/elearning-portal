@@ -1,7 +1,10 @@
 package com.example.sawdhyay.controller;
 
+import com.example.sawdhyay.daos.CourseDaoImpl;
 import com.example.sawdhyay.models.User;
 import com.example.sawdhyay.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,8 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
+
+    private static final Logger logger = LoggerFactory.getLogger(CourseDaoImpl.class);
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public ModelAndView login() {

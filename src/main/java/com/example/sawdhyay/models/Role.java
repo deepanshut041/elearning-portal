@@ -1,6 +1,8 @@
 package com.example.sawdhyay.models;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -12,6 +14,17 @@ public class Role {
 
     @Column(name="role")
     private String role;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public int getId() {
         return id;
