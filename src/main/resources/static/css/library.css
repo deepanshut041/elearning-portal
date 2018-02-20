@@ -96,6 +96,88 @@ header img{
     margin-right: 20px;
 }
 
+#courseBox{
+    animation: panel-fade-up 0.4s ease;
+    margin-top: 30px;
+}
+
+#courseBox div.course-container h2{
+    font-size: 18px;
+    margin: 0px 0px 5px;
+    color: #384047;
+    display: block;
+    font-weight: 600;
+    text-rendering: optimizeLegibility;
+}
+
+#courseBox div.course-container h2~p{
+    color: #576366;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#courseBox div.course-box{
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    background: #fff;
+    margin: 10px;
+}
+
+#courseBox div.course-box div.course-box-head{
+    background-color: #C66C5D;
+    padding: 20px 30px 3px 30px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    color: #fff;
+}
+
+#courseBox div.course-box div.course-box-head p{
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#courseBox div.course-box div.course-box-head p i{
+    margin-right: 15px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#courseBox div.course-box div.course-box-head p i~span{
+    color: rgba(255,255,255,0.3);
+}
+#courseBox div.course-box div.course-box-body{
+    padding: 30px;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+}
+#courseBox div.course-box div.course-box-body h6{
+    font-weight: 600;
+    color: #7b8b8e;
+}
+
+#courseBox div.course-box div.course-box-body h5{
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0px 0px 20px 0px;
+    color: #4b5658;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700;
+}
+
+#courseBox div.course-box div.course-box-body p{
+    color: #7b8b8e;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 50px;
+    height: 3.5em;
+    line-height: 1.5;
+}
+
+
+
 footer{
     padding: 50px 10px 100px 10px;
     background-color: #fff !important;

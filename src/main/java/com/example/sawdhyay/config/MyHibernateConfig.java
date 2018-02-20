@@ -1,4 +1,4 @@
-package com.example.sawdhyay;
+package com.example.sawdhyay.config;
 
 import java.util.Properties;
 
