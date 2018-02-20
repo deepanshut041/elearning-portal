@@ -29,15 +29,15 @@
 <main role="main" class="fluid-container">
     <div id="login-page">
         <div class="container">
-            <form class="form-login">
+            <form class="form-login" th:action="@{/auth/signin}" method="POST" >
                 <h2 class="form-login-heading">sign in now</h2>
                 <div class="login-wrap" id="form">
                     <div class="textBox">
-                        <input class="text" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
+                        <input class="text" type="textbox" name="email" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">Email</label>
                     </div>
                     <div class="textBox">
-                        <input class="text" type="password" onkeyup="this.setAttribute('value', this.value);" value="" />
+                        <input class="text" type="password" name="password" onkeyup="this.setAttribute('value', this.value);" value="" />
                         <label class="label">Password</label>
 
                     </div>
@@ -80,6 +80,9 @@
                                     <button class="btn btn-theme" type="submit">Submit</button>
                                 </div>
                             </form>
+                            <div align="center" th:if="${param.error}">
+                                <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                            </div>
                         </div>
                     </div>
                 </div>

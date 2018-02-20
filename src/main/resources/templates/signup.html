@@ -29,23 +29,25 @@
 <main role="main" class="fluid-container">
     <div id="login-page">
         <div class="container">
-            <form class="form-login">
+            <form class="form-login" autocomplete="off" action="#" th:action="@{/auth/signup}"
+                  th:object="${user}" method="post"
+                  role="form">
                 <h2 class="form-login-heading">sign up now</h2>
                 <div class="login-wrap" id="form">
                     <div class="textBox">
-                        <input class="text" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
+                        <input class="text" type="textbox" th:field="*{email}" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">Email</label>
                     </div>
                     <div class="textBox">
-                        <input class="text" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
+                        <input class="text" th:field="*{firstName}" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">First Name</label>
                     </div>
                     <div class="textBox">
-                        <input class="text" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
+                        <input class="text" th:field="*{lastName}" type="textbox" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">Last Name</label>
                     </div>
                     <div class="textBox">
-                        <input class="text" type="password" onkeyup="this.setAttribute('value', this.value);" value="" />
+                        <input class="text" type="password" th:field="*{password}" onkeyup="this.setAttribute('value', this.value);" value="" />
                         <label class="label">Password</label>
                     </div>
                     <button class="btn btn-theme btn-block" type="submit">
@@ -54,13 +56,16 @@
                     <div class="registration text-center">
                         Already have an account?
                         <br/>
-                        <a  href="/signin">
+                        <a  href="/auth/signin">
                             Signin
                         </a>
                     </div>
                 </div>
                 <!-- modal -->
             </form>
+            <div>
+                <span th:utext="${successMessage}"></span>
+            </div>
         </div>
     </div>
 </main>

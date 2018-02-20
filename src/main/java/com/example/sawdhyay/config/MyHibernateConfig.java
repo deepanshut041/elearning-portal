@@ -27,6 +27,7 @@ public class MyHibernateConfig {
     private final static String JDBC_PASSWORD = "";
 
 
+
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
