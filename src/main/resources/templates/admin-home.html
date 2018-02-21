@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Swadhyay|home</title>
+    <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/admin-home.css}" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<header class="header black-bg">
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+    </div>
+    <a class="logo"><b><span>SWADHYAY</span></b></a>
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout" >Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+<aside>
+    <div class="nav-collapse" tabindex="5000" id="sidebar">
+        <ul class="sidebar-menu" id="nav-accordion" >
+            <li><p class="centered">
+                <a>
+                    <img class="img-cricle"/>
+                </a>
+            </p>
+            <h5 class="centered">Saurabh</h5>
+            </li>
+            <li class="mt">
+                <a>
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a >
+                    <i class="fa fa-dashboard"></i>
+                    <span>Paths</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a>
+                    <i class="fa fa-dashboard"></i>
+                    <span>Tracks</span>
+                </a>
+            </li>
+            <li class="sub-menu parent-li" >
+                <div>
+                    <a>
+                        <i class="fa fa-dashboard"></i>
+                        <span>Blog</span>
+                    </a>
+                </div>
+                <ul class="sub">
+                    <li>
+                        <a>Add Blog</a>
+                    </li>
+                    <li>
+                        <a>List Blogs</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sub-menu parent-li" >
+                <div>
+                    <a >
+                        <i class="fa fa-dashboard"></i>
+                        <span>Courses</span>
+                    </a>
+                </div>
+                <ul class="sub">
+                    <li>
+                        <a>Add Courses</a>
+                    </li>
+                    <li>
+                        <a>List Courses</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sub-menu parent-li">
+                <div>
+                    <a>
+                        <i class="fa fa-dashboard"></i>
+                        <span>Mentors</span>
+                    </a>
+                </div>
+                <ul class="sub">
+                    <li>
+                        <a>Add Mentors</a>
+                    </li>
+                    <li>
+                        <a>List Mentors</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<article class="container-fluid" id="mainContainer">
+    <section>
+
+    </section>
+</article>
+
+<footer class="fluid-container">
+    <div class="row no-gutters align-items-center    justify-content-center">
+        <div class="col-12 col-lg-3">
+            <h1>Swadhyay</h1>
+            <p class="text-muted">@Copyright 2017-2018 </p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <p class="text-muted">About</p>
+            <p class="text-muted">Careers</p>
+            <p class="text-muted">Terms</p>
+            <p class="text-muted">Privacy</p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <p class="text-muted">Blog</p>
+            <p class="text-muted">Press Kit</p>
+            <p class="text-muted">Contact</p>
+            <p class="text-muted">Catalog</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>
