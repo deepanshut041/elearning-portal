@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/courses")
@@ -31,9 +32,12 @@ public class CourseController {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public String getCourse(@PathVariable int id, Model model){
-        model.addAttribute("course", this.courseService.getCourseById(id));
-        return "courses";
+    public ModelAndView getCourse(@PathVariable int id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("course", this.courseService.getCourseById(id));
+
+        modelAndView.setViewName("course");
+        return modelAndView;
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PATCH)

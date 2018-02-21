@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+body{
+    font-family: 'varela round', sans-serif;
+}
+/* Navbar Styles */
+nav{
+    background: #fff;
+}
+nav .nav-item .nav-link{
+    color: #7b8b8e;
+    font-weight: 500;
+    transition: color 300ms 0s ease;
+}
+nav .navbar-brand {
+    color: #5fcf80;
+}
+nav .nav-link:hover{
+    color: #4b5658;
+}
+
+/*main styling goes here*/
+main{
+    background: #edeff0;
+    padding: 50px 10px;
+}
+
+/* Header Style goes here*/
+section{
+    background: #fff;
+    margin-top: 40px;
+    animation: panel-fade-up 0.4s ease;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+    border-radius: 4px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+section article.header-container {
+    height: 60vh;
+    background-color: #ea6590 !important;
+    border-radius: 4px 4px 0 0;
+}
+section article.main-container{
+    min-height: 60vh;
+    border-radius: 0 0 4px 4px;
+}
+
+footer{
+    padding: 50px 10px 100px 10px;
+    background-color: #fff !important;
+}
+
+footer h1{
+    color: #5fcf80;
+    margin-bottom: 2px;
+}
