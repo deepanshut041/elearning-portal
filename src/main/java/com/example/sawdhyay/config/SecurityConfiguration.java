@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -21,7 +22,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
-
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;
@@ -45,9 +45,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
             authorizeRequests()
-            .anyRequest().permitAll()
-            .and().httpBasic();
-        http.csrf().disable();
+                .antMatchers("/").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/courses/**").permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .authenticated().and().csrf().disable().formLogin()
+                .loginPage("/auth/signin").failureUrl("/auth/signin?error=true")
+                .defaultSuccessUrl("/admin/home")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").and().exceptionHandling()
+                .accessDeniedPage("/auth/access-denied");
 
         // this line to use H2 web console
         http.headers().frameOptions().disable();
@@ -58,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/assets/**");
     }
 
 }

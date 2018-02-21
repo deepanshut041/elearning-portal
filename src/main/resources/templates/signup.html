@@ -37,22 +37,22 @@
                     <div class="textBox">
                         <input class="text" type="email" th:field="*{email}" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">Email</label>
-                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error text-right"></label>
                     </div>
                     <div class="textBox">
                         <input class="text" type="text" th:field="*{firstName}" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">First Name</label>
-                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></label>
+                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error text-right"></label>
                     </div>
                     <div class="textBox">
                         <input class="text"  type="text" th:field="*{lastName}" onkeyup="this.setAttribute('value', this.value);" value=""/>
                         <label class="label">Last Name</label>
-                        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
+                        <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error text-right"></label>
                     </div>
                     <div class="textBox">
                         <input class="text" type="password" th:field="*{password}" onkeyup="this.setAttribute('value', this.value);" value="" />
                         <label class="label">Password</label>
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error text-right"></label>
                     </div>
                     <button class="btn btn-theme btn-block" type="submit">
                         <i class="fa fa-lock"></i> SIGN UP</button>
@@ -64,12 +64,16 @@
                             Signin
                         </a>
                     </div>
+                    <div class="row" th:if="${successMessage}">
+                        <div class="col-12">
+                            <div class="alert alert-success" role="alert">
+                                <span th:utext="${successMessage}"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- modal -->
             </form>
-            <div>
-                <span th:utext="${successMessage}"></span>
-            </div>
         </div>
     </div>
 </main>
