@@ -13,4 +13,14 @@ public class AdminContoller {
     public String homePage(Model model){
         return "admin-home";
     }
+
+    @RequestMapping(value = "/courses", method = RequestMethod.GET)
+    public String coursesPage(Model model){
+        return "admin-courses";
+    }
+
+    @RequestMapping(value = "/blog", method = RequestMethod.GET)
+    public String blogPage(Model model){
+        return "admin-blog";
+    }
 }
