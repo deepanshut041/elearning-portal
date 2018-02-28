@@ -2,6 +2,7 @@ package com.example.sawdhyay.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Mentor {
@@ -20,8 +21,23 @@ public class Mentor {
     private String name;
     private String about;
 
+    @OneToOne
+    private User user;
+
+
     @ManyToMany(mappedBy = "mentors")
     private List<Course> courses;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mentor")
+    private Set<Post> posts;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -41,6 +57,14 @@ public class Mentor {
 
     public String getAbout() {
         return about;
+    }
+
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
 
     public void setAbout(String about) {
