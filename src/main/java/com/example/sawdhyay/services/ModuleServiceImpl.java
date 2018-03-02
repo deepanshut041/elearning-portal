@@ -16,6 +16,12 @@ public class ModuleServiceImpl implements ModuleService{
 
     @Override
     @Transactional
+    public List<Module> findAllModulesByCourseId(int id) {
+        return this.moduleDao.listModuleByCourseId(id);
+    }
+
+    @Override
+    @Transactional
     public void addModule(Module module) {
         this.moduleDao.saveModule(module);
     }

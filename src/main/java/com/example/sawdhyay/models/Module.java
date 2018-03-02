@@ -1,5 +1,7 @@
 package com.example.sawdhyay.models;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Module {
     @ManyToOne
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "module", fetch = FetchType.EAGER)
     private List<Step> steps;
 
     private String description;

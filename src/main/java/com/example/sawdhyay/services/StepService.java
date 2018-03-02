@@ -15,5 +15,7 @@ public interface StepService {
     List<Step> findAllSteps();
 
     Step getStepById(int id);
+
+    List<Step> findAllStepsByModuleId(int id);
     
 }

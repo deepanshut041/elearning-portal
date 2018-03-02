@@ -28,6 +28,16 @@ public class StepDaoImpl implements StepDao {
     }
 
     @Override
+    public List<Step> listStepByModuleId(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Step> stepList = session.createQuery("from Step where module=:m_id").setParameter("m_id", id).list();
+        for(Step step : stepList){
+            logger.info("Step List::" + step);
+        }
+        return stepList;
+    }
+
+    @Override
     public Step getStep(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Step step = (Step) session.load(Step.class, new Integer(id));

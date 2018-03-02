@@ -11,5 +11,6 @@ public interface ModuleDao {
     List<Module> listModules();
     void updateModule(Module module);
     void deleteModule(int id);
+    List<Module> listModuleByCourseId(int id);
 
 }

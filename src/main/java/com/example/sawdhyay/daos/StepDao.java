@@ -11,5 +11,5 @@ public interface StepDao {
     List<Step> listSteps();
     void updateStep(Step step);
     void deleteStep(int id);
-
+    List<Step> listStepByModuleId(int id);
 }

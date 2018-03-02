@@ -14,6 +14,8 @@ public interface ModuleService {
 
     List<Module> findAllModules();
 
+    List<Module> findAllModulesByCourseId(int id);
+
     Module getModuleById(int id);
     
 }

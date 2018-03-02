@@ -39,6 +39,11 @@ public class StepServiceImpl implements StepService{
     }
 
     @Override
+    public List<Step> findAllStepsByModuleId(int id) {
+        return this.stepDao.listStepByModuleId(id);
+    }
+
+    @Override
     @Transactional
     public Step getStepById(int id) {
         return this.stepDao.getStep(id);
