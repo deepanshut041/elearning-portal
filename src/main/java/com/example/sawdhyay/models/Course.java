@@ -17,7 +17,6 @@ public class Course {
     private Date start_date;
     private Date enroll_date;
     private String skill_required;
-    private String author_id;
     private String trailer_link;
     private int course_length;
 
@@ -27,9 +26,11 @@ public class Course {
     private List<Mentor> mentors;
 
     @ManyToOne
+    @JoinColumn(name ="category_id")
     private Category category;
 
     @ManyToOne
+    @JoinColumn(name ="tech_language_id")
     private Language tech_language;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
@@ -129,14 +130,6 @@ public class Course {
 
     public void setSkill_required(String skill_required) {
         this.skill_required = skill_required;
-    }
-
-    public String getAuthor_id() {
-        return author_id;
-    }
-
-    public void setAuthor_id(String author_id) {
-        this.author_id = author_id;
     }
 
     public String getTrailer_link() {

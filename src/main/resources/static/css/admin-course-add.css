@@ -1,0 +1,92 @@
+div.row{
+    margin: 20px 8%;
+    background: #fff;
+}
+form div.blogTitlePage h2{
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: 800;
+    padding-top: 20px;
+}
+
+.fileupload .thumbnail {
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.thumbnail {
+    display: block;
+    margin-bottom: 20px;
+    line-height: 1.42857;
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.fileupload .btn {
+    vertical-align: middle;
+}
+.fileupload-new .fileupload-exists {
+    display: none;
+}
+.img-fluid{
+    height: auto;
+}
+.btn-theme02 {
+    color: rgb(255, 255, 255);
+    background-color: rgb(172, 146, 236);
+    border-color: rgb(150, 122, 220);
+}
+.btn-file {
+    position: relative;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    padding: 6px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 4px;
+}
+
+.btn-file > input {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 23px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translate(-300px, 0px) scale(4);
+    direction: ltr;
+    margin: 0px;
+}
+input[type="file"] {
+    display: block;
+}
+.spinner{
+    color: #4ECDC4;
+    background-color: #fff;
+    margin: auto;
+    width: 330px;
+}
