@@ -74,15 +74,13 @@ public class AdminContoller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/courses/{course_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/courses/{course_id}/modules", method = RequestMethod.GET)
     public ModelAndView courseModulesPage(@PathVariable int course_id, Model model){
         ModelAndView modelAndView = new ModelAndView();
         Course course = courseService.getCourseById(course_id);
-        List<Module> modules = this.moduleService.findAllModulesByCourseId(course_id);
         Module module = new Module();
         modelAndView.addObject("course", course);
         modelAndView.addObject("module", module);
-        modelAndView.addObject("modules", modules);
         modelAndView.setViewName("admin-course-module");
         return modelAndView;
     }
@@ -92,17 +90,15 @@ public class AdminContoller {
     public ModelAndView createNewModule(@Valid Module module, BindingResult bindingResult, @PathVariable int course_id) {
         ModelAndView modelAndView = new ModelAndView();
         Course course = courseService.getCourseById(course_id);
-        List<Module> modules = this.moduleService.findAllModulesByCourseId(course_id);
+        module.setCourse(course);
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("course", course);
-            modelAndView.addObject("modules", modules);
             modelAndView.setViewName("admin-course-module");
         } else {
             moduleService.addModule(module);
             modelAndView.addObject("successMessage", "Module has been added successfully");
             modelAndView.addObject("module", new Module());
             modelAndView.addObject("course", course);
-            modelAndView.addObject("modules", modules);
             modelAndView.setViewName("admin-course-module");
 
         }
@@ -115,11 +111,9 @@ public class AdminContoller {
         Course course = courseService.getCourseById(course_id);
         Module module = this.moduleService.getModuleById(module_id);
         Step step = new Step();
-        List<Step> steps = this.stepService.findAllStepsByModuleId(module_id);
         modelAndView.addObject("course", course);
         modelAndView.addObject("module", module);
         modelAndView.addObject("step", step);
-        modelAndView.addObject("steps", steps);
         modelAndView.setViewName("admin-course-step");
         return modelAndView;
     }
@@ -129,18 +123,15 @@ public class AdminContoller {
         ModelAndView modelAndView = new ModelAndView();
         Course course = courseService.getCourseById(course_id);
         Module module = this.moduleService.getModuleById(module_id);
-        List<Step> steps = this.stepService.findAllStepsByModuleId(module_id);
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("course", course);
             modelAndView.addObject("module", module);
-            modelAndView.addObject("steps", steps);
             modelAndView.setViewName("admin-course-step");
         } else {
             stepService.addStep(step);
             modelAndView.addObject("successMessage", "Step has been added successfully");
             modelAndView.addObject("course", course);
             modelAndView.addObject("module", module);
-            modelAndView.addObject("steps", steps);
             modelAndView.addObject("step", new Step());
             modelAndView.setViewName("admin-course-step");
 

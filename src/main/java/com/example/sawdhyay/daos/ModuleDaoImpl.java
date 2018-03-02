@@ -38,7 +38,7 @@ public class ModuleDaoImpl implements ModuleDao {
     @Override
     public List<Module> listModuleByCourseId(int id) {
         Session session = sessionFactory.getCurrentSession();
-        List<Module> moduleList = session.createQuery("from Module where course=:c_id").setParameter("c_id", id).list();
+        List<Module> moduleList = session.createQuery("from Module where course.id=:c_id").setParameter("c_id", id).list();
         for(Module module : moduleList){
             logger.info("Module List::" + module);
         }

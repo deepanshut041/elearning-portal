@@ -33,7 +33,7 @@ public class Course {
     @JoinColumn(name ="tech_language_id")
     private Language tech_language;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
 
     public List<Mentor> getMentors() {

@@ -1,5 +1,7 @@
 package com.example.sawdhyay.models;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,9 +15,18 @@ public class Step {
 
     private String type;
     private String detail;
+    private String link;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Module module;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public String getTitle() {
         return title;

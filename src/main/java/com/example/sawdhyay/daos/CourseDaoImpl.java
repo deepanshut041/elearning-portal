@@ -30,7 +30,7 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public Course getCourse(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Course course = (Course) session.load(Course.class, new Integer(id));
+        Course course = (Course) session.get(Course.class, id);
         logger.info("Course loaded successfully, Course details=" + course);
         return course;
     }

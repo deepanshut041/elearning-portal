@@ -13,7 +13,8 @@ public class Module {
     private int id;
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
     private Course course;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "module", fetch = FetchType.EAGER)
