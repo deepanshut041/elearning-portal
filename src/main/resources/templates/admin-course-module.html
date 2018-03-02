@@ -9,6 +9,7 @@
     <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-home.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
+    <link th:href="@{/css/admin-module.css}" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
@@ -179,6 +180,26 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-12 course-container">
+                    <div class="course-head">
+                        <h5 th:text="${course.title}" class="text-center"></h5>
+                        <p th:text="${course.description}"></p>
+                    </div>
+                    <div class="course-module">
+                        <h4>Modules</h4>
+                        <div class="row no-gutters">
+                            <div class="col-12 module-card" th:each="module_item : ${course.modules}" th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps(course_id=${course.id}, module_id=${module_item.id})}">
+                                <h6 th:text="${module_item.title}"></h6>
+                                <p th:text="${module_item.description}" class="text-muted"></p>
+                                <div class="text-right">
+                                    <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps(course_id=${course.id}, module_id=${module_item.id})}"> Know More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
