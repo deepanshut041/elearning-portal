@@ -13,3 +13,9 @@ $("#mentorAside").click(function () {
 $("#blogAside").click(function () {
     $("#blogAsideSub").toggle("slow");
 });
+$("#languageAside").click(function () {
+    $("#languageAsideSub").toggle("slow");
+});
+$("#categoryAside").click(function () {
+    $("#categoryAsideSub").toggle("slow");
+});

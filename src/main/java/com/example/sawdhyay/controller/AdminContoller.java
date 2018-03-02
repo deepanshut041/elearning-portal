@@ -1,6 +1,8 @@
 package com.example.sawdhyay.controller;
 
+import com.example.sawdhyay.models.Category;
 import com.example.sawdhyay.models.Course;
+import com.example.sawdhyay.models.Language;
 import com.example.sawdhyay.services.CategoryService;
 import com.example.sawdhyay.services.CourseService;
 import com.example.sawdhyay.services.LanguageService;
@@ -67,6 +69,56 @@ public class AdminContoller {
         }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/language/add", method = RequestMethod.GET)
+    public ModelAndView languageAddPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Language language = new Language();
+        modelAndView.addObject("language", language);
+        modelAndView.setViewName("admin-language-add");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/language/add", method = RequestMethod.POST)
+    public ModelAndView createNewLanguage(@Valid Language language, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin-language-add");
+        } else {
+            languageService.addLanguage(language);
+            modelAndView.addObject("successMessage", "Language has been added successfully");
+            modelAndView.addObject("language", new Language());
+            modelAndView.setViewName("admin-language-add");
+
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/category/add", method = RequestMethod.GET)
+    public ModelAndView categoryAddPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Category category = new Category();
+        modelAndView.addObject("category", category);
+        modelAndView.setViewName("admin-category-add");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/category/add", method = RequestMethod.POST)
+    public ModelAndView createNewCategory(@Valid Category category, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin-category-add");
+        } else {
+            categoryService.addCategory(category);
+            modelAndView.addObject("successMessage", "Category has been added successfully");
+            modelAndView.addObject("category", new Category());
+            modelAndView.setViewName("admin-category-add");
+
+        }
+        return modelAndView;
+    }
+
+
 
     @RequestMapping(value = "/blog", method = RequestMethod.GET)
     public String blogPage(Model model){

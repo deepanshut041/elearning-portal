@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Course | Add</title>
+    <title>Category | Add</title>
     <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-home.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
@@ -161,9 +161,9 @@
         <section class="fluid-conatiner">
             <div class="row no-gutters">
                 <div class="col-12">
-                    <form autocomplete="off" action="#" th:action="@{/admin/courses/add}" th:object="${course}" method="post" role="form">
+                    <form autocomplete="off" action="#" th:action="@{/admin/category/add}" th:object="${category}" method="post" role="form">
                         <div class="blogTitlePage text-center">
-                            <h2> New Course </h2>
+                            <h2> New Category </h2>
                         </div>
                         <div class="row no-gutters" id="blog-form">
                             <div class="form-group col-12">
@@ -173,56 +173,6 @@
                             <div class="form-group col-12">
                                 <label>Description</label>
                                 <input type="text" class="form-control" th:field="*{description}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Status</label>
-                                <input type="text" class="form-control" th:field="*{status}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Language</label>
-                                <input type="text" class="form-control" th:field="*{language}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Start Date</label>
-                                <input type="date" class="form-control" th:field="*{start_date}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Enroll Date</label>
-                                <input type="date" class="form-control" th:field="*{enroll_date}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label >Skill required</label>
-                                <div class="categorySelect">
-                                    <select  class="form-control" th:field="*{skill_required}">
-                                        <option th:value="beginner">Beginner</option>
-                                        <option th:value="intermediate">Intermediate</option>
-                                        <option th:value="advance">Advance</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class=" form-group col-12">
-                                <label >Trailer Link</label>
-                                <input type="text" class="form-control" th:field="*{trailer_link}"/>
-                            </div>
-                            <div class=" form-group col-12">
-                                <label >Course Lengthk</label>
-                                <input type="number" class="form-control" th:field="*{course_length}"/>
-                            </div>
-                            <div class="form-group col-12">
-                                <label >Category</label>
-                                <div class="categorySelect">
-                                    <select class="form-control" th:field="*{category.id}">
-                                        <option th:each="category : ${categorys}" th:value="${category.id}" th:text="${category.title}"/>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-12">
-                                <label >Technical Language</label>
-                                <div class="categorySelect">
-                                    <select class="form-control" th:field="*{tech_language.id}">
-                                        <option th:each="tech_language : ${languages}" th:value="${tech_language.id}" th:text="${tech_language.title}"/>
-                                    </select>
-                                </div>
                             </div>
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn btn-lg btn-primary">Submit</button>
