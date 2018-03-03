@@ -40,8 +40,12 @@ public class AdminContoller {
     }
 
     @RequestMapping(value = "/courses", method = RequestMethod.GET)
-    public String coursePage(Model model){
-        return "admin-courses";
+    public ModelAndView coursesPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Course> courses = courseService.findAllCourses();
+        modelAndView.addObject("courses", courses);
+        modelAndView.setViewName("admin-courses");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/courses/add", method = RequestMethod.GET)
@@ -63,7 +67,12 @@ public class AdminContoller {
             modelAndView.addObject("languages", this.languageService.findAllLanguages());
             modelAndView.setViewName("admin-course-add");
         } else {
-            courseService.addCourse(course);
+            if(course.getId() == 0) {
+                courseService.addCourse(course);
+            }
+            else {
+                courseService.updateCourse(course);
+            }
             modelAndView.addObject("successMessage", "Course has been added successfully");
             modelAndView.addObject("course", new Course());
             modelAndView.addObject("categorys", this.categoryService.findAllCategorys());
@@ -72,6 +81,22 @@ public class AdminContoller {
 
         }
         return modelAndView;
+    }
+    @RequestMapping(value = "/courses/{course_id}/edit", method = RequestMethod.GET)
+    public ModelAndView courseEditPage(@PathVariable int course_id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = courseService.getCourseById(course_id);
+        modelAndView.addObject("course", course);
+        modelAndView.addObject("categorys", this.categoryService.findAllCategorys());
+        modelAndView.addObject("languages", this.languageService.findAllLanguages());
+        modelAndView.setViewName("admin-course-add");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{course_id}/delete", method = RequestMethod.GET)
+    public String courseDelete(@PathVariable int course_id, Model model){
+        this.courseService.deleteCourseById(course_id);
+        return "redirect:/admin/courses";
     }
 
     @RequestMapping(value = "/courses/{course_id}/modules", method = RequestMethod.GET)

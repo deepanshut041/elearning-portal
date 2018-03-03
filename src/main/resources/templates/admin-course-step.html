@@ -158,13 +158,22 @@
             </ul>
         </div>
     </aside>
+
     <article id="mainContainer">
         <section class="fluid-conatiner">
+            <div class="row no-gutters back-container">
+                <div>
+                    <a th:href="@{/admin/courses/{course_id}/modules(course_id=${course.id})}" class="text-black"><i class="fa fa-arrow-left fa-2x text-success"></i></a>
+                </div>
+                <div class="col">
+                    <h3 class="text-center">Module( <span th:text="${module.title}" class="text-muted"></span> )</h3>
+                </div>
+            </div>
             <div class="row no-gutters">
                 <div class="col-12">
                     <form autocomplete="off" action="#" th:action="@{/admin/courses/{course_id}/modules/{module_id}/steps(course_id=${course.id}, module_id=${module.id})}" th:object="${step}" method="post" role="form">
                         <div class="blogTitlePage text-center">
-                            <h2> New Step</h2>
+                            <h2> New Step </h2>
                         </div>
                         <div class="row no-gutters" id="blog-form">
                             <input type="hidden" class="form-control" th:field="*{id}"/>
@@ -203,7 +212,7 @@
                 <div class="col-12 course-container">
                     <div class="course-head">
                         <h5 th:text="${module.title}" class="text-center"></h5>
-                        <p th:text="${module.description}"></p>
+                        <p th:text="${module.description}" class="text-muted"></p>
                     </div>
                     <div class="course-module">
                         <h4>Steps</h4>

@@ -9,6 +9,7 @@
     <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-home.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-blog.css}" rel="stylesheet"/>
+    <link th:href="@{/css/admin-courses.css}" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
@@ -114,18 +115,40 @@
         </ul>
     </div>
 </aside>
-<!--<article class="container-fluid" id="mainContainer">-->
-    <!--<section>-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-4 col-md-6 col-12">-->
-                <!--<h1><a class="text-center">List All</a></h1>-->
-            <!--</div>-->
-            <!--<div class="col-lg-4 col-md-6 col-12">-->
-                <!--<h1><a class="text-center">Add New</a></h1>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</section>-->
-<!--</article>-->
+
+<article id="mainContainer">
+    <section class="fluid-conatiner">
+        <h3 class="text-center">Courses</h3>
+        <div id="posts">
+            <div>
+                <section class="row clearfix" id="post-container" th:each="course : ${courses}" >
+                    <div class="col-md-6 col-12" id="post-container-image">
+                        <div class="type" th:text="${course.skill_required}"></div>
+                        <img src="https://i1.ytimg.com/vi/${course.trailer_link}/1.jpg"
+                             th:src="@{https://i1.ytimg.com/vi/{trailer_link}/0.jpg(trailer_link=${course.trailer_link})}"
+                             class="post-image"/>
+                    </div>
+                    <div class="col-md-6 col-12" id="post-container-text">
+                        <div class="accessories clearfix" id="post-container-text-header">
+                            <div class="text-block with">Language</div>
+                            <div class="text-block" th:if="${course.category}"><span th:text="${course.category.title}"></span></div>
+                            <div class="catagory text-block" th:if="${course.tech_language}"><span th:text="${course.tech_language.title}"></span></div>
+                            <div class="before catagory text-block">About</div>
+                            <div class="hr"></div>
+                        </div>
+                        <h1 class="heading" th:text="${course.title}"></h1>
+                        <p class="paragraph-2" th:text="${course.description}"></p>
+                        <div class="text-right">
+                            <a th:href="@{/admin/courses/{course_id}/edit(course_id=${course.id})}" class="text-primary"> Edit </a>
+                            <a th:href="@{/admin/courses/{course_id}/delete(course_id=${course.id})}" th:method="delete" class="text-danger"> Delete </a>
+                            <a th:href="@{/admin/courses/{course_id}/modules/(course_id=${course.id})}" class="text-info"> Know More </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</article>
 
 <footer class="fluid-container">
     <div class="row no-gutters align-items-center    justify-content-center">
