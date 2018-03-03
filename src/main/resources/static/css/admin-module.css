@@ -27,3 +27,10 @@
 .module-card p{
     font-size: 14px;
 }
+
+.module-card a{
+    padding: 5px 15px;
+}
+.module-card a.danger{
+    color: ;
+}

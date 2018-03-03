@@ -19,6 +19,7 @@ public class Mentor {
     }
 
     private String name;
+    @Column(columnDefinition="TEXT")
     private String about;
 
     @OneToOne

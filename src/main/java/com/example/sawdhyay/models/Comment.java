@@ -18,6 +18,7 @@ public class Comment {
 
     private Date date;
 
+    @Column(columnDefinition="TEXT")
     private String content;
 
     public int getId() {

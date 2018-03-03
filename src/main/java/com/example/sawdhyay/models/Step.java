@@ -14,6 +14,7 @@ public class Step {
     private String title;
 
     private String type;
+    @Column(columnDefinition="TEXT")
     private String detail;
     private String link;
 

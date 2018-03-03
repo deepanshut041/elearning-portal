@@ -10,6 +10,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @Column(columnDefinition="TEXT")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

@@ -10,6 +10,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @Column(columnDefinition="TEXT")
     private String description;
     private String status;
     private boolean paid;

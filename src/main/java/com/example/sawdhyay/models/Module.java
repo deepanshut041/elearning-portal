@@ -20,6 +20,7 @@ public class Module {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "module", fetch = FetchType.EAGER)
     private List<Step> steps;
 
+    @Column(columnDefinition="TEXT")
     private String description;
 
     public String getTitle() {

@@ -95,14 +95,36 @@ public class AdminContoller {
             modelAndView.addObject("course", course);
             modelAndView.setViewName("admin-course-module");
         } else {
-            moduleService.addModule(module);
+            if(module.getId() == 0) {
+                moduleService.addModule(module);
+            }
+            else {
+                moduleService.updateModule(module);
+            }
+            course = courseService.getCourseById(course_id);
             modelAndView.addObject("successMessage", "Module has been added successfully");
             modelAndView.addObject("module", new Module());
             modelAndView.addObject("course", course);
             modelAndView.setViewName("admin-course-module");
-
         }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/edit", method = RequestMethod.GET)
+    public ModelAndView courseModulesEditPage(@PathVariable int course_id, @PathVariable int module_id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = courseService.getCourseById(course_id);
+        Module module = moduleService.getModuleById(module_id);
+        modelAndView.addObject("course", course);
+        modelAndView.addObject("module", module);
+        modelAndView.setViewName("admin-course-module");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/delete", method = RequestMethod.GET)
+    public String courseModulesDelete(@PathVariable int course_id, @PathVariable int module_id, Model model){
+        this.moduleService.deleteModuleById(module_id);
+        return "redirect:/admin/courses/" + course_id + "/modules";
     }
 
     @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/steps", method = RequestMethod.GET)
