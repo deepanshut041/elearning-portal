@@ -39,6 +39,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator:1.5.10.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.10.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-security:1.5.10.RELEASE'
+    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '1.2'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
 

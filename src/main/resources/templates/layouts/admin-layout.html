@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:replace="fragments/admin-head :: head">
+
+    </div>
+    <div layout:fragment="chead"></div>
+</head>
+<body>
+    <header th:replace="fragments/admin-header :: header"></header>
+    <aside th:replace="fragments/admin-aside :: aside"></aside>
+    <article id="main-container">
+        <div layout:fragment="content"></div>
+    </article>
+    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="fragments/script-footer :: sfooter"></div>
+    <div layout:fragment="cscript"></div>
+</body>
+</html>
