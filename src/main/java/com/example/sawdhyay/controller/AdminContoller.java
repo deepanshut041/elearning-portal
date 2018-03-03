@@ -145,12 +145,20 @@ public class AdminContoller {
         ModelAndView modelAndView = new ModelAndView();
         Course course = courseService.getCourseById(course_id);
         Module module = this.moduleService.getModuleById(module_id);
+        step.setModule(module);
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("course", course);
             modelAndView.addObject("module", module);
             modelAndView.setViewName("admin-course-step");
         } else {
-            stepService.addStep(step);
+            if(step.getId() == 0) {
+                stepService.addStep(step);
+            }
+            else {
+                stepService.updateStep(step);
+            }
+            course = courseService.getCourseById(course_id);
+            module = this.moduleService.getModuleById(module_id);
             modelAndView.addObject("successMessage", "Step has been added successfully");
             modelAndView.addObject("course", course);
             modelAndView.addObject("module", module);
@@ -159,6 +167,25 @@ public class AdminContoller {
 
         }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/steps/{step_id}/edit", method = RequestMethod.GET)
+    public ModelAndView courseStepEditPage(@PathVariable int course_id, @PathVariable int module_id, @PathVariable int step_id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = courseService.getCourseById(course_id);
+        Module module = this.moduleService.getModuleById(module_id);
+        Step step = this.stepService.getStepById(step_id);
+        modelAndView.addObject("course", course);
+        modelAndView.addObject("module", module);
+        modelAndView.addObject("step", step);
+        modelAndView.setViewName("admin-course-step");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/steps/{step_id}/delete", method = RequestMethod.GET)
+    public String courseStepDelete(@PathVariable int course_id, @PathVariable int module_id,@PathVariable int step_id, Model model){
+        this.stepService.deleteStepById(step_id);
+        return "redirect:/admin/courses/" + course_id + "/modules/" + module_id + "/steps";
     }
 
     @RequestMapping(value = "/language/add", method = RequestMethod.GET)

@@ -9,6 +9,7 @@
     <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-home.css}" rel="stylesheet"/>
     <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
+    <link th:href="@{/css/admin-module.css}" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
@@ -166,6 +167,7 @@
                             <h2> New Step</h2>
                         </div>
                         <div class="row no-gutters" id="blog-form">
+                            <input type="hidden" class="form-control" th:field="*{id}"/>
                             <div class="form-group col-12">
                                 <label>Title</label>
                                 <input type="text" class="form-control" th:field="*{title}"/>
@@ -181,6 +183,7 @@
                                         <option th:value="video">Video</option>
                                         <option th:value="assigment">Assigment</option>
                                         <option th:value="test">Test</option>
+                                        <option th:value="test">Text</option>
                                     </select>
                                 </div>
                             </div>
@@ -194,6 +197,27 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-12 course-container">
+                    <div class="course-head">
+                        <h5 th:text="${module.title}" class="text-center"></h5>
+                        <p th:text="${module.description}"></p>
+                    </div>
+                    <div class="course-module">
+                        <h4>Steps</h4>
+                        <div class="row no-gutters">
+                            <div class="col-12 module-card" th:each="step_item : ${module.steps}">
+                                <h6 th:text="${step_item.title}"></h6>
+                                <p th:text="${step_item.detail}" class="text-muted"></p>
+                                <div class="text-right">
+                                    <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps/{step_id}/edit(course_id=${course.id}, module_id=${module.id}, step_id=${step_item.id})}" class="text-primary"> Edit </a>
+                                    <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps/{step_id}/delete(course_id=${course.id}, module_id=${module.id}, step_id=${step_item.id})}" class="text-danger"> Delete </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
