@@ -36,11 +36,16 @@ public class AdminContoller {
     @Autowired
     private  PostService postService;
 
+    @Autowired
+    private PcategoryService pcategoryService;
+
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
     public String homePage(Model model){
         return "admin-home";
     }
+
+    // Course handle goes here
 
     @RequestMapping(value = "/courses", method = RequestMethod.GET)
     public ModelAndView coursesPage(Model model){
@@ -102,6 +107,8 @@ public class AdminContoller {
         return "redirect:/admin/courses";
     }
 
+    // Module handlers goes here
+
     @RequestMapping(value = "/courses/{course_id}/modules", method = RequestMethod.GET)
     public ModelAndView courseModulesPage(@PathVariable int course_id, Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -154,6 +161,8 @@ public class AdminContoller {
         this.moduleService.deleteModuleById(module_id);
         return "redirect:/admin/courses/" + course_id + "/modules";
     }
+
+    // Steps Handlers goes here
 
     @RequestMapping(value = "/courses/{course_id}/modules/{module_id}/steps", method = RequestMethod.GET)
     public ModelAndView courseModulesStepPage(@PathVariable int course_id, @PathVariable int module_id, Model model){
@@ -216,6 +225,8 @@ public class AdminContoller {
         return "redirect:/admin/courses/" + course_id + "/modules/" + module_id + "/steps";
     }
 
+    // Language handlers goes here
+
     @RequestMapping(value = "/languages", method = RequestMethod.GET)
     public ModelAndView languagesPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -239,6 +250,8 @@ public class AdminContoller {
         }
         return modelAndView;
     }
+
+    // Category Handlers goes here
 
     @RequestMapping(value = "/categorys/add", method = RequestMethod.GET)
     public ModelAndView categoryAddPage(Model model){
@@ -265,6 +278,7 @@ public class AdminContoller {
     }
 
 
+    // Blog Handlers goes here
 
     @RequestMapping(value = "/blogs", method = RequestMethod.GET)
     public String blogPage(Model model){
@@ -299,5 +313,20 @@ public class AdminContoller {
 
         }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/blogs/{blog_id}/edit", method = RequestMethod.GET)
+    public ModelAndView blogEditPage(@PathVariable int blog_id, Model model){
+        Post post = this.postService.getPostById(blog_id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("post", post);
+        modelAndView.setViewName("admin-add-blog");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/blogs/{blog_id}/delete", method = RequestMethod.GET)
+    public String blogDelete(@PathVariable int blog_id, Model model){
+        this.postService.deletePostById(blog_id);
+        return "redirect:/admin/blogs";
     }
 }
