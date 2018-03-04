@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/admin-layout">
+<head>
+    <div layout:fragment="chead">
+        <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
+    </div>
+</head>
+<body>
+    <div layout:fragment="content">
+        <section class="fluid-conatiner">
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <form autocomplete="off" action="#" th:action="@{/admin/language/add}" th:object="${language}" method="post" role="form">
+                        <div class="blogTitlePage text-center">
+                            <h2> New Language </h2>
+                        </div>
+                        <div class="row no-gutters" id="blog-form">
+                            <div class="form-group col-12">
+                                <label>Title</label>
+                                <input type="text" class="form-control" th:field="*{title}"/>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div layout:fragment="cscript">
+    </div>
+</body>
+</html>

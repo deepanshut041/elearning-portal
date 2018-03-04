@@ -33,6 +33,9 @@ public class AdminContoller {
     @Autowired
     private StepService stepService;
 
+    @Autowired
+    private  PostService postService;
+
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
     public String homePage(Model model){
@@ -213,31 +216,31 @@ public class AdminContoller {
         return "redirect:/admin/courses/" + course_id + "/modules/" + module_id + "/steps";
     }
 
-    @RequestMapping(value = "/language/add", method = RequestMethod.GET)
-    public ModelAndView languageAddPage(Model model){
+    @RequestMapping(value = "/languages", method = RequestMethod.GET)
+    public ModelAndView languagesPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Language language = new Language();
         modelAndView.addObject("language", language);
-        modelAndView.setViewName("admin-language-add");
+        modelAndView.setViewName("admin-language");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/language/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/languages/add", method = RequestMethod.POST)
     public ModelAndView createNewLanguage(@Valid Language language, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("admin-language-add");
+            modelAndView.setViewName("admin-language");
         } else {
             languageService.addLanguage(language);
             modelAndView.addObject("successMessage", "Language has been added successfully");
             modelAndView.addObject("language", new Language());
-            modelAndView.setViewName("admin-language-add");
+            modelAndView.setViewName("admin-language");
 
         }
         return modelAndView;
     }
 
-    @RequestMapping(value = "/category/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/categorys/add", method = RequestMethod.GET)
     public ModelAndView categoryAddPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Category category = new Category();
@@ -246,7 +249,7 @@ public class AdminContoller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/category/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/categorys", method = RequestMethod.POST)
     public ModelAndView createNewCategory(@Valid Category category, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
@@ -263,8 +266,38 @@ public class AdminContoller {
 
 
 
-    @RequestMapping(value = "/blog", method = RequestMethod.GET)
+    @RequestMapping(value = "/blogs", method = RequestMethod.GET)
     public String blogPage(Model model){
         return "admin-blog";
+    }
+
+
+    @RequestMapping(value = "/blogs/add", method = RequestMethod.GET)
+    public ModelAndView blogAddPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Post post = new Post();
+        modelAndView.addObject("post", post);
+        modelAndView.setViewName("admin-add-blog");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/blogs", method = RequestMethod.POST)
+    public ModelAndView createNewBlog(@Valid Post post, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin-add-blog");
+        } else {
+            if(post.getId() == 0) {
+                postService.addPost(post);
+            }
+            else {
+                postService.updatePost(post);
+            }
+            modelAndView.addObject("successMessage", "Post has been added successfully");
+            modelAndView.addObject("post", post);
+            modelAndView.setViewName("admin-add-blog");
+
+        }
+        return modelAndView;
     }
 }
