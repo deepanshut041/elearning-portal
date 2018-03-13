@@ -236,13 +236,18 @@ public class AdminContoller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/languages/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/languages", method = RequestMethod.POST)
     public ModelAndView createNewLanguage(@Valid Language language, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin-language");
         } else {
-            languageService.addLanguage(language);
+            if(language.getId() != 0){
+                languageService.updateLanguage(language);
+            }
+            else {
+                languageService.addLanguage(language);
+            }
             modelAndView.addObject("successMessage", "Language has been added successfully");
             modelAndView.addObject("language", new Language());
             modelAndView.setViewName("admin-language");
@@ -251,14 +256,29 @@ public class AdminContoller {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/languages/{language_id}/edit", method = RequestMethod.GET)
+    public ModelAndView languageEditPage(@PathVariable int language_id, Model model){
+        Language language = this.languageService.getLanguageById(language_id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("language", language);
+        modelAndView.setViewName("admin-language");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/languages/{language_id}/delete", method = RequestMethod.GET)
+    public String languageDelete(@PathVariable int language_id, Model model){
+        this.languageService.deleteLanguageById(language_id);
+        return "redirect:/admin/languages";
+    }
+
     // Category Handlers goes here
 
-    @RequestMapping(value = "/categorys/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/categorys", method = RequestMethod.GET)
     public ModelAndView categoryAddPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Category category = new Category();
         modelAndView.addObject("category", category);
-        modelAndView.setViewName("admin-category-add");
+        modelAndView.setViewName("admin-category");
         return modelAndView;
     }
 
@@ -266,16 +286,32 @@ public class AdminContoller {
     public ModelAndView createNewCategory(@Valid Category category, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("admin-category-add");
+            modelAndView.setViewName("admin-category");
         } else {
             categoryService.addCategory(category);
             modelAndView.addObject("successMessage", "Category has been added successfully");
             modelAndView.addObject("category", new Category());
-            modelAndView.setViewName("admin-category-add");
+            modelAndView.setViewName("admin-category");
 
         }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/categorys/{category_id}/edit", method = RequestMethod.GET)
+    public ModelAndView categoryEditPage(@PathVariable int category_id, Model model){
+        Category category = this.categoryService.getCategoryById(category_id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("category", category);
+        modelAndView.setViewName("admin-category");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/categorys/{category_id}/delete", method = RequestMethod.GET)
+    public String categoryDelete(@PathVariable int category_id, Model model){
+        this.categoryService.deleteCategoryById(category_id);
+        return "redirect:/admin/categorys";
+    }
+
 
 
     // Blog Handlers goes here
