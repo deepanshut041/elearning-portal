@@ -15,6 +15,7 @@ public class Post {
     private String content;
     private Date date_created;
     private Date date_updated;
+    private String img_link;
 
     @ManyToOne
     private Mentor mentor;
@@ -51,6 +52,14 @@ public class Post {
 
     public Date getDate_created() {
         return date_created;
+    }
+
+    public String getImg_link() {
+        return img_link;
+    }
+
+    public void setImg_link(String img_link) {
+        this.img_link = img_link;
     }
 
     public void setDate_created(Date date_created) {
