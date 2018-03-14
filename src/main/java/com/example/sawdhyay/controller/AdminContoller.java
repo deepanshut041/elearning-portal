@@ -277,7 +277,9 @@ public class AdminContoller {
     public ModelAndView categoryAddPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Category category = new Category();
+        List<Category> categories = this.categoryService.findAllCategorys();
         modelAndView.addObject("category", category);
+        modelAndView.addObject("categorys", categories);
         modelAndView.setViewName("admin-category");
         return modelAndView;
     }
@@ -286,10 +288,14 @@ public class AdminContoller {
     public ModelAndView createNewCategory(@Valid Category category, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
+            List<Category> categories = this.categoryService.findAllCategorys();
+            modelAndView.addObject("categorys", categories);
             modelAndView.setViewName("admin-category");
         } else {
             categoryService.addCategory(category);
             modelAndView.addObject("successMessage", "Category has been added successfully");
+            List<Category> categories = this.categoryService.findAllCategorys();
+            modelAndView.addObject("categorys", categories);
             modelAndView.addObject("category", new Category());
             modelAndView.setViewName("admin-category");
 
@@ -301,6 +307,8 @@ public class AdminContoller {
     public ModelAndView categoryEditPage(@PathVariable int category_id, Model model){
         Category category = this.categoryService.getCategoryById(category_id);
         ModelAndView modelAndView = new ModelAndView();
+        List<Category> categories = this.categoryService.findAllCategorys();
+        modelAndView.addObject("categorys", categories);
         modelAndView.addObject("category", category);
         modelAndView.setViewName("admin-category");
         return modelAndView;
@@ -317,8 +325,12 @@ public class AdminContoller {
     // Blog Handlers goes here
 
     @RequestMapping(value = "/blogs", method = RequestMethod.GET)
-    public String blogPage(Model model){
-        return "admin-blog";
+    public ModelAndView blogPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Post> posts = this.postService.findAllPosts();
+        modelAndView.addObject("posts", posts);
+        modelAndView.setViewName("admin-blog");
+        return (modelAndView);
     }
 
 

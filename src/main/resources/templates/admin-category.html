@@ -33,6 +33,25 @@
                 </form>
             </div>
         </div>
+        <div class="row no-gutters">
+            <div class="col-12 course-container">
+                <div class="course-module">
+                    <h4>Categories</h4>
+                    <div class="row no-gutters">
+                        <div th:each="lcategory : ${categorys}" class="col-12 module-card">
+
+                            <h6 th:text="${lcategory.title}"></h6>
+                            <p th:text="${lcategory.description}" class="text-muted"></p>
+                            <div class="text-right">
+                                <a th:href="@{/admin/categorys/{category_id}/edit(category_id=${lcategory.id})}" class="text-primary"> Edit </a>
+                                <a th:href="@{/admin/categorys/{category_id}/delete(category_id=${lcategory.id})}" class="text-danger"> Delete </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 <div layout:fragment="cscript">
