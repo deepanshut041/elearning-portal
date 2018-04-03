@@ -1,5 +1,12 @@
 $("#asideButton").click(function () {
     $("aside").toggle("slow");
+    if($('aside').css('display') == 'none')
+    {
+        $("#mainContainer").css("marginLeft", "0px")
+    }
+    else {
+        $("#mainContainer").css("marginLeft", "210px")
+    }
 });
 $("#courseAside").click(function () {
     $("#courseAsideSub").toggle("slow");

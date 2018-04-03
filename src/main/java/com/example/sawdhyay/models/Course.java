@@ -1,5 +1,7 @@
 package com.example.sawdhyay.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +17,11 @@ public class Course {
     private String status;
     private boolean paid;
     private String language;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date enroll_date;
     private String skill_required;
     private String trailer_link;

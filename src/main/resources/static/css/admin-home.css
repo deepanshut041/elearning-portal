@@ -211,9 +211,6 @@ aside #sidebar ul.sidebar-menu li.sub-menu{
 
 #mainContainer{
     min-height: 100vh;
-}
-
-article{
     margin-left: 210px;
     padding-top: 75px;
     background-color: #eeeeee;
