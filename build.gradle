@@ -40,8 +40,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
-    compile ("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE")
-    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.1.2'
+    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE"
+    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.3.0'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
 
