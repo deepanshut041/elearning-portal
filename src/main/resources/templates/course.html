@@ -1,90 +1,109 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/home-layout">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Swadhyay | Library</title>
-    <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet"/>
-    <link th:href="@{/css/course.css}" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-</head>
-
-<body>
-<nav class="navbar navbar-expand-md fixed-top">
-    <a class="navbar-brand" href="#"> SWADHYAY </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/auth/signin">Sigin</a>
-            </li>
-        </ul>
+    <div layout:fragment="chead">
+        <link th:href="@{/css/course.css}" rel="stylesheet"/>
     </div>
-</nav>
-
-<main role="main" class="fluid-container">
-    <section class="container">
-        <article class="header-container">
-            <div class="row no-gutters align-items-center">
-
-            </div>
-        </article>
-        <article class="main-container">
-            <!-- HR  -->
-            <div></div>
-
-            <!-- Main container -->
-            <div class="row no-gutters">
-                <main role="main" class="col-12 col-sm-12 col-md-7 col-lg-8">
-                    <div>
-                        <!-- Description -->
+</head>
+<body>
+<div layout:fragment="content">
+    <main role="main" class="fluid-container">
+        <section class="container">
+            <article class="header-container">
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        <h3>Design Thinking</h3>
+                        <p>55-minute Design Course</p>
                         <div>
-
-                        </div>
-                        <!-- Modules -->
-                        <div>
-
+                            <button>Start course</button>
+                            <button>Watch trailer</button>
                         </div>
                     </div>
-                </main>
-                <aside class="col-12 col-sm-12 col-md-5 col-lg-4">
+                </div>
+            </article>
+            <article class="main-container">
+                <div class="sub-header">
+                    <ul>
+                        <li>Design</li>
+                        <li>Beginner</li>
+                    </ul>
+                </div>
+                <!-- HR  -->
+                <div></div>
 
-                </aside>
-            </div>
-        </article>
-    </section>
-</main>
-<footer class="fluid-container">
-    <div class="row no-gutters align-items-center    justify-content-center">
-        <div class="col-12 col-lg-3">
-            <h1>Swadhyay</h1>
-            <p class="text-muted">@Copyright 2017-2018 </p>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <p class="text-muted">About</p>
-            <p class="text-muted">Careers</p>
-            <p class="text-muted">Terms</p>
-            <p class="text-muted">Privacy</p>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <p class="text-muted">Blog</p>
-            <p class="text-muted">Press Kit</p>
-            <p class="text-muted">Contact</p>
-            <p class="text-muted">Catalog</p>
-        </div>
-    </div>
-</footer>
+                <!-- Main container -->
+                <div class="row no-gutters">
+                    <section class="col-12 col-sm-12 col-md-7 col-lg-8">
+                        <div class="row">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script th:src="@{/js/bootstrap.js}"></script>
+                            <!-- Description -->
+                            <div class="col-12">
+                                <h3>About this Course</h3>
+                                <p class="text-muted">Learn the user-centered methods and mindsets that entire businesses are using to improve their product experiences. Throughout this course,
+                                    we’ll go over how to find the voice of our user, the importance of that voice, and how to create a better experience for our user.</p>
+                                <h6>What you'll learn</h6>
+                                <ul class="fa-ul">
+                                    <li><i class="fa-li fa fa-times"></i>Define design thinking</li>
+                                </ul>
+                            </div>
+                            <!-- Modules -->
+                            <div class="col-12">
+                                <ul class="fa-ul">
+                                    <li>
+                                        <i class="fa-li fa fa-times"></i>
+                                        <div>
+                                            <h6>Becoming a Design Thinker</h6>
+                                            <p>Before you can learn design thinking methods, you’ll need to understand the mindsets behind those methods.
+                                                We’ll introduce basic terminology and more importantly, we’ll introduce what design thinking is and why you would want to use it.</p>
+
+                                            <p><i class="fa fa-i"></i>steps</p>
+                                            <div>
+                                                <ul class="fa-ul">
+                                                    <li><i class="fa-li fa fa-times"></i>
+                                                        <div>
+                                                            <p><strong>Becoming a Design Thinker</strong></p>
+                                                            <p class="text-muted">2:03</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="col-12 col-sm-12 col-md-5 col-lg-4">
+                        <div>
+                            <h5>Teacher</h5>
+                            <div>
+                                <div>
+
+                                </div>
+                                <div>
+                                    <h6 class="text-center">Devin O'Bryan</h6>
+                                    <p class="text-muted">
+                                        Devin O’Bryan is Creative Director for Project Whitespace at IBM. For the last 4 years, he has been co-creating within IBM Corporate HR and IBM Design’s global education efforts with programs like IBM Design Bootcamp Experiences, IBM Designweek events, as well as building and maintaining the intensive, award-winning Maelstrom internship program from scratch. Devin’s personal mental health journey has informed huge swaths of his educational and professional curricula. As such, authenticity is the cornerstone of Devin’s design and life philosophies, and his patient wife and two kids keep him genuine every single day.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Download videos</h5>
+                            <p>You need to sign up for Treehouse in order to download course videos.</p>
+                            <div>
+                                <button class="btn btn-block">Sign up</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+<div layout:fragment="cscript">
+</div>
 </body>
 </html>

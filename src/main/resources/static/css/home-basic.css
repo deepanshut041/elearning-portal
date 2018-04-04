@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+body{
+    font-family: 'varela round', sans-serif;
+}
+/* Navbar Styles */
+nav{
+    background: #fff;
+}
+nav .nav-item .nav-link{
+    color: #7b8b8e;
+    font-weight: 500;
+    transition: color 300ms 0s ease;
+}
+nav .navbar-brand {
+    color: #5fcf80;
+}
+nav .nav-link:hover{
+    color: #4b5658;
+}
+
+
+footer{
+    padding: 50px 10px 100px 10px;
+    background-color: #f9fafa !important;
+}
+
+footer h1{
+    color: #5fcf80;
+    margin-bottom: 2px;
+}
