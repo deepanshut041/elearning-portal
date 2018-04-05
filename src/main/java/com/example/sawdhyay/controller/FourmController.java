@@ -10,7 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/fourms")
 public class FourmController {
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public ModelAndView froumsPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("fourms");
