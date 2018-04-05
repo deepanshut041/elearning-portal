@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminContoller {
+public class AdminController {
 
     @Autowired
     private CategoryService categoryService;
