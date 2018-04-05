@@ -1,0 +1,46 @@
+package com.example.sawdhyay.services;
+
+import com.example.sawdhyay.daos.CourseProgressDao;
+import com.example.sawdhyay.models.CourseProgress;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service("courseProgressService")
+public class CourseProgressServiceImpl implements CourseProgressService{
+
+    @Autowired
+    private CourseProgressDao courseProgressDao;
+
+    @Override
+    @Transactional
+    public void addCourseProgress(CourseProgress courseProgress) {
+        this.courseProgressDao.saveCourseProgress(courseProgress);
+    }
+
+    @Override
+    @Transactional
+    public void updateCourseProgress(CourseProgress courseProgress) {
+        this.courseProgressDao.updateCourseProgress(courseProgress);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseProgressById(int id) {
+        this.courseProgressDao.deleteCourseProgress(id);
+    }
+
+    @Override
+    @Transactional
+    public List<CourseProgress> findAllCourseProgresss() {
+        return this.courseProgressDao.listCourseProgresss();
+    }
+
+    @Override
+    @Transactional
+    public CourseProgress getCourseProgressById(int id) {
+        return this.courseProgressDao.getCourseProgress(id);
+    }
+}

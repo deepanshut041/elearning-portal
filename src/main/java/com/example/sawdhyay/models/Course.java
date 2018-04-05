@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -27,6 +28,14 @@ public class Course {
     private String trailer_link;
     private int course_length;
 
+    public Set<CourseEnrollment> getCourseEnrollments() {
+        return courseEnrollments;
+    }
+
+    public void setCourseEnrollments(Set<CourseEnrollment> courseEnrollments) {
+        this.courseEnrollments = courseEnrollments;
+    }
+
     @ManyToMany
     @JoinTable(name="mentor_course", joinColumns = @JoinColumn(name="course_id"),
             inverseJoinColumns = @JoinColumn(name = "mentor_id"))
@@ -42,6 +51,9 @@ public class Course {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="course", fetch = FetchType.LAZY)
+    private Set<CourseEnrollment> courseEnrollments;
 
     public List<Mentor> getMentors() {
         return mentors;

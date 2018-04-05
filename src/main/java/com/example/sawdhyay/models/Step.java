@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Step {
@@ -20,6 +21,17 @@ public class Step {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Module module;
+
+    public Set<CourseProgress> getProgresses() {
+        return progresses;
+    }
+
+    public void setProgresses(Set<CourseProgress> progresses) {
+        this.progresses = progresses;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "step", fetch = FetchType.LAZY)
+    private Set<CourseProgress> progresses;
 
     public String getLink() {
         return link;

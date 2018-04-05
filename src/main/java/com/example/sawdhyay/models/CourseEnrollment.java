@@ -5,8 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "course_enrollment")
 public class CourseEnrollment {
 
     @Id
@@ -22,8 +24,8 @@ public class CourseEnrollment {
     @ManyToOne
     private Course course;
 
-    @OneToMany
-    private List<CourseProgress> progresses;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course_enrollment", fetch = FetchType.EAGER)
+    private Set<CourseProgress> progresses;
 
     public int getId() {
         return id;
@@ -57,11 +59,11 @@ public class CourseEnrollment {
         this.course = course;
     }
 
-    public List<CourseProgress> getProgresses() {
+    public Set<CourseProgress> getProgresses() {
         return progresses;
     }
 
-    public void setProgresses(List<CourseProgress> progresses) {
+    public void setProgresses(Set<CourseProgress> progresses) {
         this.progresses = progresses;
     }
 }
