@@ -44,7 +44,7 @@ public class User {
     private Set<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user", fetch = FetchType.LAZY)
-    private Set<CourseEnrollment> courseEnrollments;
+    private Set<Enrollment> enrollments;
 
     @OneToOne
     private Mentor mentor;
@@ -121,11 +121,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<CourseEnrollment> getCourseEnrollments() {
-        return courseEnrollments;
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setCourseEnrollments(Set<CourseEnrollment> courseEnrollments) {
-        this.courseEnrollments = courseEnrollments;
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }

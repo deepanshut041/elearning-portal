@@ -61,4 +61,12 @@ public class CourseDaoImpl implements CourseDao {
         }
         logger.info("Course deleted successfully, course details=" + course);
     }
+
+    @Override
+    public int courseCount(){
+        Session session = this.sessionFactory.getCurrentSession();
+        int count = ((Long) session.createQuery("select count(*) from Book").uniqueResult()).intValue();
+        logger.info("Total Course count is =" + count);
+        return count;
+    }
 }

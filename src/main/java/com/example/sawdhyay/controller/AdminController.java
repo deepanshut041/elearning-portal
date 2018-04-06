@@ -38,11 +38,17 @@ public class AdminController {
 
     @Autowired
     private PcategoryService pcategoryService;
+    
+    @Autowired
+    private TrackService trackService;
 
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
-    public String homePage(Model model){
-        return "admin-home";
+    public ModelAndView homePage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("admin-home");
+        return modelAndView;
     }
 
     // Course handle goes here
@@ -376,5 +382,62 @@ public class AdminController {
     public String blogDelete(@PathVariable int blog_id, Model model){
         this.postService.deletePostById(blog_id);
         return "redirect:/admin/blogs";
+    }
+
+
+    // Tracks Handlers goes here
+
+    @RequestMapping(value = "/tracks", method = RequestMethod.GET)
+    public ModelAndView trackPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Track> tracks = this.trackService.findAllTracks();
+        modelAndView.addObject("tracks", tracks);
+        modelAndView.setViewName("admin-track");
+        return (modelAndView);
+    }
+
+
+    @RequestMapping(value = "/tracks/add", method = RequestMethod.GET)
+    public ModelAndView trackAddPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Track track = new Track();
+        modelAndView.addObject("track", track);
+        modelAndView.setViewName("admin-add-track");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tracks", method = RequestMethod.POST)
+    public ModelAndView createNewTrack(@Valid Track track, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin-add-track");
+        } else {
+            if(track.getId() == 0) {
+                trackService.addTrack(track);
+            }
+            else {
+                trackService.updateTrack(track);
+            }
+            modelAndView.addObject("successMessage", "Track has been added successfully");
+            modelAndView.addObject("track", track);
+            modelAndView.setViewName("admin-add-track");
+
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tracks/{track_id}/edit", method = RequestMethod.GET)
+    public ModelAndView trackEditPage(@PathVariable int track_id, Model model){
+        Track track = this.trackService.getTrackById(track_id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("track", track);
+        modelAndView.setViewName("admin-add-track");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tracks/{track_id}/delete", method = RequestMethod.GET)
+    public String trackDelete(@PathVariable int track_id, Model model){
+        this.trackService.deleteTrackById(track_id);
+        return "redirect:/admin/tracks";
     }
 }

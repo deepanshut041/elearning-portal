@@ -28,12 +28,12 @@ public class Course {
     private String trailer_link;
     private int course_length;
 
-    public Set<CourseEnrollment> getCourseEnrollments() {
-        return courseEnrollments;
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setCourseEnrollments(Set<CourseEnrollment> courseEnrollments) {
-        this.courseEnrollments = courseEnrollments;
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 
     @ManyToMany
@@ -53,7 +53,20 @@ public class Course {
     private List<Module> modules;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="course", fetch = FetchType.LAZY)
-    private Set<CourseEnrollment> courseEnrollments;
+    private Set<Enrollment> enrollments;
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="track_course", joinColumns = @JoinColumn(name="course_id"),
+            inverseJoinColumns = @JoinColumn(name = "track_id"))
+    private List<Track> tracks;
 
     public List<Mentor> getMentors() {
         return mentors;

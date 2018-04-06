@@ -11,5 +11,6 @@ public interface CourseDao {
     List<Course> listCourses();
     void updateCourse(Course course);
     void deleteCourse(int id);
+    int courseCount();
 
 }

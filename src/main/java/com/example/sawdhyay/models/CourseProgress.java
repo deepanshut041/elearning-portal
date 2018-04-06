@@ -14,7 +14,7 @@ public class CourseProgress {
     private int id;
 
     @ManyToOne
-    private CourseEnrollment enrollment;
+    private Enrollment enrollment;
 
     @ManyToOne
     private Step step;
@@ -30,11 +30,11 @@ public class CourseProgress {
         this.id = id;
     }
 
-    public CourseEnrollment getEnrollment() {
+    public Enrollment getEnrollment() {
         return enrollment;
     }
 
-    public void setEnrollment(CourseEnrollment enrollment) {
+    public void setEnrollment(Enrollment enrollment) {
         this.enrollment = enrollment;
     }
 

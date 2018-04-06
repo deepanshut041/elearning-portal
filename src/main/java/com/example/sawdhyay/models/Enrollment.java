@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "course_enrollment")
-public class CourseEnrollment {
+@Table(name = "enrollment")
+public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class CourseEnrollment {
     @ManyToOne
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course_enrollment", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enrollment", fetch = FetchType.EAGER)
     private Set<CourseProgress> progresses;
 
     public int getId() {
