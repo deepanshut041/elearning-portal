@@ -10,7 +10,41 @@
 <body>
 
 <div layout:fragment="content">
-
+    <section class="fluid-container">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <form autocomplete="off" action="#" th:action="@{/admin/tracks}" th:object="${track}" method="post" role="form">
+                    <div class="blogTitlePage text-center">
+                        <h2> New Track </h2>
+                    </div>
+                    <div class="row no-gutters" id="blog-form">
+                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                        <div class="form-group col-12">
+                            <label>Title</label>
+                            <input type="text" class="form-control" th:field="*{title}"/>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Lenght</label>
+                            <input type="text" class="form-control" th:field="*{length}"/>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Description</label>
+                            <textarea type="text" class="form-control" th:field="*{Description}"></textarea>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="exampleFormControlSelect2">Courses</label>
+                            <select multiple="multiple" class="form-control" id="exampleFormControlSelect2" th:field="*{courses}">
+                                <option th:each="course : ${all_courses}" th:value="${course.id}" th:text="${course.title}"/>
+                            </select>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 </div>
 <div layout:fragment="cscript">
 </div>

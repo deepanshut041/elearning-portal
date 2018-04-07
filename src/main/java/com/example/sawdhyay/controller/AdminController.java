@@ -2,17 +2,25 @@ package com.example.sawdhyay.controller;
 
 import com.example.sawdhyay.models.*;
 import com.example.sawdhyay.services.*;
+import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -401,16 +409,42 @@ public class AdminController {
     public ModelAndView trackAddPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Track track = new Track();
+        List<Course> courses = courseService.findAllCourses();
+        modelAndView.addObject("all_courses", courses);
         modelAndView.addObject("track", track);
         modelAndView.setViewName("admin-add-track");
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/tracks", method = RequestMethod.POST)
     public ModelAndView createNewTrack(@Valid Track track, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+        List<Course> courses = courseService.findAllCourses();
         if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError("courses");
+            if(fieldError != null){
+                String values = fieldError.getRejectedValue().toString();
+                String[] rejectedValues = values.split(",");
+                Set<Course> rejectedList = new HashSet<>();
+                for (String rejectedValue:rejectedValues){
+                    rejectedList.add(courseService.getCourseById(Integer.parseInt(rejectedValue)));
+                }
+                track.setCourses(rejectedList);
+                if(track.getId() == 0) {
+                    trackService.addTrack(track);
+                }
+                else {
+                    trackService.updateTrack(track);
+                }
+                modelAndView.addObject("successMessage", "Track has been added successfully");
+                modelAndView.addObject("track", track);
+                modelAndView.addObject("all_courses", courses);
+                modelAndView.setViewName("admin-add-track");
+            }
+
             modelAndView.setViewName("admin-add-track");
+            modelAndView.addObject("all_courses", courses);
         } else {
             if(track.getId() == 0) {
                 trackService.addTrack(track);
@@ -420,6 +454,7 @@ public class AdminController {
             }
             modelAndView.addObject("successMessage", "Track has been added successfully");
             modelAndView.addObject("track", track);
+            modelAndView.addObject("all_courses", courses);
             modelAndView.setViewName("admin-add-track");
 
         }
