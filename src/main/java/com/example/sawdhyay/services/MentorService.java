@@ -15,5 +15,6 @@ public interface MentorService {
     List<Mentor> findAllMentors();
 
     Mentor getMentorById(int id);
-    
+
+    Mentor getMentorByUserId(int id);
 }

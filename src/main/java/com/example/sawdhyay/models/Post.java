@@ -5,6 +5,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,14 +16,25 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "*Please provide an title")
     private String title;
+
+    @NotEmpty(message = "*Please provide a content")
     @Column(columnDefinition="TEXT")
     private String content;
+
+    @NotEmpty(message = "*Please provide short content")
+    private String short_content;
+
+
     @CreationTimestamp
     private Date date_created;
+
     @UpdateTimestamp
     private Date date_updated;
 
+    @NotEmpty(message = "*Please provide short image link")
     private String img_link;
 
     @ManyToOne
@@ -104,4 +117,13 @@ public class Post {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    public String getShort_content() {
+        return short_content;
+    }
+
+    public void setShort_content(String short_content) {
+        this.short_content = short_content;
+    }
+
 }

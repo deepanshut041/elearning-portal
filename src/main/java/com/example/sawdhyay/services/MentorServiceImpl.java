@@ -43,4 +43,9 @@ public class MentorServiceImpl implements MentorService{
     public Mentor getMentorById(int id) {
         return this.mentorDao.getMentor(id);
     }
+
+    @Override
+    public Mentor getMentorByUserId(int id) {
+        return  this.mentorDao.getMentorByUserId(id);
+    }
 }

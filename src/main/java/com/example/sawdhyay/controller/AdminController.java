@@ -4,6 +4,8 @@ import com.example.sawdhyay.models.*;
 import com.example.sawdhyay.services.*;
 import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,6 +51,9 @@ public class AdminController {
     
     @Autowired
     private TrackService trackService;
+
+    @Autowired
+    private MentorService mentorService;
 
 
 
@@ -361,11 +366,17 @@ public class AdminController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/blogs", method = RequestMethod.POST)
+    @RequestMapping(value = "/blogs/add", method = RequestMethod.POST)
     public ModelAndView createNewBlog(@Valid Post post, BindingResult bindingResult) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        Mentor mentor = mentorService.getMentorByUserId(user.getId());
+        post.setMentor(mentor);
         ModelAndView modelAndView = new ModelAndView();
         List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
         modelAndView.addObject("pcategorys", pcategories);
+        modelAndView.addObject("category", new Pcategory());
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin-add-blog");
         } else {
@@ -377,14 +388,13 @@ public class AdminController {
             }
             modelAndView.addObject("successMessage", "Post has been added successfully");
             modelAndView.addObject("post", new Post());
-            modelAndView.addObject("category", new Pcategory());
             modelAndView.setViewName("admin-add-blog");
 
         }
         return modelAndView;
     }
 
-    @RequestMapping(value = "/blogs/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/blogs/category/add", method = RequestMethod.POST)
     public ModelAndView createNewPCategory(@Valid Pcategory pcategory, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {

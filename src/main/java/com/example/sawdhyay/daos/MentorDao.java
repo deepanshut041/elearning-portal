@@ -12,4 +12,6 @@ public interface MentorDao {
     void updateMentor(Mentor mentor);
     void deleteMentor(int id);
 
+    Mentor getMentorByUserId(int id);
+
 }

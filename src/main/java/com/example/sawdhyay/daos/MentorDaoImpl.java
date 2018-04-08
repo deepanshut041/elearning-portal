@@ -61,4 +61,18 @@ public class MentorDaoImpl implements MentorDao {
         }
         logger.info("Mentor deleted successfully, mentor details=" + mentor);
     }
+
+    @Override
+    public Mentor getMentorByUserId(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Mentor> mentorList = session.createQuery("from Mentor where course.id=:c_id").setParameter("c_id", id).list();
+        for(Mentor mentor : mentorList){
+            logger.info("Module List::" + mentor);
+        }
+        if (mentorList.size() > 0) {
+            return mentorList.get(0);
+        } else {
+            return null;
+        }
+    }
 }

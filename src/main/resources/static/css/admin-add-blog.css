@@ -1,0 +1,30 @@
+.container{
+    background: #fff;
+    padding:10px;
+}
+.form-body{
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.form-left div{
+    color: white;
+    padding: 20px 10px;
+
+}
+
+.form-right{
+    background: #fff;
+}
+
+.form-right form{
+    padding: 20px 10px;
+}
+.light-yellow{
+    background-color: #4f585a;
+}
+.dark-yellow{
+    background: #475C69;
+}
