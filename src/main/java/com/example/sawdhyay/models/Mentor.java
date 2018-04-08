@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 public class Mentor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     public List<Course> getCourses() {

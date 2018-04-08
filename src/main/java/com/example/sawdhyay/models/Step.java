@@ -10,7 +10,7 @@ import java.util.Set;
 public class Step {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
 

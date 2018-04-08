@@ -16,15 +16,15 @@
             <div>
                 <section class="row clearfix" id="post-container" th:each="post : ${posts}" >
                     <div class="col-md-6 col-12" id="post-container-image">
-                        <div class="type" th:if="${course.pcategory.title}"><span th:text="${course.pcategory.title}"></span></div>
-                        <img src="https://i1.ytimg.com/vi/${course.trailer_link}/1.jpg"
-                             th:src="@{post.img_link}"
+                        <div class="type" th:if="${post.pcategory.title}"><span th:text="${post.pcategory.title}"></span></div>
+                        <img
+                             th:src="@{{link}(link=${post.img_link})}"
                              class="post-image"/>
                     </div>
                     <div class="col-md-6 col-12" id="post-container-text">
                         <div class="accessories clearfix" id="post-container-text-header">
                             <div class="text-block with">With</div>
-                            <div class="text-block" th:if="${post.mentor.firstName}"><span th:text="${post.mentor.firstName}"></span></div>
+                            <div class="text-block" th:if="${post.mentor}"><span th:text="${post.mentor.firstName}"></span></div>
                             <!--<div class="catagory text-block" th:if="${course.tech_language}"><span th:text="${course.tech_language.title}"></span></div>-->
                             <div class="before catagory text-block">About</div>
                             <div class="hr"></div>

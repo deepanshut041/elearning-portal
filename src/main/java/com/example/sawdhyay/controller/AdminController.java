@@ -51,6 +51,7 @@ public class AdminController {
     private TrackService trackService;
 
 
+
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
     public ModelAndView homePage(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -352,7 +353,10 @@ public class AdminController {
     public ModelAndView blogAddPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Post post = new Post();
+        List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+        modelAndView.addObject("pcategorys", pcategories);
         modelAndView.addObject("post", post);
+        modelAndView.addObject("category", new Pcategory());
         modelAndView.setViewName("admin-add-blog");
         return modelAndView;
     }
@@ -360,6 +364,8 @@ public class AdminController {
     @RequestMapping(value = "/blogs", method = RequestMethod.POST)
     public ModelAndView createNewBlog(@Valid Post post, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+        List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+        modelAndView.addObject("pcategorys", pcategories);
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin-add-blog");
         } else {
@@ -370,9 +376,34 @@ public class AdminController {
                 postService.updatePost(post);
             }
             modelAndView.addObject("successMessage", "Post has been added successfully");
-            modelAndView.addObject("post", post);
+            modelAndView.addObject("post", new Post());
+            modelAndView.addObject("category", new Pcategory());
             modelAndView.setViewName("admin-add-blog");
 
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/blogs/add", method = RequestMethod.POST)
+    public ModelAndView createNewPCategory(@Valid Pcategory pcategory, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+            modelAndView.addObject("pcategorys", pcategories);
+            modelAndView.setViewName("admin-add-blog");
+        } else {
+            if(pcategory.getId() == 0) {
+                pcategoryService.addPcategory(pcategory);
+            }
+            else {
+                pcategoryService.addPcategory(pcategory);
+            }
+            List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+            modelAndView.addObject("pcategorys", pcategories);
+            modelAndView.addObject("successMessage", "Post Category has been added successfully");
+            modelAndView.addObject("post", new Post());
+            modelAndView.addObject("category", new Pcategory());
+            modelAndView.setViewName("admin-add-blog");
         }
         return modelAndView;
     }
@@ -381,7 +412,10 @@ public class AdminController {
     public ModelAndView blogEditPage(@PathVariable int blog_id, Model model){
         Post post = this.postService.getPostById(blog_id);
         ModelAndView modelAndView = new ModelAndView();
+        List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+        modelAndView.addObject("pcategorys", pcategories);
         modelAndView.addObject("post", post);
+        modelAndView.addObject("category", new Pcategory());
         modelAndView.setViewName("admin-add-blog");
         return modelAndView;
     }
@@ -438,13 +472,14 @@ public class AdminController {
                     trackService.updateTrack(track);
                 }
                 modelAndView.addObject("successMessage", "Track has been added successfully");
-                modelAndView.addObject("track", track);
+                modelAndView.addObject("track", new Track());
                 modelAndView.addObject("all_courses", courses);
                 modelAndView.setViewName("admin-add-track");
             }
-
-            modelAndView.setViewName("admin-add-track");
-            modelAndView.addObject("all_courses", courses);
+            else{
+                modelAndView.setViewName("admin-add-track");
+                modelAndView.addObject("all_courses", courses);
+            }
         } else {
             if(track.getId() == 0) {
                 trackService.addTrack(track);
@@ -453,7 +488,7 @@ public class AdminController {
                 trackService.updateTrack(track);
             }
             modelAndView.addObject("successMessage", "Track has been added successfully");
-            modelAndView.addObject("track", track);
+            modelAndView.addObject("track", new Track());
             modelAndView.addObject("all_courses", courses);
             modelAndView.setViewName("admin-add-track");
 

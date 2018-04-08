@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
     @Column(columnDefinition="TEXT")
@@ -64,8 +64,6 @@ public class Course {
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="track_course", joinColumns = @JoinColumn(name="course_id"),
-            inverseJoinColumns = @JoinColumn(name = "track_id"))
     private List<Track> tracks;
 
     public List<Mentor> getMentors() {

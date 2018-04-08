@@ -13,7 +13,7 @@
     <section class="fluid-container">
         <div class="row no-gutters">
             <div class="col-12">
-                <form autocomplete="off" action="#" th:action="@{/admin/posts}" th:object="${post}" method="post" role="form">
+                <form autocomplete="off" action="#" th:action="@{/admin/blogs}" th:object="${post}" method="post" role="form">
                     <div class="blogTitlePage text-center">
                         <h2> New Post </h2>
                     </div>
@@ -22,6 +22,10 @@
                         <div class="form-group col-12">
                             <label>Title</label>
                             <input type="text" class="form-control" th:field="*{title}"/>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Image</label>
+                            <input type="text" class="form-control" th:field="*{img_link}"/>
                         </div>
                         <div class="form-group col-12">
                             <label>Description</label>
@@ -34,6 +38,25 @@
                                     <option th:each="pcategory : ${pcategorys}" th:value="${pcategory.id}" th:text="${pcategory.title}"/>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <form autocomplete="off" action="#" th:action="@{/admin/blogs/add}" th:object="${category}" method="post" role="form">
+                    <div class="blogTitlePage text-center">
+                        <h2> New Post Category </h2>
+                    </div>
+                    <div class="row no-gutters">
+                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                        <div class="form-group col-12">
+                            <label>Title</label>
+                            <input type="text" class="form-control" th:field="*{title}"/>
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>

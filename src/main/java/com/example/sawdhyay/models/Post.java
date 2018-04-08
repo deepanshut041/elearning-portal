@@ -1,5 +1,9 @@
 package com.example.sawdhyay.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -8,13 +12,16 @@ import java.util.Set;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
     @Column(columnDefinition="TEXT")
     private String content;
+    @CreationTimestamp
     private Date date_created;
+    @UpdateTimestamp
     private Date date_updated;
+
     private String img_link;
 
     @ManyToOne

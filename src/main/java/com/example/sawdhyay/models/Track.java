@@ -7,13 +7,15 @@ import java.util.Set;
 public class Track {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
     private String Description;
     private int length;
 
     @ManyToMany( fetch = FetchType.EAGER)
+    @JoinTable(name="track_course", joinColumns = @JoinColumn(name="track_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> courses;
 
 
