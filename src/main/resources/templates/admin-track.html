@@ -4,7 +4,7 @@
       layout:decorator="layouts/admin-layout">
 <head>
     <div layout:fragment="chead">
-        <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
+        <link th:href="@{/css/admin-track.css}" rel="stylesheet"/>
     </div>
 </head>
 <body>
@@ -12,9 +12,9 @@
 <div layout:fragment="content">
     <section class="container" id="courseBox">
         <div class="course-container">
-            <div>
+            <div class="text-center container-head">
                 <h2>Tracks</h2>
-                <p class="text-muted">Browse Track across an array of topics and disciplines.</p>
+                <p>Browse Track across an array of topics and disciplines.</p>
             </div>
             <div class="row no-gutters" th:if="courses">
                 <div class="col-12 col-md-6 col-lg-4" th:each="track : ${tracks}">
@@ -36,12 +36,17 @@
                         </div>
                         <div class="course-box-footer">
                             <div>
-                                <span th:text="${track.level}">
+                                <small th:if="${track.level}"><span th:text="${track.level}">
 
-                                </span>
+                                </span></small>
+                                <small th:if="${track.category  }">
                                 <span th:text="${track.category.title}">
 
-                                </span>
+                                </span></small>
+                            </div>
+                            <div class="text-right">
+                                <a th:href="@{/admin/tracks/{blog_id}/edit(blog_id=${track.id})}" class="text-primary"> Edit </a>
+                                <a th:href="@{/admin/tracks/{blog_id}/delete(blog_id=${track.id})}" th:method="delete" class="text-danger"> Delete </a>
                             </div>
                         </div>
                     </div>

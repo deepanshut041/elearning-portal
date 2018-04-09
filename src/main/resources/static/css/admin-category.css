@@ -32,3 +32,37 @@
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
+.container-head{
+    background: #4f585a;
+    color: white;
+    padding: 20px 10px 3px 10px;
+    margin-top: 30px;
+}
+.module-card{
+    margin-top: 20px;
+    padding: 15px !important;
+    border: .3px solid #eee;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    box-shadow:2px 5px 5px -2px hsla(0, 0%, 70%, .14);
+}
+
+.module-card:hover{
+    box-shadow: 4px 9px 9px -2px hsla(0, 0%, 70%, .14);
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+.module-card h6{
+    font-weight: 400;
+    color: #4f585a;
+    font-size: 18px;
+}
+.module-card p{
+    font-size: 14px;
+}
+
+.module-card a{
+    padding: 5px 15px;
+}

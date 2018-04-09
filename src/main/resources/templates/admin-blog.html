@@ -11,8 +11,10 @@
 
 <div layout:fragment="content">
     <section class="container">
-        <h3 class="text-center">Posts</h3>
-        <div id="posts">
+        <div class="container-head">
+            <h3 class="text-center">Posts</h3>
+        </div>
+        <div id="posts" class="container-body">
             <div>
                 <section class="row clearfix" id="post-container" th:each="post : ${posts}" >
                     <div class="col-md-6 col-12" id="post-container-image">

@@ -28,6 +28,7 @@
             <div class="col-12 col-md-9 form-right">
                 <form autocomplete="off" action="#" th:action="@{/admin/categorys}" th:object="${category}" method="post" role="form">
                     <div class="row no-gutters" id="blog-form">
+                        <input type="hidden" class="form-control" th:field="*{id}"/>
                         <div class="form-group col-12">
                             <label>Title</label>
                             <input type="text" class="form-control" th:field="*{title}"/>
@@ -52,7 +53,8 @@
         <div class="row no-gutters">
             <div class="col-12 course-container">
                 <div class="course-module">
-                    <h4>Categories</h4>
+                    <div class="container-head">
+                        <h4>Categories</h4></div>
                     <div class="row no-gutters">
                         <div th:each="lcategory : ${categorys}" class="col-12 module-card">
 

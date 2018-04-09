@@ -315,8 +315,15 @@ public class AdminController {
             modelAndView.addObject("categorys", categories);
             modelAndView.setViewName("admin-category");
         } else {
-            categoryService.addCategory(category);
-            modelAndView.addObject("successMessage", "Category has been added successfully");
+            if(category.getId() == 0) {
+                categoryService.addCategory(category);
+                modelAndView.addObject("successMessage", "Category has been added successfully");
+            }
+            else {
+                categoryService.updateCategory(category);
+                modelAndView.addObject("successMessage", "Category has been updated successfully");
+
+            }
             List<Category> categories = this.categoryService.findAllCategorys();
             modelAndView.addObject("categorys", categories);
             modelAndView.addObject("category", new Category());

@@ -1,6 +1,13 @@
+.container-head{
+    background: #4f585a;
+    color: white;
+    padding: 20px 10px 3px 10px;
+}
+.container-body{
+    padding: 10px;
+}
 .container{
     background: #fff;
-    padding:10px;
 }
 #posts #post-container{
     margin: 40px auto;
