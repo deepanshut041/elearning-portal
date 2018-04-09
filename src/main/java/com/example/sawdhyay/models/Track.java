@@ -16,6 +16,17 @@ public class Track {
 
     @NotEmpty(message = "*Please provide an Description")
     private String Description;
+
+    @NotEmpty(message = "*Please provide an Short Description")
+    private String short_content;
+
+    @NotEmpty(message = "*Please provide an Level")
+    private String level;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Category category;
+
+
     private int length;
 
     @ManyToMany( fetch = FetchType.EAGER)
@@ -62,5 +73,29 @@ public class Track {
 
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getShort_content() {
+        return short_content;
+    }
+
+    public void setShort_content(String short_content) {
+        this.short_content = short_content;
     }
 }

@@ -19,12 +19,12 @@ nav .nav-link:hover{
     color: #4b5658;
 }
 ::selection {
-    background: #4ECDC4;
+    background: #5fcf80;
     color: #fff;
 }
 header.black-bg{
-    background: #22242a;
-    border-bottom: 1px solid #393d46
+    background: #3e474f;
+    border-bottom: 1px solid #3e474f;
 }
 header.header{
     position: fixed;
@@ -67,7 +67,7 @@ header a.logo b{
 }
 
 header a.logo span{
-    color: #4ECDC4;
+    color: #5fcf80;
 }
 
 header ul.top-menu li{
@@ -79,10 +79,10 @@ header ul.top-menu li a.logout{
     display: block;
     font-size: 12px;
     -webkit-border-radius:4px;
-    border: 1px solid #64c3c2 !important;
+    border: 1px solid #5fcf80 !important;
     padding: 5px 15px;
     margin-right: 15px;
-    background: #4ECDC4;
+    background: #5fcf80;
     margin-top: 15px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -172,14 +172,14 @@ aside #sidebar ul.sidebar-menu li a{
     transition: all 0.3s ease;
 }
 aside #sidebar ul.sidebar-menu li a.active{
-    background: #4ECDC4;
+    background: #5fcf80;
     color: #fff;
     display: block;
 }
 
 aside #sidebar ul.sub li a.active{
     background: #2f323a;
-    color: #4ECDC4;
+    color: #5fcf80;
     display: block;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -188,13 +188,13 @@ aside #sidebar ul.sub li a.active{
     transition: all 0.3s ease;
 }
 aside #sidebar ul.sidebar-menu li a:hover{
-    background: #4ECDC4;
+    background: #5fcf80;
     color: #fff;
     display: block;
 }
 aside #sidebar ul.sub li a:hover{
     background: #2f323a;
-    color: #4ECDC4;
+    color: #5fcf80;
     display: block;
 }
 aside #sidebar ul.sidebar-menu li a i{

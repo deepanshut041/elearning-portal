@@ -458,8 +458,10 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         Track track = new Track();
         List<Course> courses = courseService.findAllCourses();
+        List<Category> categories = categoryService.findAllCategorys();
         modelAndView.addObject("all_courses", courses);
         modelAndView.addObject("track", track);
+        modelAndView.addObject("categorys", categories);
         modelAndView.setViewName("admin-add-track");
         return modelAndView;
     }
@@ -469,6 +471,8 @@ public class AdminController {
     public ModelAndView createNewTrack(@Valid Track track, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         List<Course> courses = courseService.findAllCourses();
+        List<Category> categories = categoryService.findAllCategorys();
+        modelAndView.addObject("categorys", categories);
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError("courses");
             if(fieldError != null){
@@ -514,6 +518,8 @@ public class AdminController {
     public ModelAndView trackEditPage(@PathVariable int track_id, Model model){
         Track track = this.trackService.getTrackById(track_id);
         ModelAndView modelAndView = new ModelAndView();
+        List<Category> categories = categoryService.findAllCategorys();
+        modelAndView.addObject("categorys", categories);
         modelAndView.addObject("track", track);
         modelAndView.setViewName("admin-add-track");
         return modelAndView;

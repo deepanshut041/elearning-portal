@@ -21,6 +21,16 @@ public class Category {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Course> courses;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private Set<Track> tracks;
+
+    public Set<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(Set<Track> tracks) {
+        this.tracks = tracks;
+    }
 
     public String getTitle() {
         return title;

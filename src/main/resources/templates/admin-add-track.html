@@ -59,6 +59,36 @@
                             </div>
                         </div>
                         <div class="form-group col-12">
+                            <label>Short Description</label>
+                            <textarea type="text" class="form-control" th:field="*{short_content}"></textarea>
+                            <div th:if="${#fields.hasErrors('short_content')}" th:errors="*{short_content}" class="text-danger">
+                                Please provide a valid Short Description.
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <label >Skill required</label>
+                            <div class="categorySelect">
+                                <select  class="form-control" th:field="*{level}">
+                                    <option th:value="beginner">Beginner</option>
+                                    <option th:value="intermediate">Intermediate</option>
+                                    <option th:value="advance">Advance</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label >Category</label>
+                                <div class="categorySelect">
+                                    <select class="form-control" th:field="*{category.id}">
+                                        <option th:each="category : ${categorys}" th:value="${category.id}" th:text="${category.title}"/>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div th:if="${#fields.hasErrors('level')}" th:errors="*{level}" class="text-danger">
+                                Please provide a valid skill required.
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
                             <label for="exampleFormControlSelect2">Courses</label>
                             <select multiple="multiple" class="form-control" id="exampleFormControlSelect2" th:field="*{courses}">
                                 <option th:each="course : ${all_courses}" th:value="${course.id}" th:text="${course.title}"/>

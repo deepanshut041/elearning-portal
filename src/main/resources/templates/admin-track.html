@@ -10,6 +10,45 @@
 <body>
 
 <div layout:fragment="content">
+    <section class="container" id="courseBox">
+        <div class="course-container">
+            <div>
+                <h2>Tracks</h2>
+                <p class="text-muted">Browse Track across an array of topics and disciplines.</p>
+            </div>
+            <div class="row no-gutters" th:if="courses">
+                <div class="col-12 col-md-6 col-lg-4" th:each="track : ${tracks}">
+                    <div class="course-box">
+                        <div class="course-box-head">
+                            <div class="row no-gutters">
+                                <div class="col-6">
+                                    <p class="text-left"><i class="fa fa-book"></i> <span>O O O</span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-right"><span th:text="${track.length}"></span> min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-box-body">
+                            <h6 class="text-muted">Track</h6>
+                            <h5 th:text="${track.title}"></h5>
+                            <p class="text-muted" th:text="${track.short_content}"></p>
+                        </div>
+                        <div class="course-box-footer">
+                            <div>
+                                <span th:text="${track.level}">
+
+                                </span>
+                                <span th:text="${track.category.title}">
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 </div>
 <div layout:fragment="cscript">
