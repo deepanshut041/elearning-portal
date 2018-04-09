@@ -65,7 +65,7 @@ public class MentorDaoImpl implements MentorDao {
     @Override
     public Mentor getMentorByUserId(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Mentor> mentorList = session.createQuery("from Mentor where course.id=:c_id").setParameter("c_id", id).list();
+        List<Mentor> mentorList = session.createQuery("from Mentor where user.id=:c_id").setParameter("c_id", id).list();
         for(Mentor mentor : mentorList){
             logger.info("Module List::" + mentor);
         }

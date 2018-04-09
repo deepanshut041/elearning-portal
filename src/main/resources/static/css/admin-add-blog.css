@@ -28,3 +28,7 @@
 .dark-yellow{
     background: #475C69;
 }
+.alert-success{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}

@@ -18,6 +18,13 @@
         });
     </script>
     <section class="container">
+        <div class="row" th:if="${successMessage}">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">
+                    <span th:utext="${successMessage}"></span>
+                </div>
+            </div>
+        </div>
         <div class="row no-gutters form-body dark-yellow">
             <div class="col-12 col-md-3 align-self-center form-left text-center">
                 <div>

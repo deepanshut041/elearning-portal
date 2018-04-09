@@ -55,6 +55,9 @@ public class AdminController {
     @Autowired
     private MentorService mentorService;
 
+    @Autowired
+    private UserService userService;
+
 
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
@@ -368,11 +371,6 @@ public class AdminController {
 
     @RequestMapping(value = "/blogs/add", method = RequestMethod.POST)
     public ModelAndView createNewBlog(@Valid Post post, BindingResult bindingResult) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
-        Mentor mentor = mentorService.getMentorByUserId(user.getId());
-        post.setMentor(mentor);
         ModelAndView modelAndView = new ModelAndView();
         List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
         modelAndView.addObject("pcategorys", pcategories);
@@ -380,6 +378,11 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin-add-blog");
         } else {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            String username = loggedInUser.getName();
+            User user = userService.findUserByEmail(username);
+            Mentor mentor = mentorService.getMentorByUserId(user.getId());
+            post.setMentor(mentor);
             if(post.getId() == 0) {
                 postService.addPost(post);
             }
@@ -399,6 +402,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             List<Pcategory> pcategories = pcategoryService.findAllPcategorys();
+            modelAndView.addObject("post", new Post());
             modelAndView.addObject("pcategorys", pcategories);
             modelAndView.setViewName("admin-add-blog");
         } else {
