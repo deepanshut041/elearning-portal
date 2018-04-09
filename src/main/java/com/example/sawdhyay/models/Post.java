@@ -25,6 +25,7 @@ public class Post {
     private String content;
 
     @NotEmpty(message = "*Please provide short content")
+    @Column(columnDefinition="TEXT")
     private String short_content;
 
 
