@@ -1,6 +1,7 @@
 package com.example.sawdhyay.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -9,6 +10,8 @@ public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "*Please provide an title")
     private String title;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "language")

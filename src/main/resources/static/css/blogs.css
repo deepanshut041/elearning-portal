@@ -4,9 +4,9 @@
 }
 
 #blog-header{
-    height: 60vh;
+    height: 50vh;
     margin: -10px -15px 20px -15px;
-    /*background-image: url('../../../assets/bg-head.jpg');*/
+    background: url('../assets/blog-header.jpg');
     background-attachment: fixed;
     background-position: center;
     background-size: cover;

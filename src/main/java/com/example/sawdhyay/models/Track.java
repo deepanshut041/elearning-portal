@@ -1,6 +1,7 @@
 package com.example.sawdhyay.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -9,7 +10,11 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "*Please provide an title")
     private String title;
+
+    @NotEmpty(message = "*Please provide an Description")
     private String Description;
     private int length;
 

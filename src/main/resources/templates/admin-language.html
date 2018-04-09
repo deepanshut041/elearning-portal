@@ -4,14 +4,27 @@
       layout:decorator="layouts/admin-layout">
 <head>
     <div layout:fragment="chead">
-        <link th:href="@{/css/admin-form.css}" rel="stylesheet"/>
+        <link th:href="@{/css/admin-language.css}" rel="stylesheet"/>
     </div>
 </head>
 <body>
     <div layout:fragment="content">
-        <section class="fluid-conatiner">
-            <div class="row no-gutters">
+        <section class="container">
+            <div class="row" th:if="${successMessage}">
                 <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        <span th:utext="${successMessage}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters form-body light-yellow">
+                <div class="col-12 col-md-3 align-self-center form-left text-center">
+                    <div>
+                        <h4>New Language</h4>
+                        <p>Language is for displaying in title view</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 form-right">
                     <form autocomplete="off" action="#" th:action="@{/admin/languages}" th:object="${language}" method="post" role="form">
                         <div class="blogTitlePage text-center">
                             <h2> New Language </h2>
@@ -20,9 +33,12 @@
                             <div class="form-group col-12">
                                 <label>Title</label>
                                 <input type="text" class="form-control" th:field="*{title}"/>
+                                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">
+                                    Please provide a valid title.
+                                </div>
                             </div>
                             <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>

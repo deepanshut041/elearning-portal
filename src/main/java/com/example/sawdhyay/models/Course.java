@@ -3,6 +3,7 @@ package com.example.sawdhyay.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -12,11 +13,20 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "*Please provide an title")
     private String title;
+
+    @NotEmpty(message = "*Please provide a description")
     @Column(columnDefinition="TEXT")
     private String description;
+
+    @NotEmpty(message = "*Please provide status")
     private String status;
+
     private boolean paid;
+
+    @NotEmpty(message = "*Please provide an language")
     private String language;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
@@ -24,8 +34,13 @@ public class Course {
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date enroll_date;
+
+    @NotEmpty(message = "*Please provide skill Required")
     private String skill_required;
+
+    @NotEmpty(message = "*Please provide Trailer Link")
     private String trailer_link;
+
     private int course_length;
 
     public Set<Enrollment> getEnrollments() {
