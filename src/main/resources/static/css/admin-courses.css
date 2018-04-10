@@ -1,28 +1,23 @@
+.container{
+    background: #fff;
+    padding:10px;
+}
+
+.container-head{
+    background: #4f585a;
+    color: white;
+    padding: 20px 10px 3px 10px;
+}
+
 #posts #post-container{
-    margin: 60px auto;
+    margin: 30px 15px;
     border: .3px solid #eee;
     padding: 0px;
     background: #fff;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
-    width: 80%;
     box-shadow:5px 10px 10px -2px hsla(0, 0%, 70%, .14);
-}
-
-
-@media only screen and (max-width: 768px) {
-    #posts #post-container{
-        width: 80%;
-        margin: 60px auto;
-    }
-}
-
-@media only screen and (max-width: 450px) {
-    #posts #post-container{
-        width: 100%;
-        margin: 60px auto;
-    }
 }
 
 #posts #post-container:hover{
@@ -64,7 +59,7 @@
 
 #posts #post-container #post-container-image .post-image{
     max-width: 100%;
-    height: 300px;
+    height: 250px;
     width: 100%;
     object-fit: cover;
     vertical-align: middle;
@@ -124,6 +119,7 @@
     color: #575757;
     font-size: 11px;
     line-height: 18px;
+    height: 50px;
 }
 
 #posts #post-container #post-container-text a{

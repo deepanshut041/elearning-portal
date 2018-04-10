@@ -11,18 +11,20 @@
 <body>
 
 <div layout:fragment="content">
-    <section class="fluid-conatiner">
-        <h3 class="text-center">Courses</h3>
-        <div id="posts">
-            <div>
-                <section class="row clearfix" id="post-container" th:each="course : ${courses}" >
-                    <div class="col-md-6 col-12" id="post-container-image">
+    <section class="container">
+        <div class="container-head">
+            <h3 class="text-center">Courses</h3>
+        </div>
+        <div id="posts" class="row no-gutters">
+            <div class="col-12 col-md-6 col-lg-4" th:each="course : ${courses}">
+                <section class="row clearfix" id="post-container" >
+                    <div class="col-12" id="post-container-image">
                         <div class="type" th:text="${course.skill_required}"></div>
                         <img src="https://i1.ytimg.com/vi/${course.trailer_link}/1.jpg"
                              th:src="@{https://i1.ytimg.com/vi/{trailer_link}/0.jpg(trailer_link=${course.trailer_link})}"
                              class="post-image"/>
                     </div>
-                    <div class="col-md-6 col-12" id="post-container-text">
+                    <div class="col-12" id="post-container-text">
                         <div class="accessories clearfix" id="post-container-text-header">
                             <div class="text-block with">Language</div>
                             <div class="text-block" th:if="${course.category}"><span th:text="${course.category.title}"></span></div>

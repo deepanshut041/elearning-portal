@@ -30,6 +30,7 @@
                             <h2> New Language </h2>
                         </div>
                         <div class="row no-gutters" id="blog-form">
+                            <input type="hidden" class="form-control" th:field="*{id}"/>
                             <div class="form-group col-12">
                                 <label>Title</label>
                                 <input type="text" class="form-control" th:field="*{title}"/>
@@ -42,6 +43,27 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-12 course-container">
+                    <div class="course-module">
+                        <div class="container-head">
+                            <h4>Languages</h4></div>
+                        <div class="row no-gutters">
+                            <div th:each="lang : ${languages}" class="col-lg-3 col-md-3 col-sm-6 col-12 module-card">
+                                <div class="row no-gutters justify-content-around">
+                                    <div class="col-8">
+                                        <h6><span th:text="${lang.title}"></span></h6>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <a th:href="@{/admin/languages/{lang_id}/edit(lang_id=${lang.id})}" class="text-primary"> <i class="fa fa-pencil"></i> </a>
+                                        <a th:href="@{/admin/languages/{lang_id}/delete(lang_id=${lang.id})}" class="text-danger"> <i class="fa fa-times"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

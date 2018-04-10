@@ -254,6 +254,8 @@ public class AdminController {
     public ModelAndView languagesPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Language language = new Language();
+        List<Language> languages = languageService.findAllLanguages();
+        modelAndView.addObject("languages", languages);
         modelAndView.addObject("language", language);
         modelAndView.setViewName("admin-language");
         return modelAndView;
@@ -264,14 +266,19 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("admin-language");
+            List<Language> languages = languageService.findAllLanguages();
+            modelAndView.addObject("languages", languages);
         } else {
             if(language.getId() != 0){
                 languageService.updateLanguage(language);
+                modelAndView.addObject("successMessage", "Language has been Updated successfully");
             }
             else {
                 languageService.addLanguage(language);
+                modelAndView.addObject("successMessage", "Language has been added successfully");
             }
-            modelAndView.addObject("successMessage", "Language has been added successfully");
+            List<Language> languages = languageService.findAllLanguages();
+            modelAndView.addObject("languages", languages);
             modelAndView.addObject("language", new Language());
             modelAndView.setViewName("admin-language");
 
