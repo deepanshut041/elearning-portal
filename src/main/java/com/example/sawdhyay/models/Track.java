@@ -15,9 +15,11 @@ public class Track {
     private String title;
 
     @NotEmpty(message = "*Please provide an Description")
+    @Column(columnDefinition="TEXT")
     private String Description;
 
     @NotEmpty(message = "*Please provide an Short Description")
+    @Column(columnDefinition="TEXT")
     private String short_content;
 
     @NotEmpty(message = "*Please provide an Level")
