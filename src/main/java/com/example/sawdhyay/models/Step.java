@@ -22,6 +22,8 @@ public class Step {
     @ManyToOne(fetch = FetchType.LAZY)
     private Module module;
 
+    private int length;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "step", fetch = FetchType.LAZY)
     private Set<CourseProgress> courseProgress;
 
@@ -72,6 +74,14 @@ public class Step {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 
     public int getId() {

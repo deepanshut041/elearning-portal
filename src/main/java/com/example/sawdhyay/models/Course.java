@@ -65,7 +65,7 @@ public class Course {
     private Language tech_language;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.EAGER)
-    private List<Module> modules;
+    private Set<Module> modules;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="course", fetch = FetchType.LAZY)
     private Set<Enrollment> enrollments;
@@ -89,11 +89,11 @@ public class Course {
         this.mentors = mentors;
     }
 
-    public List<Module> getModules() {
+    public Set<Module> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
 

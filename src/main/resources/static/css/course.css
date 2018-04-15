@@ -7,7 +7,7 @@ body{
 /*main styling goes here*/
 main{
     background: #edeff0;
-    padding: 50px 2%;
+    padding: 20px 2%;
 }
 
 /* Header Style goes here*/
@@ -21,17 +21,22 @@ section{
     padding-left: 0px !important;
 }
 
+
 section article.header-container {
-    background-color: #ea6590 !important;
+    background-size: cover;
     color: #fff;
-    opacity: 0.7;
     border-radius: 4px 4px 0 0;
+}
+
+section .header-container-inner{
+    background: #ea6590;
+    opacity: 0.88;
 }
 section .header-container h3{
     font-weight: 600;
 }
 section .header-container p{
-    opacity: 0.7;
+    opacity: 1.0;
 }
 section .header-container .row{
     min-height: 60vh;
@@ -55,9 +60,16 @@ section .header-container .header-button:hover{
 }
 
 section .main-container .sub-header p{
-    padding: 20px 15px 5px 15px;
+    padding: 10px 15px -15px 15px;
 }
 
+section .main-container p{
+    font-weight: 200;
+}
+
+section .main-box{
+    padding: 2%;
+}
 section .main-container .sub-header p span{
     display: inline-block;
     border-radius: 100px;
@@ -93,7 +105,13 @@ section .main-container .module p{
 section .main-container .module .module-container{
     padding-left: 15px;
 }
+#stepButton{
+    cursor: pointer;
+}
 
+#stepContainer{
+    display: none;
+}
 section .main-container .module .module-container .step{
     border:1px solid #e7e7e7;
     border-right-color: transparent;
@@ -105,14 +123,29 @@ section .main-container .module .module-container .step p{
     font-size: 14px;
 }
 section .main-container .module .module-container .step .fa-li{
-    left: -1.64285714em;
-    top: .65285714em;
+    left: -1.44285714em;
+    top: 1.40285714em;
 }
 section article.main-container{
     min-height: 60vh;
     border-radius: 0 0 4px 4px;
     padding: 3%;
 }
+
+section .teacher-box{
+    padding: 2%;
+}
+
+section .teacher-box .teacher-main p{
+    font-size: 13px;
+    margin-bottom: 50px;
+}
+
+section .teacher-box .teacher-bottom button{
+    background: transparent;
+    border: 1px solid #ea6590;
+}
+
 
 footer{
     padding: 50px 10px 100px 10px;
