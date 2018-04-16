@@ -58,6 +58,8 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private  StudentService studentService;
 
 
     @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
@@ -98,6 +100,11 @@ public class AdminController {
             modelAndView.addObject("languages", this.languageService.findAllLanguages());
             modelAndView.setViewName("admin-course-add");
         } else {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            String username = loggedInUser.getName();
+            User user = userService.findUserByEmail(username);
+            Mentor mentor = mentorService.getMentorByUserId(user.getId());
+            course.setMentor(mentor);
             if(course.getId() == 0) {
                 courseService.addCourse(course);
             }

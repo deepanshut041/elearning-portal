@@ -17,7 +17,7 @@
                         <h3 class="text-center" th:text="${course.title}"></h3>
                         <p class="text-center"><span th:text="${course.course_length}"></span>-minute <span th:if="${course.category}"><span th:text="${course.category.title}"> </span> </span> Course</p>
                         <div class="text-center">
-                            <a class="header-button">Start Course <i class="fa fa-arrow-right"></i></a>
+                            <a class="header-button" data-toggle="modal" data-target="#enroll">Start Course <i class="fa fa-arrow-right"></i></a>
                             <a class="header-button" data-toggle="modal" data-target="#trailer">Watch trailer <i class="fa fa-play"></i></a>
                         </div>
                     </div>
@@ -43,6 +43,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal 2 -->
+            <div class="modal fade" id="enroll" tabindex="-1" role="dialog" aria-labelledby="enrollLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="enrollLabel">Enroll </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Would you like to register course. To register click on Enroll</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form autocomplete="off" action="#" th:action="@{/classroom/enroll}" th:object="${enrollment}" method="post" role="form">
+                                <input type="hidden" class="form-control" th:field="*{course.id}" th:value="${course.id}"/>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Enroll</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <article class="main-container">
                 <div class="sub-header">
                     <p>
@@ -96,10 +121,10 @@
                     <section class="col-12 col-sm-12 col-md-5 col-lg-4">
                         <div class="teacher-box">
                             <h6>Teacher</h6>
-                                <div class="teacher-main">
-                                    <h6>Devin O'Bryan</h6>
-                                    <p class="text-muted">
-                                        Devin O’Bryan is Creative Director for Project Whitespace at IBM. For the last 4 years, he has been co-creating within IBM Corporate HR and IBM Design’s global education efforts with programs like IBM Design Bootcamp Experiences, IBM Designweek events, as well as building and maintaining the intensive, award-winning Maelstrom internship program from scratch. Devin’s personal mental health journey has informed huge swaths of his educational and professional curricula. As such, authenticity is the cornerstone of Devin’s design and life philosophies, and his patient wife and two kids keep him genuine every single day.
+                                <div class="teacher-main" th:if="${course.mentor}">
+                                    <h6 th:text="${course.mentor.name}"></h6>
+                                    <p class="text-muted" th:text="${course.mentor.about}">
+
                                     </p>
                                 </div>
                             <div class="teacher-bottom">

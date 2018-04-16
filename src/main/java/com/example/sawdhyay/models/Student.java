@@ -1,11 +1,10 @@
 package com.example.sawdhyay.models;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Mentor {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -14,15 +13,11 @@ public class Mentor {
     @Column(columnDefinition="TEXT")
     private String about;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mentor")
-    private Set<Course> courses;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mentor")
-    private Set<Post> posts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.LAZY)
+    private Set<Enrollment> enrollments;
 
     public User getUser() {
         return user;
@@ -52,23 +47,15 @@ public class Mentor {
         return about;
     }
 
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
-    }
-
     public void setAbout(String about) {
         this.about = about;
     }
 
-    public Set<Course> getCourses() {
-        return courses;
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }

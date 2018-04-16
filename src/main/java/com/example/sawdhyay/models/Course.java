@@ -51,11 +51,6 @@ public class Course {
         this.enrollments = enrollments;
     }
 
-    @ManyToMany
-    @JoinTable(name="mentor_course", joinColumns = @JoinColumn(name="course_id"),
-            inverseJoinColumns = @JoinColumn(name = "mentor_id"))
-    private List<Mentor> mentors;
-
     @ManyToOne
     @JoinColumn(name ="category_id")
     private Category category;
@@ -70,6 +65,9 @@ public class Course {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="course", fetch = FetchType.LAZY)
     private Set<Enrollment> enrollments;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Mentor mentor;
+
     public List<Track> getTracks() {
         return tracks;
     }
@@ -81,13 +79,6 @@ public class Course {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Track> tracks;
 
-    public List<Mentor> getMentors() {
-        return mentors;
-    }
-
-    public void setMentors(List<Mentor> mentors) {
-        this.mentors = mentors;
-    }
 
     public Set<Module> getModules() {
         return modules;
@@ -199,5 +190,13 @@ public class Course {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Mentor getMentor() {
+        return mentor;
+    }
+
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
     }
 }

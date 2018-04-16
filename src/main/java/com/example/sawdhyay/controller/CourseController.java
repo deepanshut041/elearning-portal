@@ -1,6 +1,7 @@
 package com.example.sawdhyay.controller;
 
 import com.example.sawdhyay.models.Course;
+import com.example.sawdhyay.models.Enrollment;
 import com.example.sawdhyay.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,6 +35,7 @@ public class CourseController {
     public ModelAndView getCourse(@PathVariable int id, Model model){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("course", this.courseService.getCourseById(id));
+        modelAndView.addObject("enrollment", new Enrollment());
         modelAndView.setViewName("course");
         return modelAndView;
     }

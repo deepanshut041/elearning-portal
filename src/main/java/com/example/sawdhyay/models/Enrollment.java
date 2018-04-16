@@ -1,5 +1,6 @@
 package com.example.sawdhyay.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,13 +16,13 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @CreationTimestamp
     private Date enroll_date;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Course course;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "enrollment", fetch = FetchType.EAGER)
@@ -43,12 +44,12 @@ public class Enrollment {
         this.enroll_date = enroll_date;
     }
 
-    public User getUser() {
-        return user;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Course getCourse() {
