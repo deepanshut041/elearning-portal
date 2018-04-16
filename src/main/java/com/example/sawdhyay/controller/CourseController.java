@@ -34,8 +34,9 @@ public class CourseController {
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ModelAndView getCourse(@PathVariable int id, Model model){
         ModelAndView modelAndView = new ModelAndView();
+        Enrollment enrollment = new Enrollment();
         modelAndView.addObject("course", this.courseService.getCourseById(id));
-        modelAndView.addObject("enrollment", new Enrollment());
+        modelAndView.addObject("enrollment", enrollment);
         modelAndView.setViewName("course");
         return modelAndView;
     }

@@ -58,8 +58,7 @@
                             <p>Would you like to register course. To register click on Enroll</p>
                         </div>
                         <div class="modal-footer">
-                            <form autocomplete="off" action="#" th:action="@{/classroom/enroll}" th:object="${enrollment}" method="post" role="form">
-                                <input type="hidden" class="form-control" th:field="*{course.id}" th:value="${course.id}"/>
+                            <form autocomplete="off" action="#" th:action="@{/classroom/enroll/{id}(id=${course.id})}" th:object="${enrollment}" method="post" role="form">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Enroll</button>
                             </form>

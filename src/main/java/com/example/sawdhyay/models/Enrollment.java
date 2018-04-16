@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "enrollment")
+@Table(name = "enrollment", uniqueConstraints = {@UniqueConstraint(columnNames={"course", "student"})})
 public class Enrollment {
 
     @Id
@@ -25,7 +25,7 @@ public class Enrollment {
     @ManyToOne(fetch = FetchType.EAGER)
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enrollment", fetch = FetchType.EAGER)
+    @OneToMany(cascade =  CascadeType.MERGE, mappedBy = "enrollment", fetch = FetchType.EAGER)
     private Set<CourseProgress> progresses;
 
     public int getId() {
