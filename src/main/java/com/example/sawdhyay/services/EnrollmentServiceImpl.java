@@ -34,6 +34,13 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 
     @Override
     @Transactional
+    public List<Enrollment> findEnrollmentsByStudent(int id) {
+        return this.enrollmentDao.getEnrollmentsByStudent(id);
+//        return null;
+    }
+
+    @Override
+    @Transactional
     public List<Enrollment> findAllEnrollments() {
         return this.enrollmentDao.listEnrollments();
     }

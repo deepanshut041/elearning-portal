@@ -36,7 +36,7 @@ public class CourseController {
         ModelAndView modelAndView = new ModelAndView();
         Enrollment enrollment = new Enrollment();
         modelAndView.addObject("course", this.courseService.getCourseById(id));
-        modelAndView.addObject("enrollment", enrollment);
+        modelAndView.addObject("enrollments", enrollment);
         modelAndView.setViewName("course");
         return modelAndView;
     }

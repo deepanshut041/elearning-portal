@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "enrollment", uniqueConstraints = {@UniqueConstraint(columnNames={"course", "student"})})
+@Table(name = "enrollment")
 public class Enrollment {
 
     @Id

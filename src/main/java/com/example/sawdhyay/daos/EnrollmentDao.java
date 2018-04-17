@@ -8,6 +8,7 @@ public interface EnrollmentDao {
     void saveEnrollment(Enrollment enrollment);
     Enrollment getEnrollment(int id);
     List<Enrollment> listEnrollments();
+    List<Enrollment> getEnrollmentsByStudent(int id);
     void updateEnrollment(Enrollment enrollment);
     void deleteEnrollment(int id);
 }

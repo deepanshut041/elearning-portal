@@ -45,6 +45,20 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
     }
 
     @Override
+    public List<Enrollment> getEnrollmentsByStudent(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Integer Id = new Integer(id);
+        List<Enrollment> enrollmentList = this.sessionFactory.getCurrentSession()
+                .createQuery("from Enrollment where student.id=?")
+                .setParameter(0, id).list();
+        for(Enrollment enrollment : enrollmentList){
+            logger.info("Enrollment List::" + enrollment);
+        }
+        return enrollmentList;
+//        return null;
+    }
+
+    @Override
     public void updateEnrollment(Enrollment enrollment) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(enrollment);

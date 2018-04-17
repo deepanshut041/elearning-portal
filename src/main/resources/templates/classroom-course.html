@@ -10,7 +10,41 @@
 <body>
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
+        <br/>
+        <br/>
+        <br/>
+        <div class="row no-gutters" th:if="${enrollment}">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div>
+                    <div>
+                        <ul class="nav nav-list-main">
+                            <li th:each="module:${enrollment.course.modules}">
+                                <label class="nav-toggle nav-header">
+                                    <span class="nav-toggle-icon glyphicon glyphicon-chevron-right"></span>
+                                    <span th:value="${module.title}">Header 1</span></label>
+                                <ul class="nav nav-list nav-left-ml">
+                                    <li th:each="step:${module.steps}">
+                                        <a th:value="${step.title}">ddd</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-7">
+                <div>
+                    <!-- Video Container -->
+                    <div>
 
+                    </div>
+                    <!-- Text Container -->
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 <div layout:fragment="cscript">

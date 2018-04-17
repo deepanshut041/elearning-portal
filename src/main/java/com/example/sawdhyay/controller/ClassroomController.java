@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/classroom")
@@ -42,6 +44,13 @@ public class ClassroomController {
     public ModelAndView classroomPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("classroom-home");
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        User user = userService.findUserByEmail(username);
+        Student student = studentService.getStudentByUserId(user.getId());
+
+        List<Enrollment> enrollments = enrollmentService.findEnrollmentsByStudent(student.getId());
+        modelAndView.addObject("enrollments", enrollments);
         return modelAndView;
     }
 
@@ -64,16 +73,15 @@ public class ClassroomController {
         enrollment1.setStudent(student);
         enrollment1.setCourse(course);
         enrollmentService.addEnrollment(enrollment1);
-
-
-
         return "redirect:/classroom";
     }
 
     @RequestMapping(value = "/courses/{id}", method = RequestMethod.GET)
-    public ModelAndView classroomCoursePage(Model model){
+    public ModelAndView classroomCoursePage(@PathVariable int id, Model model){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("classroom-home");
+        Enrollment enrollment = enrollmentService.getEnrollmentById(id);
+        modelAndView.addObject("enrollment", enrollment);
+        modelAndView.setViewName("classroom-course");
         return modelAndView;
     }
 

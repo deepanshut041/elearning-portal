@@ -15,5 +15,7 @@ public interface EnrollmentService {
     List<Enrollment> findAllEnrollments();
 
     Enrollment getEnrollmentById(int id);
+
+    List<Enrollment> findEnrollmentsByStudent(int id);
     
 }
