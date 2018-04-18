@@ -5,10 +5,10 @@ body{
 }
 /* Navbar Styles */
 nav{
-    background: #fff;
+    background: #3e474f;
 }
 nav .nav-item .nav-link{
-    color: #7b8b8e;
+    color: #5fcf80;
     font-weight: 500;
     transition: color 300ms 0s ease;
 }
@@ -16,7 +16,7 @@ nav .navbar-brand {
     color: #5fcf80;
 }
 nav .nav-link:hover{
-    color: #4b5658;
+    color: #fff;
 }
 
 
