@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
       layout:decorator="layouts/home-layout">
 <head>
     <div layout:fragment="chead">
@@ -10,36 +10,73 @@
 <body>
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
-        <div class="row no-gutters" th:if="${enrollment}">
-            <div class="col-12 col-md-4 col-lg-3">
-                <div>
-                    <div class="aside-menu">
-                        <ul class="sidebar-menu" id="sideMenu" >
-                            <li class="sub-menu" th:each="module:${enrollment.course.modules}">
-                                <div>
-                                    <a>
-                                        <span th:text="${module.title}">Tracks / Path</span>
-                                    </a>
-                                </div>
-                                <ol class="sub" id="trackAsideSub">
-                                    <li th:each="step:${module.steps}">
-                                        <a th:href="@{/classroom/courses/{enrollment_id}/step/{step_id}(enrollment_id=${enrollment.id}, step_id=${step.id})}"><span th:text="${step.title}"></span></a>
-                                    </li>
-                                </ol>
-                            </li>
-                        </ul>
+        <div class="main-classroom-container">
+            <div class="row" th:if="${enrollment}">
+                <div class="col-12 col-md-4 col-lg-3 module-container">
+                    <div>
+                        <div class="aside-menu">
+                            <ul class="sidebar-menu" id="sideMenu">
+                                <li class="sub-menu">
+                                    <div class="text-center">
+                                        <a><span><h3>Modules</h3></span></a>
+                                    </div>
+                                </li>
+                                <li class="sub-menu" th:each="module:${enrollment.course.modules}">
+                                    <div>
+                                        <a>
+                                            <i class="fa fa-calendar"></i>
+                                            <span th:text="${module.title}">Tracks / Path</span>
+                                        </a>
+                                    </div>
+                                    <ol class="sub" id="trackAsideSub">
+                                        <li th:each="step:${module.steps}">
+                                            <a th:href="@{/classroom/courses/{enrollment_id}/step/{step_id}(enrollment_id=${enrollment.id}, step_id=${step.id})}">
+                                                <i class="fa fa-play-circle-o" th:if="${step.type == 'video'}"></i>
+                                                <i class="fa fa-file-text-o" th:if="${step.type == 'text'}"></i>
+                                                <i class="fa fa-file-code-o" th:if="${step.type == 'assigment'}"></i>
+                                                <span th:text="${step.title}"></span></a>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-8 col-lg-7">
-                <div>
-                    <!-- Video Container -->
-                    <div>
-
+                <div class="col-12 col-md-8 col-lg-9">
+                    <div th:if="${current}" class="course-container">
+                        <br/>
+                        <h5 class="text-success text-center" th:text="${current.title}"></h5>
+                        <br/>
+                        <!-- Video Container -->
+                        <div th:if="${current.type == 'video'}">
+                            <iframe width="100%" height="600" th:src="@{http://www.youtube.com/embed/{url} (url=${current.link})}" frameborder="0" alt="no video attached" allowfullscreen="1"></iframe>
+                        </div>
+                        <!-- Text Container -->
+                        <div>
+                            <div th:if="${current.content}">
+                                <div th:utext="${current.content}"></div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Text Container -->
-                    <div>
+                    <div th:if="${current == null}">
+                        <h3 class="text-center ">Description</h3>
+                        <p class="text-muted" th:text="${enrollment.course.description}">
+                        </p>
 
+                        <div class="course-module">
+                            <h4>Modules</h4>
+                            <div class="row no-gutters">
+                                <div class="col-12 module-card" th:each="module_item : ${course.modules}" th:href="@{/admin/courses/{course_id}/modules/{module_id}(course_id=${course.id}, module_id=${module_item.id})}">
+                                    <h6 th:text="${module_item.title}"></h6>
+                                    <p th:text="${module_item.description}" class="text-muted"></p>
+                                    <div class="text-right">
+                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/edit(course_id=${course.id}, module_id=${module_item.id})}" class="text-primary"> Edit </a>
+                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/delete(course_id=${course.id}, module_id=${module_item.id})}" th:method="delete" class="text-danger"> Delete </a>
+                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps(course_id=${course.id}, module_id=${module_item.id})}" class="text-info"> Know More </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

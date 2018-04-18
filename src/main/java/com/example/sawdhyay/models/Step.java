@@ -1,9 +1,6 @@
 package com.example.sawdhyay.models;
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +14,9 @@ public class Step {
     private String type;
     @Column(columnDefinition="TEXT")
     private String detail;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
     private String link;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,6 +26,9 @@ public class Step {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "step", fetch = FetchType.LAZY)
     private Set<CourseProgress> courseProgress;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "step", fetch = FetchType.LAZY)
+    private Set<CourseProgress> progresses;
 
     public Set<CourseProgress> getProgresses() {
         return progresses;
@@ -41,8 +44,7 @@ public class Step {
     public void setCourseProgress(Set<CourseProgress> courseProgress) {
         this.courseProgress = courseProgress;
     }
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "step", fetch = FetchType.LAZY)
-    private Set<CourseProgress> progresses;
+
 
     public String getLink() {
         return link;
@@ -98,5 +100,13 @@ public class Step {
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

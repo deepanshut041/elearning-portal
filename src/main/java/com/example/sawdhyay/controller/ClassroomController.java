@@ -1,13 +1,7 @@
 package com.example.sawdhyay.controller;
 
-import com.example.sawdhyay.models.Course;
-import com.example.sawdhyay.models.Enrollment;
-import com.example.sawdhyay.models.Student;
-import com.example.sawdhyay.models.User;
-import com.example.sawdhyay.services.CourseService;
-import com.example.sawdhyay.services.EnrollmentService;
-import com.example.sawdhyay.services.StudentService;
-import com.example.sawdhyay.services.UserService;
+import com.example.sawdhyay.models.*;
+import com.example.sawdhyay.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
@@ -39,6 +33,9 @@ public class ClassroomController {
 
     @Autowired
     CourseService courseService;
+
+    @Autowired
+    StepService stepService;
 
     @RequestMapping(value = {"/", "", "/courses"}, method = RequestMethod.GET)
     public ModelAndView classroomPage(Model model){
@@ -81,6 +78,17 @@ public class ClassroomController {
         ModelAndView modelAndView = new ModelAndView();
         Enrollment enrollment = enrollmentService.getEnrollmentById(id);
         modelAndView.addObject("enrollment", enrollment);
+        modelAndView.setViewName("classroom-course");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{id}/step/{step_id}", method = RequestMethod.GET)
+    public ModelAndView classroomDetailCoursePage(@PathVariable int id,@PathVariable int step_id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Enrollment enrollment = enrollmentService.getEnrollmentById(id);
+        Step step = stepService.getStepById(step_id);
+        modelAndView.addObject("enrollment", enrollment);
+        modelAndView.addObject("current", step);
         modelAndView.setViewName("classroom-course");
         return modelAndView;
     }

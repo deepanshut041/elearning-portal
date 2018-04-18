@@ -11,6 +11,14 @@
 <body>
 
 <div layout:fragment="content">
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 200,
+            theme: 'modern'
+        });
+    </script>
     <section class="fluid-conatiner">
         <div class="row no-gutters back-container">
             <div>
@@ -53,6 +61,10 @@
                         <div class="form-group col-12">
                             <label>Length</label>
                             <input type="text" class="form-control" th:field="*{length}"/>
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Content</label>
+                            <textarea type="text" class="form-control" th:field="*{content}"></textarea>
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-lg btn-primary">Submit</button>
