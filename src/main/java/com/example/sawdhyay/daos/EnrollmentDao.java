@@ -11,4 +11,5 @@ public interface EnrollmentDao {
     List<Enrollment> getEnrollmentsByStudent(int id);
     void updateEnrollment(Enrollment enrollment);
     void deleteEnrollment(int id);
+    Enrollment getEnrollmentsByStudentAndCourse(int student_id, int course_id);
 }

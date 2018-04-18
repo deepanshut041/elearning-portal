@@ -60,4 +60,23 @@ public class CourseProgressDaoImpl implements CourseProgressDao {
         }
         logger.info("CourseProgress deleted successfully, courseProgress details=" + courseProgress);
     }
+
+    @Override
+    public CourseProgress getCourseProgressByStepAndCourseProgress(int enroll_id, int step_id) {
+        Session session = sessionFactory.getCurrentSession();
+        List<CourseProgress> courseProgressList = this.sessionFactory.getCurrentSession()
+                .createQuery("from CourseProgress where enrollment.id=? and step.id=?")
+                .setParameter(0, enroll_id)
+                .setParameter(1, step_id)
+                .list();
+        for(CourseProgress courseProgress : courseProgressList){
+            logger.info("CourseProgress List::" + courseProgress);
+        }
+        if (courseProgressList.size()>0){
+            return courseProgressList.get(0);
+        }
+        else {
+            return null;
+        }
+    }
 }

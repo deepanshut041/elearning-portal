@@ -43,4 +43,10 @@ public class CourseProgressServiceImpl implements CourseProgressService{
     public CourseProgress getCourseProgressById(int id) {
         return this.courseProgressDao.getCourseProgress(id);
     }
+
+    @Override
+    @Transactional
+    public CourseProgress getCourseProgressByStepAndCourseProgress(int enroll_id, int step_id){
+        return this.courseProgressDao.getCourseProgressByStepAndCourseProgress(enroll_id, step_id);
+    }
 }

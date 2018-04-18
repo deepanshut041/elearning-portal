@@ -55,7 +55,25 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
             logger.info("Enrollment List::" + enrollment);
         }
         return enrollmentList;
-//        return null;
+    }
+
+    @Override
+    public Enrollment getEnrollmentsByStudentAndCourse(int student_id, int course_id) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Enrollment> enrollmentList = this.sessionFactory.getCurrentSession()
+                .createQuery("from Enrollment where student.id=? and course.id=?")
+                .setParameter(0, student_id)
+                .setParameter(1, course_id)
+                .list();
+        for(Enrollment enrollment : enrollmentList){
+            logger.info("Enrollment List::" + enrollment);
+        }
+        if (enrollmentList.size()>0){
+            return enrollmentList.get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override

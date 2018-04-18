@@ -59,21 +59,18 @@
                         </div>
                     </div>
                     <div th:if="${current == null}">
-                        <h3 class="text-center ">Description</h3>
+                        <br/>
+                        <h3 class="text-center" th:text="${enrollment.course.title}"></h3>
+                        <br/>
                         <p class="text-muted" th:text="${enrollment.course.description}">
                         </p>
 
                         <div class="course-module">
                             <h4>Modules</h4>
                             <div class="row no-gutters">
-                                <div class="col-12 module-card" th:each="module_item : ${course.modules}" th:href="@{/admin/courses/{course_id}/modules/{module_id}(course_id=${course.id}, module_id=${module_item.id})}">
+                                <div class="col-12 module-card" th:each="module_item : ${enrollment.course.modules}" >
                                     <h6 th:text="${module_item.title}"></h6>
                                     <p th:text="${module_item.description}" class="text-muted"></p>
-                                    <div class="text-right">
-                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/edit(course_id=${course.id}, module_id=${module_item.id})}" class="text-primary"> Edit </a>
-                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/delete(course_id=${course.id}, module_id=${module_item.id})}" th:method="delete" class="text-danger"> Delete </a>
-                                        <a th:href="@{/admin/courses/{course_id}/modules/{module_id}/steps(course_id=${course.id}, module_id=${module_item.id})}" class="text-info"> Know More </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

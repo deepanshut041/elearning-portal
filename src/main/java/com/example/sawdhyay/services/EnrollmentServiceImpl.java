@@ -50,4 +50,10 @@ public class EnrollmentServiceImpl implements EnrollmentService{
     public Enrollment getEnrollmentById(int id) {
         return this.enrollmentDao.getEnrollment(id);
     }
+
+    @Override
+    @Transactional
+    public Enrollment getEnrollmentsByStudentAndCourse(int student_id, int course_id) {
+        return this.enrollmentDao.getEnrollmentsByStudentAndCourse(student_id, course_id);
+    }
 }

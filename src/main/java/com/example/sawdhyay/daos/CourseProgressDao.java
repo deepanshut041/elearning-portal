@@ -10,4 +10,5 @@ public interface CourseProgressDao {
     List<CourseProgress> listCourseProgresss();
     void updateCourseProgress(CourseProgress courseProgress);
     void deleteCourseProgress(int id);
+    CourseProgress getCourseProgressByStepAndCourseProgress(int enroll_id, int step_id);
 }

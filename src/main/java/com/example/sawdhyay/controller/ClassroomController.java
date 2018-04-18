@@ -37,6 +37,9 @@ public class ClassroomController {
     @Autowired
     StepService stepService;
 
+    @Autowired
+    CourseProgressService courseProgressService;
+
     @RequestMapping(value = {"/", "", "/courses"}, method = RequestMethod.GET)
     public ModelAndView classroomPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -69,7 +72,26 @@ public class ClassroomController {
         Student student = studentService.getStudentByUserId(user.getId());
         enrollment1.setStudent(student);
         enrollment1.setCourse(course);
-        enrollmentService.addEnrollment(enrollment1);
+        Enrollment check_enrollment = enrollmentService.getEnrollmentsByStudentAndCourse(student.getId(), course.getId());
+        if (check_enrollment == null) {
+            enrollmentService.addEnrollment(enrollment1);
+        }
+        return "redirect:/classroom";
+    }
+
+    @RequestMapping(value = "{enroll_id}/progress/{id}", method = RequestMethod.POST)
+    public String createNewProgress(@PathVariable int enroll_id, @PathVariable int id, BindingResult bindingResult) {
+        CourseProgress courseProgress = new CourseProgress();
+        Step step = new Step();
+        step.setId(id);
+        Enrollment enrollment = new Enrollment();
+        enrollment.setId(enroll_id);
+        courseProgress.setStep(step);
+        courseProgress.setEnrollment(enrollment);
+        CourseProgress courseProgress1 = courseProgressService.getCourseProgressByStepAndCourseProgress(enroll_id, id);
+        if (courseProgress1 == null) {
+            courseProgressService.addCourseProgress(courseProgress);
+        }
         return "redirect:/classroom";
     }
 

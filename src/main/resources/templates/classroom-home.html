@@ -19,31 +19,29 @@
                 <div class="row no-gutters" th:if="enrollments">
                     <div class="col-12 col-md-6 col-lg-4" th:each="enrollment : ${enrollments}">
                         <div class="course-box">
-                            <div class="course-box-head">
-                                <div class="row no-gutters">
-                                    <div class="col-6">
-                                        <p class="text-left"><i class="fa fa-book"></i> <span>O O O</span></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="text-right"><span th:text="${enrollment.course.course_length}"></span> min</p>
+                            <a th:href="@{/classroom/courses/{id}(id=${enrollment.id})}">
+                                <div class="course-box-head">
+                                    <div class="row no-gutters">
+                                        <div class="col-6">
+                                            <p class="text-left"><i class="fa fa-book"></i> <span>O O O</span></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-right"><span th:text="${enrollment.course.course_length}"></span> min</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="course-box-body">
-                                <h6 class="text-muted">Course</h6>
-                                <h5 th:text="${enrollment.course.title}"></h5>
-                                <p class="text-muted" th:text="${enrollment.course.description}"></p>
-                            </div>
-                            <div class="course-box-footer">
-                                <div>
-                                <span>
-                                    Python
-                                </span>
-                                    <span>
-                                    Beginner
-                                </span>
+                                <div class="course-box-body">
+                                    <h6 class="text-muted">Course</h6>
+                                    <h5 th:text="${enrollment.course.title}"></h5>
+                                    <p class="text-muted" th:text="${enrollment.course.description}"></p>
                                 </div>
-                            </div>
+                                <div class="course-box-footer">
+                                    <div>
+                                        <span th:text="${enrollment.course.tech_language.title}"></span>
+                                        <span th:text="${enrollment.course.skill_required}"></span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

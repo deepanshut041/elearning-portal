@@ -15,5 +15,7 @@ public interface CourseProgressService {
     List<CourseProgress> findAllCourseProgresss();
 
     CourseProgress getCourseProgressById(int id);
+
+    CourseProgress getCourseProgressByStepAndCourseProgress(int enroll_id, int step_id);
     
 }
