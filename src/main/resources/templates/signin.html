@@ -19,12 +19,11 @@
                         <div class="textBox">
                             <input class="text" type="text" name="email" onkeyup="this.setAttribute('value', this.value);" value=""/>
                             <label class="label">Email</label>
-                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error text-right"></label>
                         </div>
                         <div class="textBox">
                             <input class="text" type="password" name="password" onkeyup="this.setAttribute('value', this.value);" value="" />
                             <label class="label">Password</label>
-                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error text-right"></label>
+
                         </div>
                         <label class="checkbox">
                     <span class="pull-right">
