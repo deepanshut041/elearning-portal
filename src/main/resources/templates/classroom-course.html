@@ -10,23 +10,22 @@
 <body>
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
-        <br/>
-        <br/>
-        <br/>
         <div class="row no-gutters" th:if="${enrollment}">
             <div class="col-12 col-md-4 col-lg-3">
                 <div>
-                    <div class="">
-                        <ul>
-                            <li th:each="module:${enrollment.course.modules}">
-                                <label >
-                                    <span class="nav-toggle-icon glyphicon glyphicon-chevron-right"></span>
-                                    <span th:value="${module.title}">Header 1</span></label>
-                                <ul>
+                    <div class="aside-menu">
+                        <ul class="sidebar-menu" id="sideMenu" >
+                            <li class="sub-menu" th:each="module:${enrollment.course.modules}">
+                                <div>
+                                    <a>
+                                        <span th:text="${module.title}">Tracks / Path</span>
+                                    </a>
+                                </div>
+                                <ol class="sub" id="trackAsideSub">
                                     <li th:each="step:${module.steps}">
-                                        <a th:value="${step.title}">ddd</a>
+                                        <a th:href="@{/classroom/courses/{enrollment_id}/step/{step_id}(enrollment_id=${enrollment.id}, step_id=${step.id})}"><span th:text="${step.title}"></span></a>
                                     </li>
-                                </ul>
+                                </ol>
                             </li>
                         </ul>
                     </div>
@@ -48,6 +47,7 @@
     </main>
 </div>
 <div layout:fragment="cscript">
+    <script th:src="@{/js/classroom-course.js}"></script>
 </div>
 </body>
 </html>
