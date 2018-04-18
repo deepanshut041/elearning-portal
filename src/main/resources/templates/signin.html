@@ -41,6 +41,9 @@
                                 Create an account
                             </a>
                         </div>
+                        <div align="center" th:if="${param.error}">
+                            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                        </div>
                     </div>
                     <!--Forgot password  Modal -->
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
@@ -64,9 +67,7 @@
                                         <button class="btn btn-theme" type="submit">Submit</button>
                                     </div>
                                 </form>
-                                <div align="center" th:if="${param.error}">
-                                    <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
