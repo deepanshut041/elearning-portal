@@ -4,88 +4,6 @@ body{
     font-family: 'varela round', sans-serif;
 }
 /*main styling goes here*/
-main{
-    background: #edeff0;
-    padding: 50px 10px;
-}
-
-/* Header Style goes here*/
-header{
-    background: #fff;
-    margin-top: 40px;
-    animation: panel-fade-up 0.4s ease;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
-    border-radius: 4px;
-}
-
-header div.header-container{
-    padding: 30px 20px;
-}
-header h2{
-    font-size: 28px;
-    margin-bottom: 15px;
-    font-weight: 600;
-    color: #384047;
-}
-
-header p{
-    margin-bottom: 20px;
-    color: #7b8b8e;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-header h4{
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #384047;
-    display: block;
-    font-weight: 600;
-    text-rendering: optimizeLegibility;
-}
-
-header div.started-button{
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    background-color: #5fcf80;
-    border: solid 2px #5fcf80;
-    font-weight: 400;
-}
-
-header div.started-button a{
-    text-decoration: none;
-    cursor: pointer;
-    color: #fff;
-}
-
-header div.started-button i{
-    font-weight: 200;
-    margin-left: 5px;
-}
-header img{
-    margin-top: 20px;
-}
-
-/* Search box style goes here */
-#searchBox{
-    background: #fff;
-    animation: panel-fade-up 0.4s ease;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
-    border-radius: 4px;
-    margin-top: 30px ;
-}
-#searchBox div.search-container{
-    padding: 15px 20px;
-}
-#searchBox div.search-container input{
-    width: 100%;
-    border: 0px solid transparent;
-    outline: none;
-}
-#searchBox div.search-container div.search-box i{
-    margin-right: 20px;
-}
 
 #courseBox{
     animation: panel-fade-up 0.4s ease;
@@ -192,14 +110,4 @@ header img{
     text-align: center;
     transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
     color: #C66C5D;
-}
-
-footer{
-    padding: 50px 10px 100px 10px;
-    background-color: #fff !important;
-}
-
-footer h1{
-    color: #5fcf80;
-    margin-bottom: 2px;
 }
