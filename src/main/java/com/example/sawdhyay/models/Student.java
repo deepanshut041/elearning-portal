@@ -19,6 +19,9 @@ public class Student {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.LAZY)
     private Set<Enrollment> enrollments;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.LAZY)
+    private Set<Fquestion> fquestions;
+
     public User getUser() {
         return user;
     }
@@ -57,5 +60,13 @@ public class Student {
 
     public void setEnrollments(Set<Enrollment> enrollments) {
         this.enrollments = enrollments;
+    }
+
+    public Set<Fquestion> getFquestions() {
+        return fquestions;
+    }
+
+    public void setFquestions(Set<Fquestion> fquestions) {
+        this.fquestions = fquestions;
     }
 }

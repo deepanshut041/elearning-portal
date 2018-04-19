@@ -17,6 +17,10 @@ public class Language {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "language")
     private List<Course> courses;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "language")
+    private List<Fquestion> fquestions;
+
+
     public int getId() {
         return id;
     }
@@ -39,5 +43,13 @@ public class Language {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public List<Fquestion> getFquestions() {
+        return fquestions;
+    }
+
+    public void setFquestions(List<Fquestion> fquestions) {
+        this.fquestions = fquestions;
     }
 }
