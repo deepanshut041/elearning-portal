@@ -10,7 +10,55 @@
 <body>
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
-
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                selector: '#description',
+                height: 200,
+                theme: 'modern'
+            });
+        </script>
+        <section class="container">
+            <div class="row" th:if="${successMessage}">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        <span th:utext="${successMessage}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters form-body light-yellow">
+                <div class="col-12 col-md-3 align-self-center form-left text-center">
+                    <div>
+                        <h4>Profile</h4>
+                        <p>Edit your Profile or save it</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 form-right">
+                    <form autocomplete="off" action="#" th:action="@{/classroom/settings}" th:object="${student}" method="post" role="form">
+                        <div class="row no-gutters" id="blog-form">
+                            <input type="hidden" class="form-control" th:field="*{id}"/>
+                            <div class="form-group col-12">
+                                <label>Name</label>
+                                <input type="text" class="form-control" th:field="*{name}"/>
+                                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">
+                                    Please provide a valid name.
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>About You</label>
+                                <textarea type="text" class="form-control" th:field="*{about}" id="description"></textarea>
+                                <div th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-danger">
+                                    Please provide about yourself.
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-secondary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 <div layout:fragment="cscript">

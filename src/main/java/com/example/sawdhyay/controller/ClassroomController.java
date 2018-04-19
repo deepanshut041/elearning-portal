@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ClassroomController {
     @Autowired
     CourseProgressService courseProgressService;
 
+
     @RequestMapping(value = {"/", "", "/courses"}, method = RequestMethod.GET)
     public ModelAndView classroomPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -49,18 +51,60 @@ public class ClassroomController {
         String username = loggedInUser.getName();
         User user = userService.findUserByEmail(username);
         Student student = studentService.getStudentByUserId(user.getId());
-
+        if (student == null){
+            return new ModelAndView(new RedirectView("/classroom/settings"));
+        }
         List<Enrollment> enrollments = enrollmentService.findEnrollmentsByStudent(student.getId());
         modelAndView.addObject("enrollments", enrollments);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/settings", method = RequestMethod.POST)
+    @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public ModelAndView classroomSettingPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        User user = userService.findUserByEmail(username);
+        Student student = studentService.getStudentByUserId(user.getId());
+        if (student == null){
+            student = new Student();
+        }
+        modelAndView.addObject("student", student);
         modelAndView.setViewName("classroom-settings");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/settings", method = RequestMethod.POST)
+    public ModelAndView classroomSettingPost(@Valid Student student, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            String username = loggedInUser.getName();
+            User user = userService.findUserByEmail(username);
+            student = studentService.getStudentByUserId(user.getId());
+            if (student == null){
+                student = new Student();
+            }
+            modelAndView.addObject("student", student);
+            modelAndView.setViewName("classroom-settings");
+        } else {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            String username = loggedInUser.getName();
+            User user = userService.findUserByEmail(username);
+            User user1 = new User();
+            user1.setId(user.getId());
+            student.setUser(user1);
+            if(student.getId() == 0) {
+                studentService.addStudent(student);
+            }
+            else {
+                studentService.updateStudent(student);
+            }
+            return new ModelAndView(new RedirectView("/classroom"));
+        }
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/enroll/{id}", method = RequestMethod.POST)
     public String createNewEnrollment(@Valid Enrollment enrollment,@PathVariable int id, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();

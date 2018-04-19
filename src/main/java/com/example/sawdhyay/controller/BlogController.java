@@ -19,6 +19,7 @@ public class BlogController {
 
     @Autowired
     private PostService postService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView blogsPage(Model model){
         ModelAndView modelAndView = new ModelAndView();

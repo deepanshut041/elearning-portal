@@ -48,6 +48,9 @@ public class User {
     @OneToOne
     private Mentor mentor;
 
+    @OneToOne
+    private Student student;
+
     public Mentor getMentor() {
         return mentor;
     }
@@ -118,5 +121,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

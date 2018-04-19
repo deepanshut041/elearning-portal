@@ -62,7 +62,7 @@ public class AdminController {
     private  StudentService studentService;
 
 
-    @RequestMapping(value={"/", "/home"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/", "/home", ""}, method = RequestMethod.GET)
     public ModelAndView homePage(Model model){
         ModelAndView modelAndView = new ModelAndView();
 
