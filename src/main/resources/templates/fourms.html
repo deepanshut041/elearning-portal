@@ -11,34 +11,46 @@
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
         <div class="container">
-            <header>
-                <div class="row">
-                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-                        <input type="text" placeholder="Search" />
+            <div class="search-container" id="searchBox">
+                <div class="row no-gutters">
+                    <div class="col-6 col-md-7 col-lg-8 ">
+                        <div class="search-box">
+                            <div class="row no-gutters">
+                                <div>
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <div class="col">
+                                    <input placeholder="Search topic"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-4 col-md-6 col-lg-8">
-
+                    <div class="col-6 col-md-5 col-lg-4">
+                        <div class="row no-gutters">
+                            <div class="col-6">
+                                Category <i class="fa fa-arrow-down"></i>
+                            </div>
+                            <div class="col-6">
+                                Language <i class="fa fa-arrow-down"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </header>
+            </div>
             <section>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12" th:each="question:${questions}">
                         <div class="row no-gutters">
                             <div class="col">
                                 <div></div>
                             </div>
                             <div class="col">
-                                <h6>public method</h6>
-                                <p class="text-muted">Posted 21 minutes ago by trae rhodes</p>
+                                <h6 th:text="${question.title}"></h6>
+                                <p class="text-muted">Posted <span th:text="${question.created_at}"></span> by <span th:text="${question.student.name}"></span></p>
                                 <ul>
-                                    <li>Java</li>
-                                    <li>Java objects</li>
+                                    <li th:text="${question.category.title}"></li>
+                                    <li th:text="${question.language.title}"></li>
                                 </ul>
-                            </div>
-                            <div class="col">
-                                <h6 class="text-center">0</h6>
-                                <p class="text-center text-muted">Answers</p>
                             </div>
                         </div>
                     </div>
