@@ -11,6 +11,11 @@
 <div layout:fragment="content">
     <main role="main" class="fluid-container">
         <div class="main-classroom-container">
+            <div th:if="${cprogress}">
+                <div class="alert alert-success" role="alert">
+                    This is lesson is completed on <strong th:text="${cprogress.completed_date}"></strong>
+                </div>
+            </div>
             <div class="row" th:if="${enrollment}">
                 <div class="col-12 col-md-4 col-lg-3 module-container">
                     <div>
@@ -30,7 +35,7 @@
                                     </div>
                                     <ol class="sub" id="trackAsideSub">
                                         <li th:each="step:${module.steps}">
-                                            <a th:href="@{/classroom/courses/{enrollment_id}/step/{step_id}(enrollment_id=${enrollment.id}, step_id=${step.id})}">
+                                            <a th:href="@{/classroom/{enrollment_id}/progress/{step_id}(enrollment_id=${enrollment.id}, step_id=${step.id})}">
                                                 <i class="fa fa-play-circle-o" th:if="${step.type == 'video'}"></i>
                                                 <i class="fa fa-file-text-o" th:if="${step.type == 'text'}"></i>
                                                 <i class="fa fa-file-code-o" th:if="${step.type == 'assigment'}"></i>

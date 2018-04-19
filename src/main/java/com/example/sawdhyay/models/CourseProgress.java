@@ -1,5 +1,6 @@
 package com.example.sawdhyay.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class CourseProgress {
     private Step step;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @CreationTimestamp
     private Date completed_date;
 
     public int getId() {

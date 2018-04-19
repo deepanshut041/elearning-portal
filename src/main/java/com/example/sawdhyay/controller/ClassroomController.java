@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -79,8 +80,8 @@ public class ClassroomController {
         return "redirect:/classroom";
     }
 
-    @RequestMapping(value = "{enroll_id}/progress/{id}", method = RequestMethod.POST)
-    public String createNewProgress(@PathVariable int enroll_id, @PathVariable int id, BindingResult bindingResult) {
+    @RequestMapping(value = "{enroll_id}/progress/{id}", method = RequestMethod.GET)
+    public String createNewProgress(@PathVariable int enroll_id, @PathVariable int id, Model model) {
         CourseProgress courseProgress = new CourseProgress();
         Step step = new Step();
         step.setId(id);
@@ -92,7 +93,7 @@ public class ClassroomController {
         if (courseProgress1 == null) {
             courseProgressService.addCourseProgress(courseProgress);
         }
-        return "redirect:/classroom";
+        return "redirect:/classroom/courses/" + enroll_id + "/step/" + id ;
     }
 
     @RequestMapping(value = "/courses/{id}", method = RequestMethod.GET)
@@ -105,12 +106,17 @@ public class ClassroomController {
     }
 
     @RequestMapping(value = "/courses/{id}/step/{step_id}", method = RequestMethod.GET)
-    public ModelAndView classroomDetailCoursePage(@PathVariable int id,@PathVariable int step_id, Model model){
+    public ModelAndView classroomDetailCoursePage(@PathVariable int id,
+                                                  @PathVariable int step_id,
+                                                  @RequestParam(value="isdone", required=false) String idone,
+                                                  Model model){
         ModelAndView modelAndView = new ModelAndView();
         Enrollment enrollment = enrollmentService.getEnrollmentById(id);
         Step step = stepService.getStepById(step_id);
+        CourseProgress courseProgress = courseProgressService.getCourseProgressByStepAndCourseProgress(id, step_id);
         modelAndView.addObject("enrollment", enrollment);
         modelAndView.addObject("current", step);
+        modelAndView.addObject("cprogress", courseProgress);
         modelAndView.setViewName("classroom-course");
         return modelAndView;
     }
