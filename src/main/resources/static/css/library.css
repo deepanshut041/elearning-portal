@@ -3,21 +3,6 @@
 body{
     font-family: 'varela round', sans-serif;
 }
-/* Navbar Styles */
-nav{
-    background: #fff;
-}
-nav .nav-item .nav-link{
-    color: #7b8b8e;
-    font-weight: 500;
-    transition: color 300ms 0s ease;
-}
-nav .navbar-brand {
-    color: #5fcf80;
-}
-nav .nav-link:hover{
-    color: #4b5658;
-}
 
 /*main styling goes here*/
 main{

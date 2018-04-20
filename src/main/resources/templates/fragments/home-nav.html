@@ -12,9 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/courses">Library</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/classroom">Classroom</a>
-            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="/blogs/">Blogs</a>
@@ -25,8 +22,20 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/fourms/">Fourms</a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="/classroom" sec:authorize="isAuthenticated()">Classroom</a>
+            </li>
+
+            <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link" href="/auth/signin">Signin</a>
             </li>
+            <li sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/classroom/settings"><span sec:authentication="name">Bob</span></a>
+            </li >
+            <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/auth/signout">Logout</a></li>
         </ul>
     </div>
 </nav>
