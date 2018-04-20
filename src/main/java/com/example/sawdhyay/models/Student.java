@@ -13,7 +13,7 @@ public class Student {
     @Column(columnDefinition="TEXT")
     private String about;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.LAZY)

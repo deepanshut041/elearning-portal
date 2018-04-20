@@ -48,8 +48,8 @@ public class User {
     @OneToOne
     private Mentor mentor;
 
-    @OneToOne
-    private Student student;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Student> students;
 
     public Mentor getMentor() {
         return mentor;
@@ -123,11 +123,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Student getStudent() {
-        return student;
+    public Set<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

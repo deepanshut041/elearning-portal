@@ -1,10 +1,8 @@
 package com.example.sawdhyay.controller;
 
 
-import com.example.sawdhyay.models.Fanswer;
-import com.example.sawdhyay.models.Fquestion;
-import com.example.sawdhyay.services.FanswerService;
-import com.example.sawdhyay.services.FquestionService;
+import com.example.sawdhyay.models.*;
+import com.example.sawdhyay.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +24,35 @@ public class FourmController {
     @Autowired
     private FanswerService fanswerService;
 
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LanguageService languageService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+
+
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public ModelAndView froumsPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         List<Fquestion> fquestions = this.fquestionService.findAllFquestions();
         modelAndView.addObject("questions", fquestions);
+        modelAndView.setViewName("fourms");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView froumsaddPage(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        Fquestion fquestion = new Fquestion();
+        List<Category> categories = categoryService.findAllCategorys();
+        List<Language> languages = languageService.findAllLanguages();
+        modelAndView.addObject("fquestion", fquestion);
+        modelAndView.addObject("categories", categories);
+        modelAndView.addObject("languages", languages);
         modelAndView.setViewName("fourms");
         return modelAndView;
     }
