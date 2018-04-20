@@ -136,4 +136,19 @@ public class FourmController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/{id}/answer", method = RequestMethod.POST)
+    public ModelAndView froumAnswerPage(@PathVariable int id,@Valid Fanswer fanswer, BindingResult bindingResult){
+        ModelAndView modelAndView = new ModelAndView();
+        if(bindingResult.hasErrors()){
+            return new ModelAndView(new RedirectView("/fourms/" + id));
+        }else{
+            Fquestion fquestion = new Fquestion();
+            fquestion.setId(id);
+            fanswer.setFquestion(fquestion);
+            fanswerService.addFanswer(fanswer);
+        }
+
+        return new ModelAndView(new RedirectView("/fourms/" + id));
+    }
+
 }
