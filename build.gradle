@@ -1,48 +1,42 @@
-group 'com.example'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
+group = 'io.github.deepanshut041'
+version = '0.0.1'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 
-jar {
-    baseName = 'gs-accessing-data-jpa'
-    version =  '0.1.0'
-}
-
-buildscript {
-    ext {
-        springBootVersion = '2.0.0.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    runtime 'com.h2database:h2'
 
-    compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
-    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE"
-    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.3.0'
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    // Spring basic
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // Database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.h2database:h2'
+
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE"
+
+    // Thymeleaf
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    implementation "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.4.1"
+
+    // Test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
 
 }
