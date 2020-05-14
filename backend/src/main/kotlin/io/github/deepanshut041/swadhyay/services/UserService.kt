@@ -59,7 +59,7 @@ class UserServiceImpl(
     override suspend fun updateProfile(id: String, req: ProfileRequest): ProfileResponse {
         val user = userRepository.findById(id).awaitFirstOrNull()
         user?.let {
-            val uUser = userRepository.save(it.copy(name = req.name, about = req.about, avatar = req.avatar)).awaitFirst()
+            val uUser = userRepository.save(it.copy(name = req.name, about = req.about, avatar = req.avatar, updated = Date())).awaitFirst()
             return ProfileResponse(id = uUser.id!!, name = uUser.name, about = uUser.about, avatar = uUser.avatar)
         } ?: run {
             throw ResourceNotFoundException("User", "id", id)
@@ -71,7 +71,7 @@ class UserServiceImpl(
         user?.let {
             val roles = HashSet<String>(it.roles)
             roles.add(role)
-            return userRepository.save(it.copy(roles = roles.toList())).awaitFirst()
+            return userRepository.save(it.copy(roles = roles.toList(), updated = Date())).awaitFirst()
         } ?: run {
             throw ResourceNotFoundException("User", "id", id)
         }
@@ -82,7 +82,7 @@ class UserServiceImpl(
         user?.let {
             val roles = HashSet<String>(it.roles)
             if(roles.contains(role)) roles.remove(role)
-            return userRepository.save(it.copy(roles = roles.toList())).awaitFirst()
+            return userRepository.save(it.copy(roles = roles.toList(), updated = Date())).awaitFirst()
         } ?: run {
             throw ResourceNotFoundException("User", "id", id)
         }
