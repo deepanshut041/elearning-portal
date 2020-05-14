@@ -16,22 +16,15 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity.ok
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.User
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
 @RequestMapping(AdminAccountController.AUTH_BASE_URI, produces = [MediaType.APPLICATION_JSON_VALUE])
-@Tag(name = "Admin Account API", description = "This contains routes regarding admin account")
+@Tag(name = "Account API", description = "This contains routes regarding user account")
 class AdminAccountController(
         @Autowired val userService: UserService
 ) {
-
-    @PostMapping("/signin")
-    fun signIn(@Valid @RequestBody signInRequest: SignInRequest) = mono {
-        ok(SignInResponse(userService.authenticate(signInRequest)))
-    }
 
     @PostMapping("/signup")
     @PreAuthorize("hasRole('ADMIN')")
@@ -41,14 +34,6 @@ class AdminAccountController(
         ok(APIResponse("Successfully registered user"))
     }
 
-
-    @GetMapping("/profile")
-    @PreAuthorize("hasRole('ADMIN')")
-    @SecurityRequirement(name = "bearerAuth")
-    fun profile() = mono {
-        val user = ReactiveSecurityContextHolder.getContext().map { it.authentication.principal as UserPrincipal }.awaitFirst()
-        ok(userService.profile(user.id))
-    }
 
     companion object {
         const val AUTH_BASE_URI = "/api/account/admin"

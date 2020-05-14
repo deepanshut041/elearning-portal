@@ -20,28 +20,15 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping(MentorAccountController.AUTH_BASE_URI, produces = ["application/json"])
-@Tag(name = "Mentor Account API", description = "This contains routes regarding mentor account")
+@Tag(name = "Account API", description = "This contains routes regarding user account")
 class MentorAccountController(
         @Autowired val userService: UserService
 ) {
-
-    @PostMapping("/signin")
-    fun signIn(@Valid @RequestBody signInRequest: SignInRequest) = mono {
-        ok(SignInResponse(userService.authenticate(signInRequest)))
-    }
 
     @PostMapping("/signup")
     fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) = mono {
         userService.save(signUpRequest , listOf(Role.ROLE_MENTOR.name, Role.ROLE_STUDENT.name))
         ok(APIResponse("Successfully registered user"))
-    }
-
-    @GetMapping("/profile")
-    @PreAuthorize("hasRole('MENTOR')")
-    @SecurityRequirement(name = "bearerAuth")
-    fun profile() = mono {
-        val user = ReactiveSecurityContextHolder.getContext().map { it.authentication.principal as UserPrincipal }.awaitFirst()
-        ok(userService.profile(user.id))
     }
 
     companion object {

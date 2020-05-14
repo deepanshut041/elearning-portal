@@ -7,7 +7,8 @@ import io.github.deepanshut041.swadhyay.data.repository.UserRepository
 import io.github.deepanshut041.swadhyay.util.BadRequestException
 import io.github.deepanshut041.swadhyay.util.ResourceNotFoundException
 import io.github.deepanshut041.swadhyay.util.UnauthorizedException
-import io.github.deepanshut041.swadhyay.web.dto.account.AccountProfileResponse
+import io.github.deepanshut041.swadhyay.web.dto.account.ProfileRequest
+import io.github.deepanshut041.swadhyay.web.dto.account.ProfileResponse
 import io.github.deepanshut041.swadhyay.web.dto.account.SignInRequest
 import io.github.deepanshut041.swadhyay.web.dto.account.SignUpRequest
 import kotlinx.coroutines.reactive.awaitFirst
@@ -45,10 +46,20 @@ class UserServiceImpl(
         }
     }
 
-    override suspend fun profile(id: String): AccountProfileResponse {
+    override suspend fun getProfile(id: String): ProfileResponse {
         val user = userRepository.findById(id).awaitFirstOrNull()
         user?.let {
-            return AccountProfileResponse(it.id!!, it.name, it.about, it.avatar)
+            return ProfileResponse(it.id!!, it.name, it.about, it.avatar)
+        } ?: run {
+            throw ResourceNotFoundException("User", "id", id)
+        }
+    }
+
+    override suspend fun updateProfile(id: String, req: ProfileRequest): ProfileResponse {
+        val user = userRepository.findById(id).awaitFirstOrNull()
+        user?.let {
+            val uUser = userRepository.save(it.copy(name = req.name, about = req.about, avatar = req.avatar)).awaitFirst()
+            return ProfileResponse(id = uUser.id!!, name = uUser.name, about = uUser.about, avatar = uUser.avatar)
         } ?: run {
             throw ResourceNotFoundException("User", "id", id)
         }
@@ -59,5 +70,6 @@ class UserServiceImpl(
 interface UserService {
     suspend fun authenticate(signInRequest: SignInRequest): String
     suspend fun save(req: SignUpRequest, roles: List<String>): UserEntity
-    suspend fun profile(id: String): AccountProfileResponse
+    suspend fun getProfile(id: String): ProfileResponse
+    suspend fun updateProfile(id: String, req: ProfileRequest): ProfileResponse
 }
