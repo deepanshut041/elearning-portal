@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping(StudentAccountController.AUTH_BASE_URI, consumes = ["application/json"])
+@RequestMapping(StudentAccountController.AUTH_BASE_URI, produces = ["application/json"])
 @Tag(name = "Account API", description = "This contains routes regarding user account")
 class StudentAccountController(@Autowired val userService: UserService) {
 
     @PostMapping("/signup")
-    suspend fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) = mono {
+    fun signUp(@Valid @RequestBody signUpRequest: SignUpRequest) = mono {
         userService.save(signUpRequest , listOf(Role.ROLE_STUDENT.name))
         ok(APIResponse("Successfully registered user"))
     }

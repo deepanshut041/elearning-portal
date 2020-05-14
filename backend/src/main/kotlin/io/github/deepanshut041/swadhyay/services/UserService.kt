@@ -16,6 +16,7 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.collections.HashSet
 
 @Service("userService")
 class UserServiceImpl(
@@ -64,12 +65,35 @@ class UserServiceImpl(
             throw ResourceNotFoundException("User", "id", id)
         }
     }
-}
 
+    override suspend fun addRole(id: String, role: String): UserEntity {
+        val user = userRepository.findById(id).awaitFirstOrNull()
+        user?.let {
+            val roles = HashSet<String>(it.roles)
+            roles.add(role)
+            return userRepository.save(it.copy(roles = roles.toList())).awaitFirst()
+        } ?: run {
+            throw ResourceNotFoundException("User", "id", id)
+        }
+    }
+
+    override suspend fun removeRole(id: String, role: String): UserEntity {
+        val user = userRepository.findById(id).awaitFirstOrNull()
+        user?.let {
+            val roles = HashSet<String>(it.roles)
+            if(roles.contains(role)) roles.remove(role)
+            return userRepository.save(it.copy(roles = roles.toList())).awaitFirst()
+        } ?: run {
+            throw ResourceNotFoundException("User", "id", id)
+        }
+    }
+}
 
 interface UserService {
     suspend fun authenticate(signInRequest: SignInRequest): String
     suspend fun save(req: SignUpRequest, roles: List<String>): UserEntity
     suspend fun getProfile(id: String): ProfileResponse
     suspend fun updateProfile(id: String, req: ProfileRequest): ProfileResponse
+    suspend fun addRole(id: String, role: String): UserEntity
+    suspend fun removeRole(id: String, role: String): UserEntity
 }

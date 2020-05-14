@@ -13,13 +13,14 @@ import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactor.mono
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity.ok
+import org.springframework.security.access.annotation.Secured
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping(MentorAccountController.AUTH_BASE_URI, produces = ["application/json"])
+@RequestMapping(MentorAccountController.MENTOR_BASE_URI, produces = ["application/json"])
 @Tag(name = "Account API", description = "This contains routes regarding user account")
 class MentorAccountController(
         @Autowired val userService: UserService
@@ -31,7 +32,25 @@ class MentorAccountController(
         ok(APIResponse("Successfully registered user"))
     }
 
+    @PatchMapping("/enroll")
+    @Secured()
+    @SecurityRequirement(name = "bearerAuth")
+    fun enrollAsMentor() = mono {
+        val user = ReactiveSecurityContextHolder.getContext().map { it.authentication.principal as UserPrincipal }.awaitFirst()
+        userService.addRole(user.id, Role.ROLE_MENTOR.name)
+        ok(APIResponse("Successfully signed as mentor"))
+    }
+
+    @PatchMapping("/resign")
+    @PreAuthorize("hasRole('MENTOR')")
+    @SecurityRequirement(name = "bearerAuth")
+    fun resignAsMentor() = mono {
+        val user = ReactiveSecurityContextHolder.getContext().map { it.authentication.principal as UserPrincipal }.awaitFirst()
+        userService.removeRole(user.id, Role.ROLE_MENTOR.name)
+        ok(APIResponse("Successfully resigned as mentor"))
+    }
+
     companion object {
-        const val AUTH_BASE_URI = "/api/account/mentor"
+        const val MENTOR_BASE_URI = "/api/account/mentor"
     }
 }

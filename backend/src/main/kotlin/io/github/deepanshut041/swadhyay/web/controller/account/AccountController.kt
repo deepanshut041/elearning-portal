@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping(AccountController.ACCOUNT_BASE_URI, consumes = ["application/json"])
+@RequestMapping(AccountController.ACCOUNT_BASE_URI, produces = ["application/json"])
 @Tag(name = "Account API", description = "This contains routes regarding user account")
 class AccountController(private val userService: UserService) {
 

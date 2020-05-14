@@ -34,6 +34,38 @@ class AdminAccountController(
         ok(APIResponse("Successfully registered user"))
     }
 
+    @PatchMapping("/enroll/mentor")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
+    fun enrollAsMentor(@RequestParam("id", required = true)id: String) = mono {
+        userService.addRole(id, Role.ROLE_MENTOR.name)
+        ok(APIResponse("Successfully enrolled as mentor"))
+    }
+
+    @PatchMapping("/enroll/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
+    fun enrollAsAdmin(@RequestParam("id", required = true)id: String) = mono {
+        userService.addRole(id, Role.ROLE_ADMIN.name)
+        ok(APIResponse("Successfully enrolled as admin"))
+    }
+
+    @PatchMapping("/resign/mentor")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
+    fun resignAsMentor(@RequestParam("id", required = true)id: String) = mono {
+        userService.removeRole(id, Role.ROLE_MENTOR.name)
+        ok(APIResponse("Successfully resigned as mentor"))
+    }
+
+    @PatchMapping("/resign/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
+    fun resignAsAdmin(@RequestParam("id", required = true)id: String) = mono {
+        userService.removeRole(id, Role.ROLE_ADMIN.name)
+        ok(APIResponse("Successfully resigned as admin"))
+    }
+
 
     companion object {
         const val AUTH_BASE_URI = "/api/account/admin"
