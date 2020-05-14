@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.github.deepanshut041"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -16,14 +16,39 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	// Reactor
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+
+	// Kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	// Kotlin reactor
+	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+	// Security
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	// Data
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+
+	// JWT
+	implementation("io.jsonwebtoken:jjwt-api:0.10.7")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.10.7")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.10.7")
+
+	// OpenAP
+	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.3.9")
+	implementation("org.springdoc:springdoc-openapi-security:1.3.9")
+	implementation("org.springdoc:springdoc-openapi-kotlin:1.3.9")
+
+	// Logger
+	implementation("io.github.microutils:kotlin-logging:1.7.9")
+
+	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
@@ -38,6 +63,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
+		jvmTarget = "11"
 	}
 }
