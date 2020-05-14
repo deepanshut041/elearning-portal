@@ -1,5 +1,6 @@
 package io.github.deepanshut041.swadhyay.auth
 
+import io.github.deepanshut041.swadhyay.util.UnauthorizedException
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContext
@@ -23,7 +24,7 @@ class SecurityContextRepository(private val authManager: AuthenticationManager) 
             val auth = UsernamePasswordAuthenticationToken(authToken, authToken)
             authManager.authenticate(auth).map { authentication -> SecurityContextImpl(authentication) }
         } else {
-            Mono.empty()
+            Mono.error(UnauthorizedException("Unauthorized access"))
         }
     }
 }

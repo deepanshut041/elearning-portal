@@ -11,7 +11,9 @@ import java.util.*
 import io.jsonwebtoken.security.Keys
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.stereotype.Component
+import kotlin.collections.LinkedHashMap
 
 
 @Component
@@ -26,11 +28,11 @@ class TokenProvider(private val appProperties: AppProperties, private val object
     fun getUserFromToken(token: String): UserPrincipal {
         val claims = jwtParser.parseClaimsJws(token).body
         return UserPrincipal.create(claims.subject,
-                claims.get("name", String::class.java),
-                claims.get("email", String::class.java),
+                claims["name"] as String,
+                claims["email"] as String,
                 "",
-                claims.get("enabled", Boolean::class.java),
-                claims.get("authorities", List::class.java).map { (it as String) }
+                claims["enabled"] as Boolean,
+                (claims["authorities"] as List<*>).map { (it as LinkedHashMap<*, *>)["authority"] as String }
         )
     }
 

@@ -1,14 +1,15 @@
 package io.github.deepanshut041.swadhyay.services
 
-import io.github.deepanshut041.swadhyay.auth.Role
 import io.github.deepanshut041.swadhyay.auth.TokenProvider
 import io.github.deepanshut041.swadhyay.auth.UserPrincipal
 import io.github.deepanshut041.swadhyay.data.entity.UserEntity
 import io.github.deepanshut041.swadhyay.data.repository.UserRepository
 import io.github.deepanshut041.swadhyay.util.BadRequestException
+import io.github.deepanshut041.swadhyay.util.ResourceNotFoundException
 import io.github.deepanshut041.swadhyay.util.UnauthorizedException
-import io.github.deepanshut041.swadhyay.web.dto.auth.SignInRequest
-import io.github.deepanshut041.swadhyay.web.dto.auth.SignUpRequest
+import io.github.deepanshut041.swadhyay.web.dto.account.AccountProfileResponse
+import io.github.deepanshut041.swadhyay.web.dto.account.SignInRequest
+import io.github.deepanshut041.swadhyay.web.dto.account.SignUpRequest
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -22,7 +23,6 @@ class UserServiceImpl(
         private val passwordEncoder: PasswordEncoder
 ) : UserService {
 
-    @Throws(UnauthorizedException::class)
     override suspend fun authenticate(signInRequest: SignInRequest): String {
         val user = userRepository.findByEmail(signInRequest.email).awaitFirstOrNull()
         user?.let {
@@ -35,14 +35,22 @@ class UserServiceImpl(
         }
     }
 
-    @Throws(BadRequestException::class)
-    override suspend fun save(req: SignUpRequest): UserEntity {
+    override suspend fun save(req: SignUpRequest, roles: List<String>): UserEntity {
         val user = userRepository.findByEmail(req.email).awaitFirstOrNull()
         user?.let {
             throw BadRequestException("User already exist with ${req.email}")
         } ?: run {
             return userRepository.save(UserEntity(null, req.email, passwordEncoder.encode(req.password),
-                    req.name, "", "", true, listOf(Role.ROLE_STUDENT.name), Date(), Date())).awaitFirst()
+                    req.name, "", "", true, roles, Date(), Date())).awaitFirst()
+        }
+    }
+
+    override suspend fun profile(id: String): AccountProfileResponse {
+        val user = userRepository.findById(id).awaitFirstOrNull()
+        user?.let {
+            return AccountProfileResponse(it.id!!, it.name, it.about, it.avatar)
+        } ?: run {
+            throw ResourceNotFoundException("User", "id", id)
         }
     }
 }
@@ -50,5 +58,6 @@ class UserServiceImpl(
 
 interface UserService {
     suspend fun authenticate(signInRequest: SignInRequest): String
-    suspend fun save(req: SignUpRequest): UserEntity
+    suspend fun save(req: SignUpRequest, roles: List<String>): UserEntity
+    suspend fun profile(id: String): AccountProfileResponse
 }

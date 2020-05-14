@@ -1,4 +1,4 @@
-package io.github.deepanshut041.swadhyay.web.dto.auth
+package io.github.deepanshut041.swadhyay.web.dto.account
 
 import javax.validation.constraints.*
 
