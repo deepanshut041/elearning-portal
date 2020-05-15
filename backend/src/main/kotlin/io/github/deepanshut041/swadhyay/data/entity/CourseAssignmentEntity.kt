@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document("course_assignments")
-data class CourseAssignment(
+data class CourseAssignmentEntity(
         @Id val id: String,
         @Indexed(unique = false) val moduleId: String,
         val title: String,

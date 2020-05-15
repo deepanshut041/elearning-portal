@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document("course_steps")
-data class CourseStep(
+data class CourseStepEntity(
         @Id val id: String,
         @Indexed(unique = false) val courseId: String,
         @Indexed(unique = false) val moduleId: String,
@@ -13,8 +13,8 @@ data class CourseStep(
         val rank: Int,
         val type: StepType,
         val text: String,
-        val video: List<StepVideo>,
-        val quiz: List<StepQuiz>
+        val video: StepVideo,
+        val quiz: StepQuiz
 )
 
 data class StepVideo(
@@ -24,9 +24,10 @@ data class StepVideo(
 
 data class StepQuiz(
         val title: String,
-        val questions: List<QuizQuestion>)
+        val questions: Map<Int, QuizQuestion>)
 
 data class QuizQuestion(
+        val id: String,
         val title: String,
         val answers: List<String>,
         val correctAnswers: List<String>,

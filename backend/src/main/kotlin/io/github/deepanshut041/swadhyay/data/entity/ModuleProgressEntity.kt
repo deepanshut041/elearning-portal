@@ -10,13 +10,13 @@ data class ModuleProgressEntity(
         @Indexed(unique = false) val moduleId: String,
         @Indexed(unique = false) val userId: String,
         @Indexed(unique = false) val courseId: String,
-        val steps: List<StepProgress>,
-        val assignments: List<AssignmentProgress>
+        val steps: Map<String, StepProgress>,
+        val assignments: Map<String, AssignmentProgress>
 )
 
 data class StepProgress(
         val id: String,
-        val stepQuizProgresses: List<StepQuizProgress>
+        val stepQuizProgresses: Map<Int, StepQuizProgress>
 )
 
 data class StepQuizProgress(
@@ -26,7 +26,7 @@ data class StepQuizProgress(
 
 data class AssignmentProgress(
     val id: String,
-    val questions: List<AssignmentQuestionProgress>
+    val questions: Map<Int, AssignmentQuestionProgress>
 )
 
 data class AssignmentQuestionProgress(

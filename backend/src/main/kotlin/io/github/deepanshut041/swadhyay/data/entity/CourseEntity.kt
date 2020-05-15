@@ -1,6 +1,7 @@
 package io.github.deepanshut041.swadhyay.data.entity
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 
@@ -15,7 +16,7 @@ data class CourseEntity(
         val level: CourseLevel,
         val language: String,
         val courseLength: Int,
-        val category: String,
+        @Indexed(unique = false) val category: String,
         val creator: String,
         val mentors: List<String>)
 
