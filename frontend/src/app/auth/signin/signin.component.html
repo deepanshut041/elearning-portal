@@ -3,17 +3,20 @@
         <h3 id="title" class="text-center">Sign In</h3>
     </nb-card-header>
     <nb-card-body>
+        <nb-alert *ngIf="error" role="alert" status="danger">{{ error }}</nb-alert>
         <form [formGroup]="signInFrom" (ngSubmit)="login()">
             <div class="form-control-group mb-3">
                 <label class="label" for="input-email">Email address:</label>
-                <input nbInput fullWidth id="input-email" type="email" placeholder="Email address" fieldSize="large" formControlName="email">
+                <input nbInput fullWidth id="input-email" type="email" placeholder="Email address" fieldSize="large"
+                    formControlName="email"
+                    [status]="signInFrom.controls['email'].dirty ? (signInFrom.controls['email'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <div class="form-control-group mb-3">
-                <span class="label-with-link">
-                    <label class="label" for="input-password">Password:</label>
-                </span>
-                <input nbInput fullWidth id="input-password" type="password" placeholder="Password" fieldSize="large" formControlName="password">
+                <label class="label" for="input-password">Password:</label>
+                <input nbInput fullWidth id="input-password" type="password" placeholder="Password" fieldSize="large"
+                    formControlName="password"
+                    [status]="signInFrom.controls['password'].dirty ? (signInFrom.controls['password'].invalid  ? 'danger' : 'success') : 'basic'">
                 <p class="text-right">
                     <a class="caption-2 text-primary" routerLink="../forgot">Forgot Password?</a>
                 </p>
@@ -26,10 +29,10 @@
         <p class="text-center mt-3">or Continue with </p>
         <section class="text-center">
             <button nbButton outline class="text-control" (click)="google()" status="primary">
-                <nb-icon icon="google" ></nb-icon>Google
+                <nb-icon icon="google"></nb-icon>Google
             </button>
             <button nbButton outline class="ml-3" (click)="facebook()" status="primary">
-                <nb-icon icon="facebook"></nb-icon >Facebook
+                <nb-icon icon="facebook"></nb-icon>Facebook
             </button>
         </section>
     </nb-card-body>

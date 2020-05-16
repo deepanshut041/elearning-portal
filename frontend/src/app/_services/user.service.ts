@@ -17,7 +17,7 @@ export class UserService {
   }
 
   fetchProfile(): Observable<UserProfile>{
-    return this.httpClient.get(`${environment.DOMAIN}/api/user/me`, this.httpOptions)
+    return this.httpClient.get(`${environment.DOMAIN}/api/account/profile`, this.httpOptions)
     .pipe(map((user: UserProfile) =>{
       this.storage.saveUser(user)
       return user

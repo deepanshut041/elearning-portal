@@ -15,7 +15,7 @@ export class TokenComponent implements OnInit {
   loading: Boolean = true
   profile: UserProfile
   token: string
-  redirect = "/loading"
+  redirect = "/dashboard"
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private router: Router) {
     this.route.queryParams.subscribe(params => {

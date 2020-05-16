@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Router } from '@angular/router';
 import { SignUpRequest } from 'src/app/_dtos/auth/SignUpRequest';
@@ -19,14 +19,20 @@ export class SignupComponent implements OnInit {
 
   constructor(private _authService: AuthService, private fb: FormBuilder, private router: Router, private dialogService: NbDialogService) {
     this.signUpFrom = this.fb.group({
-      email: [],
-      password: [],
-      name: []
-    })
+      email: ["", Validators.compose([Validators.required, Validators.email])],
+      password: ["", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      cpassword: ["", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      name: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    }, this.pwdMatchValidator);
   }
 
   ngOnInit(): void {
 
+  }
+
+  pwdMatchValidator(frm: FormGroup) {
+    return frm.get('password').value === frm.get('cpassword').value
+       ? null : {'mismatch': true};
   }
 
   register() {

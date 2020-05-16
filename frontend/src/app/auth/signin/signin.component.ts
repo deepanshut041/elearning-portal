@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignInRequest } from 'src/app/_dtos/auth/SignInRequest';
 import { SignInResponse } from 'src/app/_dtos/auth/SignInResponse';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,12 +15,13 @@ export class SigninComponent implements OnInit {
 
   loading: Boolean = false
   signInFrom: FormGroup
-  redirect = "/"
+  redirect = "/dashboard"
+  error: string = null
 
   constructor( private _authService: AuthService, private fb: FormBuilder, private router: Router) { 
     this.signInFrom = this.fb.group({
-      email: [],
-      password: []
+      email: ["", Validators.compose([Validators.required, Validators.email])],
+      password: ["", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]]
     })
   }
 
@@ -37,7 +38,8 @@ export class SigninComponent implements OnInit {
           this.loading = false
         },(err:any)=>{
           this.loading = false
-          console.log(err.error.message)
+          console.log(err)
+          this.error = err.error.message || "Unknow error!! Please try again"
         }
       )
     }

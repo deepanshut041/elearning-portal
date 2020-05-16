@@ -15,20 +15,16 @@
             </div>
 
             <div class="form-control-group mb-3">
-                <span class="label-with-link">
-                    <label class="label" for="input-password">Password:</label>
-                </span>
+                <label class="label" for="input-password">Password:</label>
                 <input nbInput fullWidth id="input-password" type="password" placeholder="Password" fieldSize="large" formControlName="password">
             </div>
 
             <div class="form-control-group mb-3">
-                <span class="label-with-link">
-                    <label class="label" for="input-cpassword">Confirm Password:</label>
-                </span>
-                <input nbInput fullWidth name="password" id="input-cpassword" type="password" placeholder="Confirm Password" fieldSize="large">
+                <label class="label" for="input-cpassword">Confirm Password:</label>
+                <input nbInput fullWidth id="input-cpassword" type="password" placeholder="Confirm Password" fieldSize="large" formControlName="cpassword">
             </div>
 
-            <button nbButton fullWidth outline status="primary" size="large">
+            <button nbButton fullWidth outline status="primary" size="large" [disabled]="!signUpFrom.valid">
                 Sign Up
             </button>
         </form>
