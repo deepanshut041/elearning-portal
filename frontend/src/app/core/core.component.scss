@@ -1,0 +1,30 @@
+/* Navbar Styles */
+nav{
+    background: #2c2c2c;
+}
+nav .nav-item .nav-link{
+    color: #5fcf80;
+    font-weight: 500;
+    transition: color 300ms 0s ease;
+}
+nav .navbar-brand {
+    color: #5fcf80;
+}
+nav .nav-link:hover{
+    color: #fff;
+}
+
+
+footer{
+    padding: 50px 10px 30px 10px;
+    background-color: #2c2c2c !important;
+
+    h1{
+        color: #5fcf80;
+        margin-bottom: 2px;
+    }
+
+    p {
+        color: #ffffff
+    }
+}

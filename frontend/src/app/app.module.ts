@@ -11,6 +11,7 @@ import { AuthModule } from "./auth/auth.module";
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
     NbEvaIconsModule,
     AppRoutingModule,
     AuthModule,
+    CoreModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
