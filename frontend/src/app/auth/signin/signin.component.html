@@ -1,4 +1,4 @@
-<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
     <nb-card-header>
         <h3 id="title" class="text-center">Sign In</h3>
     </nb-card-header>
@@ -6,16 +6,14 @@
         <nb-alert *ngIf="error" role="alert" status="danger">{{ error }}</nb-alert>
         <form [formGroup]="signInFrom" (ngSubmit)="login()">
             <div class="form-control-group mb-3">
-                <label class="label" for="input-email">Email address:</label>
-                <input nbInput fullWidth id="input-email" type="email" placeholder="Email address" fieldSize="large"
-                    formControlName="email"
+                <label class="label">Email address:</label>
+                <input nbInput fullWidth type="email" placeholder="Email address" fieldSize="large"formControlName="email"
                     [status]="signInFrom.controls['email'].dirty ? (signInFrom.controls['email'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <div class="form-control-group mb-3">
-                <label class="label" for="input-password">Password:</label>
-                <input nbInput fullWidth id="input-password" type="password" placeholder="Password" fieldSize="large"
-                    formControlName="password"
+                <label class="label">Password:</label>
+                <input nbInput fullWidth type="password" placeholder="Password" fieldSize="large" formControlName="password"
                     [status]="signInFrom.controls['password'].dirty ? (signInFrom.controls['password'].invalid  ? 'danger' : 'success') : 'basic'">
                 <p class="text-right">
                     <a class="caption-2 text-primary" routerLink="../forgot">Forgot Password?</a>

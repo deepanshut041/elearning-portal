@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   loading: Boolean = false
   signUpFrom: FormGroup
+  error: String
 
   constructor(private _authService: AuthService, private fb: FormBuilder, private router: Router, private dialogService: NbDialogService) {
     this.signUpFrom = this.fb.group({
@@ -46,9 +47,10 @@ export class SignupComponent implements OnInit {
             context: { title: "Congratulation", message: response.message }
           })
           this.signUpFrom.reset()
+          this.error = null
         }, (err: any) => {
           this.loading = false
-          console.log(err.error.message)
+          this.error = err.error.message || "Unknown Message"
         }
       )
     }

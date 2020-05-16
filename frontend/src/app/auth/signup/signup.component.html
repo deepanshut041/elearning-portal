@@ -4,24 +4,29 @@
     </nb-card-header>
     <nb-card-body>
         <form [formGroup]="signUpFrom" (ngSubmit)="register()">
+            <nb-alert *ngIf="error" role="alert" status="danger">{{ error }}</nb-alert>
             <div class="form-control-group mb-3">
-                <label class="label" for="input-email">Email address:</label>
-                <input nbInput fullWidth id="input-email" placeholder="Email address" fieldSize="large" formControlName="email">
+                <label class="label">Email address:</label>
+                <input nbInput fullWidth placeholder="Email address" fieldSize="large" formControlName="email"
+                [status]="signUpFrom.controls['email'].dirty ? (signUpFrom.controls['email'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <div class="form-control-group mb-3">
-                <label class="label" for="input-name">Full Name:</label>
-                <input nbInput fullWidth id="input-name" placeholder="Full Name" fieldSize="large" formControlName="name">
+                <label class="label">Full Name:</label>
+                <input nbInput fullWidth placeholder="Full Name" fieldSize="large" formControlName="name"
+                [status]="signUpFrom.controls['name'].dirty ? (signUpFrom.controls['name'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <div class="form-control-group mb-3">
-                <label class="label" for="input-password">Password:</label>
-                <input nbInput fullWidth id="input-password" type="password" placeholder="Password" fieldSize="large" formControlName="password">
+                <label class="label">Password:</label>
+                <input nbInput fullWidth type="password" placeholder="Password" fieldSize="large" formControlName="password"
+                [status]="signUpFrom.controls['password'].dirty ? (signUpFrom.controls['password'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <div class="form-control-group mb-3">
-                <label class="label" for="input-cpassword">Confirm Password:</label>
-                <input nbInput fullWidth id="input-cpassword" type="password" placeholder="Confirm Password" fieldSize="large" formControlName="cpassword">
+                <label class="label">Confirm Password:</label>
+                <input nbInput fullWidth type="password" placeholder="Confirm Password" fieldSize="large" formControlName="cpassword"
+                [status]="signUpFrom.controls['cpassword'].dirty ? (signUpFrom.controls['cpassword'].invalid  ? 'danger' : 'success') : 'basic'">
             </div>
 
             <button nbButton fullWidth outline status="primary" size="large" [disabled]="!signUpFrom.valid">
