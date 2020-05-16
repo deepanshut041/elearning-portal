@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
+  courses: number[] = []
+
   constructor() { }
 
   ngOnInit(): void {
+    for (let i = 0; i < 10; i++) {
+      this.courses.push(i)
+      
+    }
   }
 
 }

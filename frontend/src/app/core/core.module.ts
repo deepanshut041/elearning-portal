@@ -13,13 +13,16 @@ import { TrackComponent } from './track/track.component';
 import { FourmsComponent } from './fourms/fourms.component';
 import { FourmsListComponent } from './fourms/fourms-list/fourms-list.component';
 import { FourmDetailComponent } from './fourms/fourm-detail/fourm-detail.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, CoreComponent, BlogsComponent, BlogListComponent, BlogDetailComponent, CoursesComponent, TracksComponent, CourseComponent, TrackComponent, FourmsComponent, FourmsListComponent, FourmDetailComponent],
+  declarations: [HomeComponent, CoreComponent, BlogsComponent, BlogListComponent,
+     BlogDetailComponent, CoursesComponent, TracksComponent, CourseComponent,
+      TrackComponent, FourmsComponent, FourmsListComponent, FourmDetailComponent],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, RouterModule, SharedModule
   ]
 })
 export class CoreModule { }

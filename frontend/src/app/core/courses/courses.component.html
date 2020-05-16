@@ -1,1 +1,105 @@
-<p>courses works!</p>
+<header class="container">
+    <div class="header-container">
+        <div class="row no-gutters align-items-center">
+            <div class="col-12 col-md-12 col-lg-6" id="headerLeft">
+                <h2>Welcome to the Swadyay Library</h2>
+                <p class="text-muted">
+                    This is a sample catalog of all the courses we offer. Browse by topic or difficulty.
+                    Sign up today and get access to our entire library.
+                </p>
+                <h4>Ready to start learning?</h4>
+                <p>Swadyay offers a free courses for all students.
+                    Get access to 1000s of hours of content. Learn to code, land your dream job.</p>
+                <div class="btn btn-large started-button"><a href="/classroom/">Get Started Now <i
+                            class="fa fa-arrow-right"></i></a></div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6" id="headerRight">
+                <img src="/assets/library-car.png" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</header>
+<section class="container" id="searchBox">
+    <div class="search-container">
+        <div class="row no-gutters">
+            <div class="col-6 col-md-7 col-lg-8 ">
+                <div class="search-box">
+                    <div class="row no-gutters">
+                        <div>
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="col">
+                            <input placeholder="Search Courses and Topics" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-5 col-lg-4">
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        Category <i class="fa fa-arrow-down"></i>
+                    </div>
+                    <div class="col-6">
+                        Language <i class="fa fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="courseBox">
+    <div class="course-container">
+        <div>
+            <h2>Courses</h2>
+            <p class="text-muted">Browse courses across an array of topics and disciplines.</p>
+        </div>
+        <div class="row " *ngIf="courses">
+            <div class="col-12 col-md-6 col-lg-4" *ngFor="let course of courses">
+                <div class="course-box">
+                    <div class="course-box-head">
+                        <div class="row no-gutters">
+                            <div class="col-6">
+                                <p class="text-left"><i class="fa fa-book"></i> <span>O O O</span></p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-right"><span></span> min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-box-body">
+                        <h6 class="text-muted">Course</h6>
+                        <h5>Title</h5>
+                        <p class="text-muted">Description</p>
+                    </div>
+                    <div class="course-box-footer">
+                        <div>
+                            <span>Language</span>
+                            <span>Beginner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Semi footer style goes here -->
+<section class="semi">
+    <div id="semi" class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="semi-container">
+                    <h5>Change Your Career, Change Your Life</h5>
+                    <p class="text-muted"><i class="fa fa-check-circle"></i> Learn from 100+ high quality video
+                        courses</p>
+                    <p class="text-muted"><i class="fa fa-check-circle"></i> Practice with our Code Challenge Engine
+                    </p>
+                    <p class="text-muted"><i class="fa fa-check-circle"></i> Get help in our members-only forums</p>
+                    <div class="text-center">
+                        <button class="btn btn-lg btn-info btn-block">Get Started Now </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
