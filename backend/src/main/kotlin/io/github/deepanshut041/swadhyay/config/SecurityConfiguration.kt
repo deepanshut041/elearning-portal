@@ -50,7 +50,7 @@ class SecurityConfiguration(
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .pathMatchers("/", "/error", "/favicon.ico", "/*/*.png", "/*/*.gif", "/*/*.svg", "/*/*.jpg", "/*/*/*.html", "/*/*.css", "/*/*.js").permitAll()
                 .pathMatchers("/v3/api-docs/**", "/v3/api/docs", "/webjars/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .pathMatchers("/api/account/**").permitAll()
+                .pathMatchers("/api/account/**", "/api/home/**").permitAll()
                 .pathMatchers("/api/mentor/**").hasRole("MENTOR")
                 .pathMatchers("/api/student/**").hasRole("STUDENT")
                 .pathMatchers("/api/admin/**").hasRole("ADMIN")
